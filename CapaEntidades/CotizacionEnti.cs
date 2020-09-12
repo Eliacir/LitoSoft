@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CapaEntidades
 {
-    public class Cotizacion
+    public class CotizacionEnti
     {
         public int IdCotizacion { get; set; }
         public string CodigoCotizacion { get; set; }
@@ -17,7 +17,7 @@ namespace CapaEntidades
         public string Nota { get; set; }
         public string AlcancePropuesta { get; set; }
 
-        public  Cotizacion()
+        public  CotizacionEnti()
         {
 
         }

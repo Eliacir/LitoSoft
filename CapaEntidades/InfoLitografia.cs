@@ -12,9 +12,7 @@ namespace CapaEntidades
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public  byte[] Imagen { get; set; }
-
-    
-  
+        public Usuario UsuLitografia { get; set; } = null;
 
         public InfoLitografia()
         {

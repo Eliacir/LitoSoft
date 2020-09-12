@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cotizacion.cs" />
+    <Compile Include="CotizacionEnti.cs" />
     <Compile Include="InfoLitografia.cs" />
     <Compile Include="ImagenesProyectos.cs" />
     <Compile Include="Empresa.cs" />
