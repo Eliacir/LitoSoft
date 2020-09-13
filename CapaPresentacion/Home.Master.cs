@@ -29,6 +29,7 @@ namespace CapaPresentacion
 
                     
                     ProyectoList.Visible = false;
+                    ClienteList.Visible = false;
                     InsumosList.Visible = false;
                     MenoObraList.Visible = false;
                     EmpleadosList.Visible = false;

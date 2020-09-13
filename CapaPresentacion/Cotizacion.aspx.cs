@@ -20,7 +20,6 @@ namespace CapaPresentacion
         {
             try
             {
-                Session["IsOtraPagina"] = true;
                 Session["PanelPrincipal"] = "Gestionar Cotizaciones";
                 IdLitografia = Convert.ToInt16(Session["IdLitografia"]);
                 if (!Page.IsPostBack)
@@ -45,8 +44,6 @@ namespace CapaPresentacion
 
         }
 
-
-
         public void CargarCombos()
         {
 
@@ -63,12 +60,6 @@ namespace CapaPresentacion
             decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
             txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
 
-            //Calculamos el valor total papel
-            if (!string.IsNullOrEmpty(txtCantidadpliego.Text))
-            {
-                decimal ValorTotalPapel = Convert.ToDecimal(valorpapel * Convert.ToInt32(txtCantidadpliego.Text));
-                txtValorTotalPapel.Text = ValorTotalPapel.ToString("C0", CultureInfo.CurrentCulture);
-            }
 
             //Recuperamos Corte
             ddCorte.DataSource = ohelper.RecuperarCorte();
@@ -76,6 +67,11 @@ namespace CapaPresentacion
             ddCorte.DataValueField = "Montaje";
             ddCorte.DataBind();
             ddCorte.Items.Insert(0, new ListItem("Seleccionar", "0"));
+
+
+            CalcularImpresionesyPliego();
+            //Calculamos el valor total papel
+            CalcularvalorTotalPapel();
 
             //Valor del montaje segun el corte escogido
             txtMontaje.Text = ddCorte.SelectedValue.Trim();
@@ -88,8 +84,6 @@ namespace CapaPresentacion
 
             Separardividendo();
         }
-
-
 
         protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
         {
@@ -139,7 +133,6 @@ namespace CapaPresentacion
             }
         }
 
-
         protected void ddSustrato_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -147,14 +140,7 @@ namespace CapaPresentacion
                 decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
                 txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
                 CalcularImpresionesyPliego();
-
-
-                //Calculamos el valor total papel
-                if (!string.IsNullOrEmpty(txtCantidadpliego.Text))
-                {
-                    decimal ValorTotalPapel = Convert.ToDecimal(valorpapel * Convert.ToInt32(txtCantidadpliego.Text));
-                    txtValorTotalPapel.Text = ValorTotalPapel.ToString("C0", CultureInfo.CurrentCulture);
-                }
+                CalcularvalorTotalPapel();
 
             }
             catch (Exception)
@@ -171,8 +157,12 @@ namespace CapaPresentacion
                 //Valor del montaje segun el corte escogido
                 txtMontaje.Text = ddCorte.SelectedValue.Trim();
 
-                RecuperarValorPlanchaEImpresion();
                 CalcularImpresionesyPliego();
+                RecuperarValorPlanchaEImpresion();
+
+
+                CalcularvalorTotalPapel();
+
             }
             catch (Exception)
             {
@@ -181,12 +171,30 @@ namespace CapaPresentacion
             }
         }
 
+        private void CalcularvalorTotalPapel()
+        {
+            //Calculamos el valor total papel
+            if (!ddSustrato.SelectedValue.Equals("0"))
+            {
+                decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
+                if (!string.IsNullOrEmpty(txtCantidadpliego.Text))
+                {
+                    decimal ValorTotalPapel = Convert.ToDecimal(valorpapel * Convert.ToInt32(txtCantidadpliego.Text));
+                    txtValorTotalPapel.Text = ValorTotalPapel.ToString("C0", CultureInfo.CurrentCulture);
+                }
+            }
+            else
+            {
+                txtValorTotalPapel.Text = "0";
+            }
+        }
+
         private void CalcularImpresionesyPliego()
         {
             try
             {
                 //Calcular impresiones impresiones Totales
-                if (!string.IsNullOrEmpty(txtCantidad.Text) && (!string.IsNullOrEmpty(txtCavidad.Text)))
+                if (!string.IsNullOrEmpty(txtCantidad.Text) && (!string.IsNullOrEmpty(txtCavidad.Text))  && (!txtCantidad.Text.Equals("0")) && (!txtCavidad.Text.Equals("0")))
                 {
                     Int64 cantidad = Convert.ToInt64(txtCantidad.Text);
                     Int64 cavidad = Convert.ToInt64(txtCavidad.Text);
@@ -203,7 +211,11 @@ namespace CapaPresentacion
                         Int64 cantidadpliego = impresionesTotales / dividendo;
                         txtCantidadpliego.Text = cantidadpliego.ToString();
                     }
-                
+                    else
+                    {
+                        txtCantidadpliego.Text = "0";
+                    }
+
                 }
             }
             catch (Exception)
@@ -214,38 +226,137 @@ namespace CapaPresentacion
 
         }
 
-
         private void RecuperarValorPlanchaEImpresion()
         {
-            decimal precioPlancha;
-            decimal PrecioImpresion;
-            if (!ddCorte.SelectedValue.Equals("0"))
+            try
             {
-                if (txtMontaje.Text.Equals("1/2") || txtMontaje.Text.Equals("1/3"))
+                decimal precioPlancha = 0;
+                decimal PrecioImpresion = 0;
+                Int32 imptotales = 0;
+                Int32 Rangomillar;
+                Int32 contarmillar = 0;
+                decimal GranTotalvalorImpresion = 0;
+
+                Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
+
+                if (!ddCorte.SelectedValue.Equals("0"))
                 {
-                    //PrecioPlanchaMayor = 22000; PrecioImpresionMayor = 25000
-                    precioPlancha = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMayor", IdLitografia));
-                    PrecioImpresion = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMayor", IdLitografia));
-                    txtvalorplanchaeimpresion.Text = precioPlancha.ToString("C0", CultureInfo.CurrentCulture) + " - " + PrecioImpresion.ToString("C0", CultureInfo.CurrentCulture);
+                    if (txtMontaje.Text.Equals("1/2") || txtMontaje.Text.Equals("1/3"))
+                    {
+                        //PrecioPlanchaMayor = 22000; PrecioImpresionMayor = 25000
+                        precioPlancha = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMayor", IdLitografia));
+                        PrecioImpresion = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMayor", IdLitografia));
+                        txtvalorplancha.Text = precioPlancha.ToString("C0", CultureInfo.CurrentCulture);
+                        txtValorImpresion.Text = PrecioImpresion.ToString("C0", CultureInfo.CurrentCulture);
+
+                        //Calculamos millares
+                        if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
+                        {
+                            imptotales = Convert.ToInt32(txtImpresionestotales.Text);
+                            if (Rangomillar > imptotales)
+                            {
+                                contarmillar = 1;
+                                GranTotalvalorImpresion = PrecioImpresion;
+                            }
+                            else
+                            {
+                                while (Rangomillar < imptotales)
+                                {
+                                    contarmillar++;
+                                    Rangomillar = Rangomillar + 1000;
+                                    GranTotalvalorImpresion = GranTotalvalorImpresion + PrecioImpresion;
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        //PrecioPlanchaMenor = 12000; PrecioImpresionMayor = 12000
+                        precioPlancha = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMenor", IdLitografia));
+                        PrecioImpresion = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMenor", IdLitografia));
+                        txtvalorplancha.Text = precioPlancha.ToString("C0", CultureInfo.CurrentCulture);
+                        txtValorImpresion.Text = PrecioImpresion.ToString("C0", CultureInfo.CurrentCulture);
+
+                        //Calculamos millares
+                        if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
+                        {
+                            imptotales = Convert.ToInt32(txtImpresionestotales.Text);
+                            if (Rangomillar > imptotales)
+                            {
+                                contarmillar = 1;
+                                GranTotalvalorImpresion = PrecioImpresion;
+                            }
+                            else
+                            {
+                                while (Rangomillar < imptotales)
+                                {
+                                    contarmillar++;
+                                    Rangomillar = Rangomillar + 1000;
+                                    GranTotalvalorImpresion = GranTotalvalorImpresion + PrecioImpresion;
+                                }
+                            }
+                        }
+
+                    }
                 }
                 else
                 {
-                    //PrecioPlanchaMenor = 12000; PrecioImpresionMayor = 12000
-                    precioPlancha = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMenor", IdLitografia));
-                    PrecioImpresion = Convert.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMenor", IdLitografia));
-                    txtvalorplanchaeimpresion.Text = precioPlancha.ToString("C0", CultureInfo.CurrentCulture) + " - " + PrecioImpresion.ToString("C0", CultureInfo.CurrentCulture);
+                    txtvalorplancha.Text = "0" ;
+                    txtValorImpresion.Text = "0";
                 }
+
+                //Calcular Frente y respaldo
+                decimal valorRespaldo;
+                decimal valorImpresionFrente;
+                decimal valorImpresionRespaldo;
+                decimal totalPlancha = 0;
+                decimal valorTotalImpresiones = 0;
+                decimal valorFrente;
+
+                if (!string.IsNullOrEmpty(txtFrente.Text) && !string.IsNullOrEmpty(txtRespaldo.Text))
+                {
+                    if (!txtFrente.Text.Equals(0) && txtRespaldo.Text.Equals(0) && ddMismaplancha.SelectedValue.Equals("No"))
+                    {
+                        totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
+                        valorTotalImpresiones = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
+                    }
+                    if (!txtFrente.Text.Equals(0) && !txtRespaldo.Text.Equals(0) && ddMismaplancha.SelectedValue.Equals("No"))
+                    {
+                        valorFrente = Convert.ToInt32(txtFrente.Text) * precioPlancha;
+                        valorRespaldo = Convert.ToInt32(txtRespaldo.Text) * precioPlancha;
+                        totalPlancha = valorFrente + valorRespaldo;
+                        valorImpresionFrente = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
+                        valorImpresionRespaldo = Convert.ToInt32(txtRespaldo.Text) * GranTotalvalorImpresion;
+                        valorTotalImpresiones = valorImpresionFrente + valorImpresionRespaldo;
+                    }
+
+                    if (!txtFrente.Text.Equals(0) && !txtRespaldo.Text.Equals(0) && ddMismaplancha.SelectedValue.Equals("Si"))
+                    {                     
+                        Int32 PapelExtra = Convert.ToInt32(ohelper.RecuperarParametro("PapelExtra", IdLitografia));
+                        contarmillar = 0;
+                        Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
+                        Int32 uno = ((imptotales - PapelExtra) * 2) + PapelExtra;
+                        while (Rangomillar < uno)
+                        {
+                            contarmillar++; 
+                            Rangomillar = Rangomillar + 1000;
+                        }
+                        totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
+                        valorTotalImpresiones = (Convert.ToInt32(txtFrente.Text) * contarmillar) * GranTotalvalorImpresion;
+                    }
+
+                    txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
+                    decimal Totalfactura = (totalPlancha + Convert.ToDecimal(txtValorTotalPapel.Text) + valorTotalImpresiones);
+                    txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
+
+                }
+
             }
-            else
+            catch (Exception)
             {
-                txtvalorplanchaeimpresion.Text = "0" + " - " + "0";
+                throw;
             }
-
-        }
-
-        private void LimpiarControles()
-        {
-
         }
 
         private void Separardividendo()
@@ -257,7 +368,45 @@ namespace CapaPresentacion
                 string montaje = txtMontaje.Text;
                 string[] separador = montaje.Split('/');
                 txtDividendo.Value = separador[1];
-            }          
+            }
+        }
+
+        protected void btnCalcular_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RecuperarValorPlanchaEImpresion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        protected void bntLimpiar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCantidad.Text = String.Empty;
+                txttamano.Text = String.Empty;
+                txtCavidad.Text = String.Empty;
+                CargarCombos();
+                txtValorpapel.Text = String.Empty; 
+                txtMontaje.Text = String.Empty; 
+                txtCantidadpliego.Text =  String.Empty;
+                txtvalorplancha.Text = String.Empty;
+                txtValorImpresion.Text = String.Empty;
+                txtValorTotalPapel.Text = String.Empty;
+                txtFrente.Text = String.Empty;
+                txtRespaldo.Text = String.Empty;
+                ddMismaplancha.Text = "Seleccionar";
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

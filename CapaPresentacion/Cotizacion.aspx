@@ -9,9 +9,9 @@
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet" />
     <script type="text/javascript">
 
-    </script>
-           <section class="content-header">
-        <h1 style="text-align: center">REGISTRO DE COTIZACION</h1>
+</script>
+    <section class="content-header">
+        <h1 style="text-align: center">REGISTRO DE COTIZACIÓN</h1>
     </section>
     <section class="content">
         <div class="box box-primary" style="left: 0px; top: 0px; height: 861px">
@@ -45,7 +45,7 @@
                             <label>Cavidad</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtCavidad" runat="server" TextMode="Number"  onchange="impresionesTotal()"></asp:TextBox>
+                            <asp:TextBox ID="txtCavidad" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
                             <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RqCavidad" ControlToValidate="txtCavidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <label>Sustrato</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddSustrato" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="Precio" AutoPostBack="True" OnSelectedIndexChanged="ddSustrato_SelectedIndexChanged">                          
+                            <asp:DropDownList ID="ddSustrato" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="Precio" AutoPostBack="True" OnSelectedIndexChanged="ddSustrato_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -67,12 +67,12 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2" >
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Corte X-Y</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddCorte" runat="server" CssClass="form-control" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddCorte_SelectedIndexChanged" >
+                            <asp:DropDownList ID="ddCorte" runat="server" CssClass="form-control" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddCorte_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <label>Impresiones Totales</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtImpresionestotales" runat="server" TextMode="Number" Enabled="False" ></asp:TextBox>
+                            <asp:TextBox ID="txtImpresionestotales" runat="server" TextMode="Number" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
 
@@ -107,22 +107,76 @@
                         </div>
                     </div>
 
-                      <div class="col-md-2">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label>Valores plancha e Impresión</label>
+                            <label>Valore plancha</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtvalorplanchaeimpresion" runat="server" Enabled="False"></asp:TextBox>
+                            <asp:TextBox ID="txtvalorplancha" runat="server" Enabled="False"></asp:TextBox>
+                        </div>
+                    </div>
+                     <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Valor Impresión</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtValorImpresion" runat="server" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
 
-                      <div class="col-md-2">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Valor total en papel</label>
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="txtValorTotalPapel" runat="server" Enabled="False"></asp:TextBox>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Frente</label>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtFrente" runat="server" TextMode="Number"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Respaldo</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Misma Plancha</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddMismaplancha" runat="server" DataTextField="Corte" DataValueField="Montaje" >
+                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
+                                <asp:ListItem Value="Si">Si</asp:ListItem>
+                                <asp:ListItem Value="No">No</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Total Factura</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtTotalfactura" runat="server" Enabled="False"></asp:TextBox>
+                        </div>
+                        <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" />
+                        <asp:Button ID="bntLimpiar" runat="server" Width="100px"  ForeColor="White" BorderColor="#357ebd" Text="Limpiar" BorderStyle="None" CssClass="btn btn-success" Height="32px" OnClick="bntLimpiar_Click"  />
                     </div>
                 </div>
             </div>
