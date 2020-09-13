@@ -115,7 +115,7 @@
                             <asp:TextBox ID="txtvalorplancha" runat="server" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
-                     <div class="col-md-2">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Valor Impresión</label>
                         </div>
@@ -158,7 +158,7 @@
                             <label>Misma Plancha</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddMismaplancha" runat="server" DataTextField="Corte" DataValueField="Montaje" >
+                            <asp:DropDownList ID="ddMismaplancha" runat="server" DataTextField="Corte" DataValueField="Montaje">
                                 <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
@@ -175,8 +175,14 @@
                         <div class="form-group">
                             <asp:TextBox ID="txtTotalfactura" runat="server" Enabled="False"></asp:TextBox>
                         </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" />
-                        <asp:Button ID="bntLimpiar" runat="server" Width="100px"  ForeColor="White" BorderColor="#357ebd" Text="Limpiar" BorderStyle="None" CssClass="btn btn-success" Height="32px" OnClick="bntLimpiar_Click"  />
+                        &nbsp;
+                        <asp:Button ID="bntLimpiar" runat="server" Width="100px" ForeColor="White" BorderColor="#357ebd" Text="Limpiar" BorderStyle="None" CssClass="btn btn-success" Height="32px" OnClick="bntLimpiar_Click" />
                     </div>
                 </div>
             </div>
