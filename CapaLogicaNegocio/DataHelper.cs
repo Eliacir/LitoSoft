@@ -16,6 +16,53 @@ namespace CapaLogicaNegocio
 
         #region LITOGRAFIA
 
+        public void EliminarCliente(int Idcliente,Int32 IdLitografia)
+        {
+            oacces.EliminarCliente(Idcliente, IdLitografia);
+        }
+
+        public DataSet RecuperarClientesPorFiltro(int filtro, string texto)
+        {
+            try
+            {
+                return oacces.RecuperarClientesPorFiltro(filtro, texto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool InsertarCliente(Cliente ocliente,Int32 idlitografia)
+        {
+            try
+            {
+                string res = oacces.InsertarCliente(ocliente.Nombre, ocliente.Documento, ocliente.Direccion, ocliente.Telefono,idlitografia);
+                if (res.Contains("ok"))
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet RecuperarClientes(Int32 Idlitografia)
+        {
+            try
+            {
+                return oacces.RecuperarClientes(Idlitografia);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet RecuperarPapel(Int32 idLitografia)
         {
             try
@@ -217,29 +264,8 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public DataSet RecuperarClientesPorFiltro(int filtro, string texto)
-        {
-            try
-            {
-                return oacces.RecuperarClientesPorFiltro(filtro, texto);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
-        public DataSet RecuperarClientes()
-        {
-            try
-            {
-                return oacces.RecuperarClientes();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+      
         public DataSet RecuperarProyectosPorNombre(string text)
         {
             return oacces.RecuperarProyectosPorNombre(text);
@@ -348,23 +374,6 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public bool InsertarCliente(Cliente ocliente)
-        {
-            try
-            {
-                string res = oacces.InsertarCliente(ocliente.Nombre, ocliente.Ruc, ocliente.Direccion, ocliente.Telefono, ocliente.Email);
-                if (res.Contains("ok"))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         public IDataReader RecuperarDetalleCotizacionPorIdDetalle(int IdDetalleCotizacion)
         {
@@ -416,12 +425,6 @@ namespace CapaLogicaNegocio
         }
 
 
-        public void EliminarCliente(int Idcliente)
-        {
-            oacces.EliminarCliente(Idcliente);
-        }
-
-
         public void EliminarEmpleado(int IdEmpleado)
         {
             oacces.EliminarEmpleado(IdEmpleado);
@@ -454,11 +457,11 @@ namespace CapaLogicaNegocio
             oacces.EliminarCotizacion(IdCotizacion);
         }
 
-        public bool ActualizarCliente(Cliente ocliente)
+        public bool ActualizarCliente(Cliente ocliente, Int32 idlitografia)
         {
             try
             {
-                string res = oacces.ActualizarCliente(ocliente.Nombre, ocliente.Ruc, ocliente.Direccion, ocliente.IdCliente, ocliente.Telefono, ocliente.Email);
+                string res = oacces.ActualizarCliente(ocliente.Nombre, ocliente.Documento, ocliente.Direccion, ocliente.IdCliente, ocliente.Telefono, idlitografia);
                 if (res.Contains("ok"))
                 {
                     return true;
@@ -711,11 +714,11 @@ namespace CapaLogicaNegocio
         }
 
 
-        public IDataReader RecuperarClientePorIdcliente(short IdCliente)
+        public IDataReader RecuperarClientePorIdcliente(short IdCliente, Int32 IdLitografia)
         {
             try
             {
-                return oacces.RecuperarClientePorIdcliente(IdCliente);
+                return oacces.RecuperarClientePorIdcliente(IdCliente, IdLitografia);
 
             }
             catch (Exception ex)

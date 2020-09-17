@@ -479,6 +479,11 @@
     <Compile Include="Cotizacion.aspx.designer.cs">
       <DependentUpon>Cotizacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Basepage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custom\CustomMembershipProvider.cs" />
+    <Compile Include="Custom\SessionManager.cs" />
     <Compile Include="GestionarLitografias.aspx.cs">
       <DependentUpon>GestionarLitografias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

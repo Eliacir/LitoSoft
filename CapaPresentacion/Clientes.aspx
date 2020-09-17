@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <%--    <section class="content-header">
+        <h1 style="text-align: center">registro de cotizaciones</h1>
+    </section>--%>
     <section class="content">
         <div class="row">
             <div class="col-md-12">

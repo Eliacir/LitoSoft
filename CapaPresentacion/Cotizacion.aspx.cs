@@ -16,6 +16,8 @@ namespace CapaPresentacion
     {
         DataHelper ohelper = new DataHelper();
         Int32 IdLitografia;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -25,6 +27,7 @@ namespace CapaPresentacion
                 if (!Page.IsPostBack)
                 {
                     CargarCombos();
+                 
 
                     //Boolean IsEditar = (bool)Session["IsEditar"];
                     //if (IsEditar)
@@ -46,6 +49,12 @@ namespace CapaPresentacion
 
         public void CargarCombos()
         {
+            //Recuperamos Clientes
+            ddClientes.DataSource = ohelper.RecuperarClientes(IdLitografia);
+            ddClientes.DataTextField = "Nombre";
+            ddClientes.DataValueField = "IdCliente";
+            ddClientes.DataBind();
+            ddClientes.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
             //Recuperamos Papel
             ddSustrato.DataSource = ohelper.RecuperarPapel(IdLitografia);
@@ -68,7 +77,7 @@ namespace CapaPresentacion
             ddCorte.DataBind();
             ddCorte.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
-
+          
             CalcularImpresionesyPliego();
             //Calculamos el valor total papel
             CalcularvalorTotalPapel();
@@ -407,6 +416,30 @@ namespace CapaPresentacion
 
                 throw;
             }
+        }
+
+        protected void btnAcabados_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btnAcabados.Text.Contains("Mostrar"))
+                {
+                    MultiView.ActiveViewIndex = 0;
+                    btnAcabados.Text = "Ocultar Acabados";
+                   
+                }
+                else
+                {
+                    MultiView.ActiveViewIndex = 1;
+                    btnAcabados.Text = "Mostrar Acabados";
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
     }
 }

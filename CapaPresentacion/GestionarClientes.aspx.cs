@@ -14,24 +14,65 @@ namespace CapaPresentacion
     public partial class GestionarClientes : System.Web.UI.Page
     {
         DataHelper ohelper = new DataHelper();
-
+        Int32 IdLitografia;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IsOtraPagina"] = true;
             Session["PanelPrincipal"] = "Gestionar Clientes";
+            IdLitografia = Convert.ToInt16(Session["IdLitografia"]);
             if (!Page.IsPostBack)
             {
+               
                 Session["IsOtraPagina"] = false;
                 CargarClientes();
+                //  MostrarOcultarCamposRegistro(false);
             }
         }
 
-        protected void btnAgregarCliente_Click(object sender, EventArgs e)
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Session["IsEditar"] = false;
-            Response.Redirect("Clientes.aspx", false);
-            GvCliente.DataBind();
+
+
+            try
+            {
+                if (Convert.ToBoolean(ViewState["esEditar"]))
+                {
+                    Cliente oCliente = GetEditarCliente();
+                    bool res = ohelper.ActualizarCliente(oCliente, IdLitografia);
+                    if (res)
+                    {
+                        string mensaje = "Cliente actualizado con exito";
+                        ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'success')</script>");
+                        btnRegistrar.Text = "Registrar";
+                        ViewState["esEditar"] = false;
+                    }
+
+                }
+                else
+                {
+
+                    Cliente oCliente = GetCliente();
+                    bool res = ohelper.InsertarCliente(oCliente,IdLitografia);
+                    if (res)
+                    {
+                        string mensaje = "Cliente agregado con exito";
+                        ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'success')</script>");
+                    }
+                }
+                LimpiarControles();
+                CargarClientes();
+
+                //  MostrarOcultarCamposRegistro(false);
+            }
+            catch (Exception ex)
+            {
+                CargarClientes();
+                string mensaje = ex.Message.Replace("'","");
+                ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'error')</script>");
+            }
+
         }
 
         protected void GvCliente_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -41,49 +82,49 @@ namespace CapaPresentacion
                 ImageButton Imagen = (ImageButton)e.CommandSource;
                 DataControlFieldCell Celda = (DataControlFieldCell)Imagen.Parent;
                 GridViewRow fila = (GridViewRow)Celda.Parent;
+
                 switch (e.CommandName)
                 {
+
                     case "Actualizar":
                         {
-                   
-                            Session["IsEditar"] = true;
-
-                            Session["IdClienteGC"] = GvCliente.Rows[fila.RowIndex].Cells[0].Text;
-                            Session["NombreGC"] = GvCliente.Rows[fila.RowIndex].Cells[1].Text.Replace("&nbsp;", "");
-                            Session["RucGC"] = GvCliente.Rows[fila.RowIndex].Cells[2].Text.Replace("&nbsp;", "");
-                            Session["DireccionGC"] = GvCliente.Rows[fila.RowIndex].Cells[3].Text.Replace("&nbsp;", "");
-                            Session["TelefonoGC"] = GvCliente.Rows[fila.RowIndex].Cells[4].Text.Replace("&nbsp;", "");
-                            Session["EmailGC"] = GvCliente.Rows[fila.RowIndex].Cells[5].Text.Replace("&nbsp;", ""); ;
-                            Response.Redirect("Clientes.aspx", false);
+                            ViewState["esEditar"] = true;
+                            btnRegistrar.Text = "Actualizar";
+                            Session["IdClienteGC"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
+                            ValoresGVClientes();
+                            btnCancelar.Visible = true;
                             break;
                         }
                     case "Eliminar":
                         {
-                            Session["IdClienteGC"] = GvCliente.Rows[fila.RowIndex].Cells[0].Text;
-                            ohelper.EliminarCliente(Convert.ToInt32(Session["IdClienteGC"]));
+
+                            Session["IdClienteGC"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
+                            ohelper.EliminarCliente(Convert.ToInt32(Session["IdClienteGC"]),IdLitografia);
                             string mensaje = "Cliente eliminado satisfactoriamente.";
                             //Mensaje ok
-                            ClientScript.RegisterStartupScript(this.GetType(), "Gestionar Clientes", "<script>swal('', '" + mensaje + "', 'success')</script>");
                             CargarClientes();
+                            ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'success')</script>");
                             break;
                         }
+
+
                 }
             }
             catch (Exception ex)
             {
-                string mensaje = ex.Message;
+                string mensaje = ex.Message.Replace("'","");
                 //Mensaje Error
-                ClientScript.RegisterStartupScript(this.GetType(), "Gestionar Clientes", "<script>swal('', '" + mensaje + "', 'error')</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'error')</script>");
             }
         }
 
-        protected void btnBuscarRepresentante_Click(object sender, EventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
                 if (txtfiltro.Text.Length > 2 && DDFiltro.SelectedIndex > 0)
                 {
-                    GvCliente.DataSource = ohelper.RecuperarClientesPorFiltro(Convert.ToInt32(DDFiltro.SelectedIndex),txtfiltro.Text);
+                    GvCliente.DataSource = ohelper.RecuperarClientesPorFiltro(Convert.ToInt32(DDFiltro.SelectedIndex), txtfiltro.Text);
                     GvCliente.DataBind();
                 }
                 else
@@ -91,7 +132,7 @@ namespace CapaPresentacion
                     CargarClientes();
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }
@@ -127,16 +168,105 @@ namespace CapaPresentacion
         {
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            ds = ohelper.RecuperarClientes();
+            ds = ohelper.RecuperarClientes(IdLitografia);
             GvCliente.DataSource = ds;
             GvCliente.DataBind();
             dt = ds.Tables[0];
             Session["dtCliente"] = dt;
         }
 
-        protected void txtfiltro_TextChanged(object sender, EventArgs e)
+        private Cliente GetCliente()
         {
+            Cliente oCliente = new Cliente();
+            oCliente.IdCliente = 0;
+            oCliente.Nombre = txtnombre.Text;
+            oCliente.Documento = txtdocumento.Text;
+            oCliente.Direccion = txtDireccion.Text;
+            oCliente.Telefono = txttelefono.Text;
+
+            return oCliente;
+        }
+
+        private Cliente GetEditarCliente()
+        {
+            Cliente oCliente = new Cliente();
+            oCliente.IdCliente = Convert.ToInt32(Session["IdClienteGC"]);
+            oCliente.Nombre = txtnombre.Text;
+            oCliente.Documento = txtdocumento.Text;
+            oCliente.Direccion = txtDireccion.Text;
+            oCliente.Telefono = txttelefono.Text;
+
+            return oCliente;
+        }
+
+        private void ValoresGVClientes()
+        {
+            try
+            {
+                short IdCliente = Cast.ToShort(Session["IdClienteGC"]);
+
+                using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente,IdLitografia))
+                {
+                    if (reader != null)
+                    {
+                        if (reader.Read())
+                        {
+                            txtnombre.Text = Cast.ToString(reader["Nombre"]);
+                            txtdocumento.Text = Cast.ToString(reader["Documento"]);
+                            txtDireccion.Text = Cast.ToString(reader["Direccion"]);
+                            txttelefono.Text = Cast.ToString(reader["Telefono"]);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LimpiarControles();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void LimpiarControles()
+        {
+            txtnombre.Text = String.Empty;
+            txtdocumento.Text = String.Empty;
+            txtDireccion.Text = String.Empty;
+            txttelefono.Text = String.Empty;
+            btnCancelar.Visible = false;
+        }
+
+
+        //private void MostrarOcultarCamposRegistro(bool mostrar)
+        //{
+        //    txtnombre.Visible = mostrar;
+        //    txtdocumento.Visible = mostrar;
+        //    txtDireccion.Visible = mostrar;
+        //    txttelefono.Visible = mostrar;
+
+        //    lblNombre.Visible = mostrar;
+        //    lbldireccion.Visible = mostrar;
+        //    lbltelefono.Visible = mostrar;
+        //    lbldocumento.Visible = mostrar;
+
+
+        //    btnRegistrar.Visible = mostrar;
+        //    btnCancelar.Visible = mostrar;
+        //}
+
     }
 }

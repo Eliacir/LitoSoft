@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaLogicaNegocio;
-
+using CapaPresentacion.Custom;
 
 namespace CapaPresentacion
 {
@@ -20,46 +21,118 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
+   
             }
+
         }
 
-        protected void btnIngresar_Click(object sender, EventArgs e)
+
+        protected void LoginUser_Authenticate(object sender, AuthenticateEventArgs e)
         {
             try
             {
-                Usuario usuario = new Usuario();
-                if (string.IsNullOrEmpty(RqClave.Text))
+                bool auth = Membership.ValidateUser(LoginUser.UserName, LoginUser.Password);
+
+                if (auth)
                 {
+                    Usuario usuario = new Usuario();
+
                     usuario = GetUsuario();
-                    usuario = RecuperarUsuario(usuario.NomUsuario,usuario.Clave);
+                    usuario = RecuperarUsuario(usuario.NomUsuario, usuario.Clave);
+
                     if (usuario != null)
                     {
+                        SessionManager _SessionManager = new SessionManager(Session);
+                        _SessionManager.UserSessionUsuario = usuario;
+
                         Session["TipoUsuario"] = usuario.IdTipoUsuario;
                         Session["IdLitografia"] = usuario.IdLitografia;
 
-                     
+
                         //Redireccionamos a otra pagina   
                         if (usuario.IdTipoUsuario == 2) //usuarios comunes
                         {
                             if (ImgLito != null)
-                            {                            
-                                Session["logo"] = ImgLito;
-                                Response.Redirect("Panelgeneral.aspx", false);
-                            }
-                            else
                             {
-                                Response.Redirect("Panelgeneral.aspx", false);
+                                Session["logo"] = ImgLito;
+
                             }
-                           
+                            FormsAuthentication.RedirectFromLoginPage(LoginUser.UserName, false);
+                            //Response.Redirect("Panelgeneral.aspx", false);
 
                         }
                         else //Administradors
                         {
+                            FormsAuthentication.RedirectFromLoginPage(LoginUser.UserName, false);
                             Response.Redirect("GestionarLitografias.aspx", false);
                         }
-                       
+
                     }
-                } 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.Message;
+                //Mensaje Error
+                ClientScript.RegisterStartupScript(this.GetType(), "Iniciar sesión", "<script>swal('', '" + mensaje + "', 'error')</script>");
+                //Mensaje Ok
+                //ClientScript.RegisterStartupScript(this.GetType(), "BIEN ECHO", "<script>swal('', '" + mensaje + "', 'success')</script>");
+                //ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", "<script>swal('"  + mensaje + "')</script>");
+            }
+
+
+        }
+
+        //Metodo viejo sin autenticacion membership
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool auth = Membership.ValidateUser(LoginUser.UserName, LoginUser.Password);
+
+                if (auth)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario = GetUsuario();
+                    usuario = RecuperarUsuario(usuario.NomUsuario, usuario.Clave);
+
+                    if (usuario != null)
+                    {
+                        SessionManager _SessionManager = new SessionManager(Session);
+                        _SessionManager.UserSessionUsuario = usuario;
+                
+
+                        Session["TipoUsuario"] = usuario.IdTipoUsuario;
+                        Session["IdLitografia"] = usuario.IdLitografia;
+
+
+                        //Redireccionamos a otra pagina   
+                        if (usuario.IdTipoUsuario == 2) //usuarios comunes
+                        {
+                            if (ImgLito != null)
+                            {
+                                Session["logo"] = ImgLito;
+                        
+                            }
+                            FormsAuthentication.RedirectFromLoginPage(LoginUser.UserName, false);
+                            //Response.Redirect("Panelgeneral.aspx", false);
+
+                        }
+                        else //Administradors
+                        {
+                            FormsAuthentication.RedirectFromLoginPage(LoginUser.UserName, false);
+                            //Response.Redirect("GestionarLitografias.aspx", false);
+                        }
+
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('USUARIO INCORRECTO.')</script>");
+                    }
+
+                }
 
             }
             catch (Exception ex)
@@ -73,7 +146,7 @@ namespace CapaPresentacion
             }
         }
 
-        private  Usuario RecuperarUsuario(string usuario, string clave)
+        public Usuario RecuperarUsuario(string usuario, string clave)
         {
             DataHelper ohelper = new DataHelper();
             Usuario ousuario = new Usuario();
@@ -90,7 +163,7 @@ namespace CapaPresentacion
                         if (ousuario.IdTipoUsuario == 2)
                         {
                             ousuario.IdLitografia = Int16.Parse(readerusuario["IdLitografia"].ToString());
-                            ImgLito = (byte[])readerusuario["Logo"];                 
+                            ImgLito = (byte[])readerusuario["Logo"];
                         }
                     }
                 }
@@ -106,8 +179,8 @@ namespace CapaPresentacion
         private Usuario GetUsuario()
         {
             Usuario oUsuario = new Usuario();
-            oUsuario.NomUsuario = txtUsuario.Text;
-            oUsuario.Clave = txtpassword.Text;
+            oUsuario.NomUsuario = LoginUser.UserName;
+            oUsuario.Clave = LoginUser.Password;
             return oUsuario;
         }
     }

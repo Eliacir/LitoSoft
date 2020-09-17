@@ -9,6 +9,122 @@ Imports CapaEntidades
 Public Class DataAccess
 
 #Region "LITOGRAFIA"
+    Public Sub EliminarCliente(IdCliente As Integer, IdLitografia As Int32)
+        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
+        Dim DB As Database = DatabaseFactory.CreateDatabase()
+        'Crea un sqlComand a partir del nombre del procedimiento almacenado
+        Dim SqlCommand As String = "EliminarCliente"
+        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
+
+        DB.AddInParameter(DatabaseCommand, "IdCliente", DbType.Int32, IdCliente)
+        DB.AddInParameter(DatabaseCommand, "IdLitografia", DbType.Int32, IdLitografia)
+
+        Using connection As DbConnection = DB.CreateConnection()
+            connection.Open()
+            Try
+                'Ejecuta el Procedimiento Almacenado
+                DB.ExecuteNonQuery(DatabaseCommand)
+            Catch
+                Throw
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Sub
+    Public Function RecuperarClientesPorFiltro(ByVal Filtro As Int32, ByVal Texto As String) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarClientesPorFiltro"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "Filtro", DbType.Int32, Filtro)
+        db.AddInParameter(dbCommand, "Texto", DbType.String, Texto)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
+    Public Function ActualizarCliente(ByVal Nombre As String, ByVal Documento As String, ByVal Direccion As String, IdCliente As Int32, ByVal Telefono As String, ByVal Idlitografia As Int32) As String
+        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
+        Dim DB As Database = DatabaseFactory.CreateDatabase()
+        'Crea un sqlComand a partir del nombre del procedimiento almacenado
+        Dim SqlCommand As String = "ActualizarCliente"
+        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
+
+        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, Nombre)
+        DB.AddInParameter(DatabaseCommand, "Documento", DbType.String, Documento)
+        DB.AddInParameter(DatabaseCommand, "Direccion", DbType.String, Direccion)
+        DB.AddInParameter(DatabaseCommand, "IdCliente", DbType.Int32, IdCliente)
+        DB.AddInParameter(DatabaseCommand, "Telefono", DbType.String, Telefono)
+        DB.AddInParameter(DatabaseCommand, "IdLitografia", DbType.String, Idlitografia)
+        Dim rpta As String
+        Using connection As DbConnection = DB.CreateConnection()
+            connection.Open()
+
+            Try
+                'Ejecuta el Procedimiento Almacenado
+                rpta = If(DB.ExecuteNonQuery(DatabaseCommand) = 1, "ok", "El Registro No pudo ser insertado")
+                Return rpta
+            Catch
+                Throw
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
+    Public Function InsertarCliente(ByVal Nombre As String, ByVal Documento As String, ByVal Direccion As String, ByVal Telefono As String, ByVal Idlitografia As Int32) As String
+        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
+        Dim DB As Database = DatabaseFactory.CreateDatabase()
+        'Crea un sqlComand a partir del nombre del procedimiento almacenado
+        Dim SqlCommand As String = "InsertarCliente"
+        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
+
+        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, Nombre)
+        DB.AddInParameter(DatabaseCommand, "Documento", DbType.String, Documento)
+        DB.AddInParameter(DatabaseCommand, "Direccion", DbType.String, Direccion)
+        DB.AddInParameter(DatabaseCommand, "Telefono", DbType.String, Telefono)
+        DB.AddInParameter(DatabaseCommand, "IdLitografia", DbType.String, Idlitografia)
+        Dim rpta As String
+        Using connection As DbConnection = DB.CreateConnection()
+            connection.Open()
+
+            Try
+                'Ejecuta el Procedimiento Almacenado
+                rpta = If(DB.ExecuteNonQuery(DatabaseCommand) = 1, "ok", "El Registro No pudo ser insertado")
+                Return rpta
+            Catch
+                Throw
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
+
+    Public Function RecuperarClientes(ByVal Idlitografia As Int32) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarClientes"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+        db.AddInParameter(dbCommand, "IdLitografia", DbType.String, Idlitografia)
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
 
     Public Function RecuperarParametro(nombre As String, idlitografia As Int32) As String
         'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
@@ -346,41 +462,8 @@ Public Class DataAccess
             End Try
         End Using
     End Function
-    Public Function RecuperarClientesPorFiltro(ByVal Filtro As Int32, ByVal Texto As String) As DataSet
-        Dim db As Database = DatabaseFactory.CreateDatabase()
-        Dim sqlCommand As String = "RecuperarClientesPorFiltro"
-        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
 
-        db.AddInParameter(dbCommand, "Filtro", DbType.Int32, Filtro)
-        db.AddInParameter(dbCommand, "Texto", DbType.String, Texto)
 
-        Using connection As DbConnection = db.CreateConnection()
-            connection.Open()
-            Try
-                Return db.ExecuteDataSet(dbCommand)
-            Catch ex As Exception
-                Throw ex
-            Finally
-                connection.Close()
-            End Try
-        End Using
-    End Function
-    Public Function RecuperarClientes() As DataSet
-        Dim db As Database = DatabaseFactory.CreateDatabase()
-        Dim sqlCommand As String = "RecuperarClientes"
-
-        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
-        Using connection As DbConnection = db.CreateConnection()
-            connection.Open()
-            Try
-                Return db.ExecuteDataSet(dbCommand)
-            Catch ex As Exception
-                Throw ex
-            Finally
-                connection.Close()
-            End Try
-        End Using
-    End Function
 
     Public Function RecuperarProyectosPorNombre(text As String) As DataSet
         Dim db As Database = DatabaseFactory.CreateDatabase()
@@ -450,27 +533,6 @@ Public Class DataAccess
         Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
 
         DB.AddInParameter(DatabaseCommand, "IdManoObra", DbType.Int32, IdManoObra)
-        Using connection As DbConnection = DB.CreateConnection()
-            connection.Open()
-            Try
-                'Ejecuta el Procedimiento Almacenado
-                DB.ExecuteNonQuery(DatabaseCommand)
-            Catch
-                Throw
-            Finally
-                connection.Close()
-            End Try
-        End Using
-    End Sub
-
-    Public Sub EliminarCliente(IdCliente As Integer)
-        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
-        Dim DB As Database = DatabaseFactory.CreateDatabase()
-        'Crea un sqlComand a partir del nombre del procedimiento almacenado
-        Dim SqlCommand As String = "EliminarCliente"
-        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
-
-        DB.AddInParameter(DatabaseCommand, "IdCliente", DbType.Int32, IdCliente)
         Using connection As DbConnection = DB.CreateConnection()
             connection.Open()
             Try
@@ -908,7 +970,7 @@ Public Class DataAccess
         End Using
     End Function
 
-    Public Function RecuperarClientePorIdcliente(ByVal IdCliente As Int16) As IDataReader
+    Public Function RecuperarClientePorIdcliente(ByVal IdCliente As Int16, ByVal IdLitografia As Int32) As IDataReader
         'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
         Dim DB As Database = DatabaseFactory.CreateDatabase()
         'Crea un sqlComand a partir del nombre del procedimiento almacenado
@@ -916,6 +978,7 @@ Public Class DataAccess
         Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
 
         DB.AddInParameter(DatabaseCommand, "IdCliente", DbType.Int16, IdCliente)
+        DB.AddInParameter(DatabaseCommand, "IdLitografia", DbType.Int16, IdLitografia)
 
         Using connection As DbConnection = DB.CreateConnection()
             connection.Open()
@@ -975,33 +1038,6 @@ Public Class DataAccess
         End Using
     End Function
 
-    Public Function InsertarCliente(ByVal Nombre As String, ByVal Ruc As String, ByVal Direcion As String, ByVal Telefono As String, ByVal Email As String) As String
-        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
-        Dim DB As Database = DatabaseFactory.CreateDatabase()
-        'Crea un sqlComand a partir del nombre del procedimiento almacenado
-        Dim SqlCommand As String = "InsertarCliente"
-        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
-
-        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, Nombre)
-        DB.AddInParameter(DatabaseCommand, "Ruc", DbType.String, Ruc)
-        DB.AddInParameter(DatabaseCommand, "Direcion", DbType.String, Direcion)
-        DB.AddInParameter(DatabaseCommand, "Telefono", DbType.String, Telefono)
-        DB.AddInParameter(DatabaseCommand, "Email", DbType.String, Email)
-        Dim rpta As String
-        Using connection As DbConnection = DB.CreateConnection()
-            connection.Open()
-
-            Try
-                'Ejecuta el Procedimiento Almacenado
-                rpta = If(DB.ExecuteNonQuery(DatabaseCommand) = 1, "ok", "El Registro No pudo ser insertado")
-                Return rpta
-            Catch
-                Throw
-            Finally
-                connection.Close()
-            End Try
-        End Using
-    End Function
     'oEmpresa.Nombre, oEmpresa.Ruc, oEmpresa.Direccion, oEmpresa.Telefono, oEmpresa.Correo, oEmpresa.Logo
     Public Function InsertarEmpresa(ByVal Nombre As String, ByVal Ruc As String, ByVal Direcion As String, ByVal Telefono As String, ByVal Correo As String) As String
         'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
@@ -1049,35 +1085,6 @@ Public Class DataAccess
         Dim rpta As String
         Using connection As DbConnection = DB.CreateConnection()
             connection.Open()
-            Try
-                'Ejecuta el Procedimiento Almacenado
-                rpta = If(DB.ExecuteNonQuery(DatabaseCommand) = 1, "ok", "El Registro No pudo ser insertado")
-                Return rpta
-            Catch
-                Throw
-            Finally
-                connection.Close()
-            End Try
-        End Using
-    End Function
-
-    Public Function ActualizarCliente(ByVal Nombre As String, ByVal Ruc As String, ByVal Direcion As String, IdCliente As Int32, ByVal Telefono As String, ByVal Email As String) As String
-        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
-        Dim DB As Database = DatabaseFactory.CreateDatabase()
-        'Crea un sqlComand a partir del nombre del procedimiento almacenado
-        Dim SqlCommand As String = "ActualizarCliente"
-        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
-
-        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, Nombre)
-        DB.AddInParameter(DatabaseCommand, "Ruc", DbType.String, Ruc)
-        DB.AddInParameter(DatabaseCommand, "Direcion", DbType.String, Direcion)
-        DB.AddInParameter(DatabaseCommand, "IdCliente", DbType.Int32, IdCliente)
-        DB.AddInParameter(DatabaseCommand, "Telefono", DbType.String, Telefono)
-        DB.AddInParameter(DatabaseCommand, "Email", DbType.String, Email)
-        Dim rpta As String
-        Using connection As DbConnection = DB.CreateConnection()
-            connection.Open()
-
             Try
                 'Ejecuta el Procedimiento Almacenado
                 rpta = If(DB.ExecuteNonQuery(DatabaseCommand) = 1, "ok", "El Registro No pudo ser insertado")

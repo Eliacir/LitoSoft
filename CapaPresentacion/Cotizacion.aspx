@@ -13,6 +13,7 @@
     <section class="content-header">
         <h1 style="text-align: center">REGISTRO DE COTIZACIÓN</h1>
     </section>
+
     <section class="content">
         <div class="box box-primary" style="left: 0px; top: 0px; height: 861px">
             <div class="box-body">
@@ -20,6 +21,18 @@
                 <asp:HiddenField ID="txtpapelextra" runat="server" />
                 <asp:HiddenField ID="txtDividendo" runat="server" />
                 <!--FIN VALORES JS-->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Cliente</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddClientes" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="Precio" AutoPostBack="True">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+                <br />
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -167,6 +180,95 @@
                     </div>
                 </div>
                 <br />
+
+                <%--               ACABADOS--%>
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:Button ID="btnAcabados" runat="server" Width="158px" ForeColor="White" BorderColor="#357ebd" Text="Mostrar acabados" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnAcabados_Click" />
+
+                        <asp:MultiView ID="MultiView" runat="server">
+                            <asp:View ID="VDatos" runat="server">
+
+                                <div class="row">
+                                    <br />
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Cantidad</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="TextBox1" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator1" ControlToValidate="txtCantidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Tamaño</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="TextBox2" runat="server" TextMode="Number"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator2" ControlToValidate="txttamano" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Cavidad</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="TextBox3" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator3" ControlToValidate="txtCavidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Precio Papel</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="TextBox4" runat="server" Enabled="False"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Frente</label>
+                                        </div>
+                                        <div>
+                                            <asp:TextBox ID="TextBox11" runat="server" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Respaldo</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:TextBox ID="TextBox12" runat="server" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Misma Plancha</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:DropDownList ID="DropDownList3" runat="server" DataTextField="Corte" DataValueField="Montaje">
+                                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
+                                                <asp:ListItem Value="Si">Si</asp:ListItem>
+                                                <asp:ListItem Value="No">No</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </asp:View>
+                            <asp:View ID="VOcultar" runat="server"></asp:View>
+                        </asp:MultiView>
+                    </div>
+                </div>
+
+                <br />
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -188,9 +290,12 @@
             </div>
         </div>
     </section>
+
     <script>
         $('#<%=ddCorte.ClientID%>').chosen();
         $('#<%=ddSustrato.ClientID%>').chosen();
+        $('#<%=ddClientes.ClientID%>').chosen();
+
 
         function impresionesTotal() {
             //Calcular impresiones imprTotales

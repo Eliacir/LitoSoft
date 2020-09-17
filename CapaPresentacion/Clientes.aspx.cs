@@ -45,7 +45,7 @@ namespace CapaPresentacion
                 if (btnRegistrar.Text == "Actualizar")
                 {
                     Cliente oCliente = GetEditarCliente();
-                    bool res = ohelper.ActualizarCliente(oCliente);
+                    bool res = ohelper.ActualizarCliente(oCliente,0);
                     if (res)
                     {
                         Response.Redirect("GestionarClientes.aspx", false);
@@ -54,7 +54,7 @@ namespace CapaPresentacion
                 else
                 {
                     Cliente oCliente = GetCliente();
-                    bool res = ohelper.InsertarCliente(oCliente);
+                    bool res = ohelper.InsertarCliente(oCliente,0);
                     if (res)
                     {
                         Response.Redirect("GestionarClientes.aspx", false);
@@ -74,10 +74,10 @@ namespace CapaPresentacion
             Cliente oCliente = new Cliente();
             oCliente.IdCliente = 0;
             oCliente.Nombre = txtNombre.Text;
-            oCliente.Ruc = txtDocumento.Text;
+            oCliente.Documento = txtDocumento.Text;
             oCliente.Direccion = txtDireccion.Text;
             oCliente.Telefono = txtTelefono.Text;
-            oCliente.Email = txtEmail.Text;
+
 
             return oCliente;
         }
@@ -87,10 +87,10 @@ namespace CapaPresentacion
             Cliente oCliente = new Cliente();
             oCliente.IdCliente = Convert.ToInt32(Session["IdClienteGC"]);
             oCliente.Nombre = txtNombre.Text;
-            oCliente.Ruc = txtDocumento.Text;
+            oCliente.Documento = txtDocumento.Text;
             oCliente.Direccion = txtDireccion.Text;
             oCliente.Telefono = txtTelefono.Text;
-            oCliente.Email = txtEmail.Text;
+
 
             return oCliente;
         }
@@ -103,7 +103,7 @@ namespace CapaPresentacion
             {
                 short IdCliente = Cast.ToShort(Session["IdClienteGC"]);
 
-                using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente))
+                using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente,0))
                 {
                     if (reader != null)
                     {
