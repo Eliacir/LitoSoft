@@ -59,7 +59,7 @@ namespace CapaPresentacion
             //Recuperamos Papel
             ddSustrato.DataSource = ohelper.RecuperarPapel(IdLitografia);
             ddSustrato.DataTextField = "Nombre";
-            ddSustrato.DataValueField = "Precio";
+            ddSustrato.DataValueField = "IdPapel";
             ddSustrato.DataBind();
             ddSustrato.Items.Insert(0, new ListItem("Seleccionar", "0"));
             // ddSustrato.SelectedItem.Text;//Nombrepapel
@@ -146,7 +146,9 @@ namespace CapaPresentacion
         {
             try
             {
-                decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
+                var idPapel = Convert.ToInt32(ddSustrato.SelectedValue);
+
+                decimal valorpapel = ohelper.RecuperarPrecioPapel(idPapel);
                 txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
                 CalcularImpresionesyPliego();
                 CalcularvalorTotalPapel();

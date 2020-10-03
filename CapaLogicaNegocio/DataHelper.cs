@@ -92,6 +92,11 @@ namespace CapaLogicaNegocio
             return oacces.RecuperarMontaje(idCorte);
         }
 
+        public decimal RecuperarPrecioPapel(int idPapel)
+        {
+            return oacces.RecuperarPrecioPapel(idPapel);
+        }
+
         public void ActualizarLitografia(InfoLitografia infoLitografia)
         {
             try
