@@ -87,6 +87,11 @@ namespace CapaLogicaNegocio
             return oacces.RecuperarCorte();
         }
 
+        public string RecuperarMontaje(int idCorte)
+        {
+            return oacces.RecuperarMontaje(idCorte);
+        }
+
         public void ActualizarLitografia(InfoLitografia infoLitografia)
         {
             try

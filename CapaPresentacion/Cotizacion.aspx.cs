@@ -27,7 +27,7 @@ namespace CapaPresentacion
                 if (!Page.IsPostBack)
                 {
                     CargarCombos();
-                 
+
 
                     //Boolean IsEditar = (bool)Session["IsEditar"];
                     //if (IsEditar)
@@ -73,7 +73,7 @@ namespace CapaPresentacion
             //Recuperamos Corte
             ddCorte.DataSource = ohelper.RecuperarCorte();
             ddCorte.DataTextField = "Corte";
-            ddCorte.DataValueField = "Montaje";
+            ddCorte.DataValueField = "IdCorte";
             ddCorte.DataBind();
             ddCorte.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
@@ -164,7 +164,9 @@ namespace CapaPresentacion
             try
             {
                 //Valor del montaje segun el corte escogido
-                txtMontaje.Text = ddCorte.SelectedValue.Trim();
+                var idCorte = Convert.ToInt32(ddCorte.SelectedValue);
+
+                txtMontaje.Text = ohelper.RecuperarMontaje(idCorte);
 
                 CalcularImpresionesyPliego();
                 RecuperarValorPlanchaEImpresion();

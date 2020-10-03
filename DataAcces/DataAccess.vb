@@ -186,6 +186,25 @@ Public Class DataAccess
         End Using
     End Function
 
+    Public Function RecuperarMontaje(idCorte As Integer) As String
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarMontaje"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "IdCorte", DbType.Int32, idCorte)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteScalar(dbCommand).ToString()
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
     Public Sub ActualizarLitografia(idLitografia As Integer, nombre As String, direccion As String, telefono As String, imagen() As Byte, Nombreusuario As String, Clave As String, Estado As Boolean)
         'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
         Dim DB As Database = DatabaseFactory.CreateDatabase()
@@ -1438,7 +1457,7 @@ Public Class DataAccess
                         oempleado.Estado = 2
                     End If
 
-                    'AÑADIR A LA LISTA DE OBJETO
+                    'Aï¿½ADIR A LA LISTA DE OBJETO
                     Lista.Add(oempleado)
                 End While
                 Return Lista
