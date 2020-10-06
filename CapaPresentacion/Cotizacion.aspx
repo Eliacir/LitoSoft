@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Tamaño</label>
+                            <label>Costo Diseño</label>
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="txttamano" runat="server" TextMode="Number"></asp:TextBox>

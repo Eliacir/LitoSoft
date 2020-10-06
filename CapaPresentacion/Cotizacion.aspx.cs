@@ -66,7 +66,8 @@ namespace CapaPresentacion
             // ddSustrato.SelectedValue;//precio
 
             //Sacamos el valor del papel
-            decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
+            var idPapel = Convert.ToInt32(ddSustrato.SelectedValue);
+            decimal valorpapel = ohelper.RecuperarPrecioPapel(idPapel);
             txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
 
 
@@ -94,53 +95,53 @@ namespace CapaPresentacion
             Separardividendo();
         }
 
-        protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
-        {
-            try
-            {
-                ////insertamos el registro
-                //ohelper.InsertarDetalleCotizacion(Convert.ToInt32(Session["IdCotizacion"]),txtDescripcion.Text.Trim(), txtCantidad.Text.Trim(),Convert.ToDecimal(txtValorUnitario.Text));
+        //protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ////insertamos el registro
+        //        //ohelper.InsertarDetalleCotizacion(Convert.ToInt32(Session["IdCotizacion"]),txtDescripcion.Text.Trim(), txtCantidad.Text.Trim(),Convert.ToDecimal(txtValorUnitario.Text));
 
-                //LimpiarControles();
-                //GvDetalleCotizacion.DataSource = ohelper.RecuperarDetalleCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
-                //GvDetalleCotizacion.DataBind();
+        //        //LimpiarControles();
+        //        //GvDetalleCotizacion.DataSource = ohelper.RecuperarDetalleCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
+        //        //GvDetalleCotizacion.DataBind();
 
-                //Mensaje Ok
-                string mensaje = "Item agregado satisfactoriamente.!";
-                ClientScript.RegisterStartupScript(this.GetType(), "Detalle Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
-            }
-            catch (Exception ex)
-            {
-                string mensaje = ex.Message;
-                //Mensaje Error
-                ClientScript.RegisterStartupScript(this.GetType(), "Configuración", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
-            }
-        }
+        //        //Mensaje Ok
+        //        string mensaje = "Item agregado satisfactoriamente.!";
+        //        ClientScript.RegisterStartupScript(this.GetType(), "Detalle Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string mensaje = ex.Message;
+        //        //Mensaje Error
+        //        ClientScript.RegisterStartupScript(this.GetType(), "Configuración", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
+        //    }
+        //}
 
-        protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
-        {
-            try
-            {
-                //ohelper.ActualizarDetalleCotizacion(Convert.ToInt32(Session["IdDetalleCotizacion"]), txtDescripcion.Text.Trim(), txtCantidad.Text.Trim(), Convert.ToDecimal(txtValorUnitario.Text));
+        //protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
+        //{
+        //    try
+        //    {
+        //        //ohelper.ActualizarDetalleCotizacion(Convert.ToInt32(Session["IdDetalleCotizacion"]), txtDescripcion.Text.Trim(), txtCantidad.Text.Trim(), Convert.ToDecimal(txtValorUnitario.Text));
 
-                //LimpiarControles();
-                //GvDetalleCotizacion.DataSource = ohelper.RecuperarDetalleCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
-                //GvDetalleCotizacion.DataBind();
+        //        //LimpiarControles();
+        //        //GvDetalleCotizacion.DataSource = ohelper.RecuperarDetalleCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
+        //        //GvDetalleCotizacion.DataBind();
 
-                //btnAgregar.Visible = true;
-                //btnActualizar.Visible = false;
+        //        //btnAgregar.Visible = true;
+        //        //btnActualizar.Visible = false;
 
-                //Mensaje Ok
-                string mensaje = "Item actualizado satisfactoriamente.!";
-                ClientScript.RegisterStartupScript(this.GetType(), "Detalle Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
-            }
-            catch (Exception ex)
-            {
-                string mensaje = ex.Message;
-                //Mensaje Error
-                ClientScript.RegisterStartupScript(this.GetType(), "Configuración", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
-            }
-        }
+        //        //Mensaje Ok
+        //        string mensaje = "Item actualizado satisfactoriamente.!";
+        //        ClientScript.RegisterStartupScript(this.GetType(), "Detalle Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string mensaje = ex.Message;
+        //        //Mensaje Error
+        //        ClientScript.RegisterStartupScript(this.GetType(), "Configuración", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
+        //    }
+        //}
 
         protected void ddSustrato_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -189,7 +190,9 @@ namespace CapaPresentacion
             //Calculamos el valor total papel
             if (!ddSustrato.SelectedValue.Equals("0"))
             {
-                decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
+                int IdPapel = Convert.ToInt32(ddSustrato.SelectedValue);
+                
+                decimal valorpapel = ohelper.RecuperarPrecioPapel(IdPapel);
                 if (!string.IsNullOrEmpty(txtCantidadpliego.Text))
                 {
                     decimal ValorTotalPapel = Convert.ToDecimal(valorpapel * Convert.ToInt32(txtCantidadpliego.Text));
