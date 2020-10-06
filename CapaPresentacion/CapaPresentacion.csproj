@@ -44,6 +44,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll</HintPath>
     </Reference>
@@ -94,6 +98,41 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Alert\jquery.alerts.js" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\CapaEntidades.dll" />
+    <Content Include="bin\CapaEntidades.pdb" />
+    <Content Include="bin\CapaLogicaNegocio.dll" />
+    <Content Include="bin\CapaLogicaNegocio.pdb" />
+    <Content Include="bin\CapaPresentacion.dll" />
+    <Content Include="bin\CapaPresentacion.pdb" />
+    <Content Include="bin\DataAcces.dll" />
+    <Content Include="bin\DataAcces.pdb" />
+    <Content Include="bin\DataAcces.xml" />
+    <Content Include="bin\de\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\es\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\fr\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\it\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\ja\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\ko\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.xml" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.xml" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.Database.xml" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.xml" />
+    <Content Include="bin\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.xml" />
+    <Content Include="bin\Microsoft.SqlServer.Types.dll" />
+    <Content Include="bin\pt\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\ru\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\Syncfusion.Licensing.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll" />
     <Content Include="Cotizacion.aspx" />
     <Content Include="css\select2.css" />
     <Content Include="css\select2.min.css" />
@@ -165,6 +204,7 @@
     <Content Include="dsPrincipal.xsc">
       <DependentUpon>dsPrincipal.xsd</DependentUpon>
     </Content>
+    <Content Include="bin\CapaPresentacion.dll.config" />
     <None Include="dsPrincipal.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -670,6 +710,10 @@
     <PackageReference Include="Syncfusion.Licensing">
       <Version>18.2.0.57</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\zh-CHS\" />
+    <Folder Include="bin\zh-CHT\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

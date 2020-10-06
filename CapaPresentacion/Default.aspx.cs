@@ -31,7 +31,9 @@ namespace CapaPresentacion
         {
             try
             {
+
                 bool auth = Membership.ValidateUser(LoginUser.UserName, LoginUser.Password);
+                FormsAuthentication.SetAuthCookie(LoginUser.UserName, false);
 
                 if (auth)
                 {
