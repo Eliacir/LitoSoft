@@ -27,7 +27,7 @@ namespace CapaPresentacion
                 if (!Page.IsPostBack)
                 {
                     CargarCombos();
-                 
+
 
                     //Boolean IsEditar = (bool)Session["IsEditar"];
                     //if (IsEditar)
@@ -59,7 +59,7 @@ namespace CapaPresentacion
             //Recuperamos Papel
             ddSustrato.DataSource = ohelper.RecuperarPapel(IdLitografia);
             ddSustrato.DataTextField = "Nombre";
-            ddSustrato.DataValueField = "Precio";
+            ddSustrato.DataValueField = "IdPapel";
             ddSustrato.DataBind();
             ddSustrato.Items.Insert(0, new ListItem("Seleccionar", "0"));
             // ddSustrato.SelectedItem.Text;//Nombrepapel
@@ -73,7 +73,7 @@ namespace CapaPresentacion
             //Recuperamos Corte
             ddCorte.DataSource = ohelper.RecuperarCorte();
             ddCorte.DataTextField = "Corte";
-            ddCorte.DataValueField = "Montaje";
+            ddCorte.DataValueField = "IdCorte";
             ddCorte.DataBind();
             ddCorte.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
@@ -146,7 +146,9 @@ namespace CapaPresentacion
         {
             try
             {
-                decimal valorpapel = Convert.ToDecimal(ddSustrato.SelectedValue);
+                var idPapel = Convert.ToInt32(ddSustrato.SelectedValue);
+
+                decimal valorpapel = ohelper.RecuperarPrecioPapel(idPapel);
                 txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
                 CalcularImpresionesyPliego();
                 CalcularvalorTotalPapel();
@@ -164,7 +166,9 @@ namespace CapaPresentacion
             try
             {
                 //Valor del montaje segun el corte escogido
-                txtMontaje.Text = ddCorte.SelectedValue.Trim();
+                var idCorte = Convert.ToInt32(ddCorte.SelectedValue);
+
+                txtMontaje.Text = ohelper.RecuperarMontaje(idCorte);
 
                 CalcularImpresionesyPliego();
                 RecuperarValorPlanchaEImpresion();
