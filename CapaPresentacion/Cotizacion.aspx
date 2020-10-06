@@ -48,8 +48,8 @@
                             <label>Costo Diseño</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txttamano" runat="server" TextMode="Number"></asp:TextBox>
-                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="Rqtamano" ControlToValidate="txttamano" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
+                            <asp:TextBox ID="txtCostoDiseno" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RqCostodiseno" ControlToValidate="txtCostoDiseno" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                         </div>
                     </div>
 
@@ -153,7 +153,7 @@
                             <label>Frente</label>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtFrente" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" onchange="TotalImpresion()"></asp:TextBox>
                         </div>
                     </div>
 
@@ -176,6 +176,15 @@
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Total Impresiones</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtValorTotalImpresiones" runat="server" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -206,7 +215,7 @@
                                         </div>
                                         <div class="form-group">
                                             <asp:TextBox ID="TextBox2" runat="server" TextMode="Number"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator2" ControlToValidate="txttamano" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
+                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator2" ControlToValidate="TextBox2" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                                         </div>
                                     </div>
 
@@ -311,6 +320,26 @@
             cantidadPliegos = imprTotales / parseInt(dividendo);
             cantidadPliegos = Math.trunc(cantidadPliegos);
             $('#<%=txtCantidadpliego.ClientID%>').val(cantidadPliegos);
+        }
+
+        function TotalImpresion() {
+            //Total impresion
+            var frente = $('#<%=txtFrente.ClientID%>').val();
+            var valorimp = $('#<%=txtValorImpresion.ClientID%>').val();
+            valorimp = valorimp.replace("$", "");
+            valorimp = valorimp.replace(".", "");
+            var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp);                   
+            var valorimpfinal = formatCurrency(valortotalimpresiones); 
+            $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
+        }
+
+        function formatCurrency(number) {
+            var formatted = new Intl.NumberFormat('es-co', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            }).format(number);
+            return formatted;
         }
     </script>
 </asp:Content>

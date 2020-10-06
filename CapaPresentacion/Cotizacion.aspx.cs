@@ -364,6 +364,11 @@ namespace CapaPresentacion
 
                     txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
                     decimal Totalfactura = (totalPlancha + Convert.ToDecimal(txtValorTotalPapel.Text) + valorTotalImpresiones);
+                    if (!string.IsNullOrEmpty(txtCostoDiseno.Text))
+                    {
+                        Totalfactura = Totalfactura + Convert.ToDecimal(txtCostoDiseno.Text);
+                    }
+
                     txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
 
                 }
@@ -405,7 +410,7 @@ namespace CapaPresentacion
             try
             {
                 txtCantidad.Text = String.Empty;
-                txttamano.Text = String.Empty;
+                txtCostoDiseno.Text = String.Empty;
                 txtCavidad.Text = String.Empty;
                 CargarCombos();
                 txtValorpapel.Text = String.Empty; 
