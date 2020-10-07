@@ -254,7 +254,7 @@ namespace CapaPresentacion
                 decimal GranTotalvalorImpresion = 0;
 
                 Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
-
+                string a = txtValorTotalImpresiones.Text;
                 if (!ddCorte.SelectedValue.Equals("0"))
                 {
                     if (txtMontaje.Text.Equals("1/2") || txtMontaje.Text.Equals("1/3"))
@@ -361,17 +361,17 @@ namespace CapaPresentacion
                         totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
                         valorTotalImpresiones = (Convert.ToInt32(txtFrente.Text) * contarmillar) * GranTotalvalorImpresion;
                     }
-
-                    txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
-                    decimal Totalfactura = (totalPlancha + Convert.ToDecimal(txtValorTotalPapel.Text) + valorTotalImpresiones);
-                    if (!string.IsNullOrEmpty(txtCostoDiseno.Text))
-                    {
-                        Totalfactura = Totalfactura + Convert.ToDecimal(txtCostoDiseno.Text);
-                    }
-
-                    txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
-
+           
                 }
+
+                txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
+                decimal Totalfactura = (totalPlancha + Convert.ToDecimal(txtValorTotalPapel.Text) + valorTotalImpresiones);
+                if (!string.IsNullOrEmpty(txtCostoDiseno.Text))
+                {
+                    Totalfactura = Totalfactura + Convert.ToDecimal(txtCostoDiseno.Text);
+                }
+                string t = txtValorTotalImpresiones.Text;
+                txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
 
             }
             catch (Exception)
