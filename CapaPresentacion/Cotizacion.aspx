@@ -308,29 +308,52 @@
 
         function impresionesTotal() {
             //Calcular impresiones imprTotales
-            cantidad = $('#<%=txtCantidad.ClientID%>').val();
-            cavidad = $('#<%=txtCavidad.ClientID%>').val();
-            papelextra = $('#<%=txtpapelextra.ClientID%>').val();
+            cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
+            cavidad = ObtenerValorPorDefecto($('#<%=txtCavidad.ClientID%>').val());
+            papelextra = ObtenerValorPorDefecto($('#<%=txtpapelextra.ClientID%>').val());
             impresionesTotales = (cantidad / cavidad) + parseInt(papelextra);
             $('#<%=txtImpresionestotales.ClientID%>').val(impresionesTotales);
 
             //Calcular cantidad de pliegos
-            var imprTotales = $('#<%=txtImpresionestotales.ClientID%>').val();
-            var dividendo = $('#<%=txtDividendo.ClientID%>').val();
+            var imprTotales = ObtenerValorPorDefecto($('#<%=txtImpresionestotales.ClientID%>').val());
+            var dividendo = ObtenerValorPorDefecto($('#<%=txtDividendo.ClientID%>').val());
             cantidadPliegos = imprTotales / parseInt(dividendo);
             cantidadPliegos = Math.trunc(cantidadPliegos);
             $('#<%=txtCantidadpliego.ClientID%>').val(cantidadPliegos);
+
+            TotalImpresion();
         }
 
         function TotalImpresion() {
             //Total impresion
-            var frente = $('#<%=txtFrente.ClientID%>').val();
-            var valorimp = $('#<%=txtValorImpresion.ClientID%>').val();
+            var cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
+            var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());           
+            var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
             valorimp = valorimp.replace("$", "");
             valorimp = valorimp.replace(".", "");
-            var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp);                   
+            var millares = CalcularMillares(cantidad);
+            var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp * millares);                   
             var valorimpfinal = formatCurrency(valortotalimpresiones); 
             $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
+        }
+
+        function ObtenerValorPorDefecto(value) {
+            if (value === null || value === '' || value === undefined) {
+                return "0"
+            }
+
+            return value;
+        }
+
+        function CalcularMillares(cantidad) {
+            const millar = 1000;
+
+            var millares = parseInt(cantidad / millar);
+
+            if (cantidad - (millares * millar) > 0)
+                millares++;
+
+            return millares;
         }
 
         function formatCurrency(number) {
