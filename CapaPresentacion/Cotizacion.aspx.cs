@@ -254,7 +254,6 @@ namespace CapaPresentacion
                 decimal GranTotalvalorImpresion = 0;
 
                 Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
-                string a = txtValorTotalImpresiones.Text;
                 if (!ddCorte.SelectedValue.Equals("0"))
                 {
                     if (txtMontaje.Text.Equals("1/2") || txtMontaje.Text.Equals("1/3"))
@@ -336,6 +335,7 @@ namespace CapaPresentacion
                     totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
                     valorTotalImpresiones = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
                 }
+
                 if (!txtFrente.Text.Equals("0") && !txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("No"))
                 {
                     valorFrente = Convert.ToInt32(txtFrente.Text) * precioPlancha;
@@ -362,34 +362,60 @@ namespace CapaPresentacion
                 }
 
                 txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
+
                 decimal Totalfactura = (totalPlancha + Convert.ToDecimal(txtValorTotalPapel.Text) + valorTotalImpresiones);
+
+                //sumamos el costo del diseño al total de la factura
                 if (!string.IsNullOrEmpty(txtCostoDiseno.Text))
                 {
                     Totalfactura = Totalfactura + Convert.ToDecimal(txtCostoDiseno.Text);
                 }
-                string t = txtValorTotalImpresiones.Text;
+
+                //Se establecen valores de las funciones js
+                SetCamposInhabilitados();
 
                 if (escalcular)
                 {
                     txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
                 }
-
-
-
-                if(!String.IsNullOrEmpty(txtValorImpresion.Text) && !String.IsNullOrEmpty(txtFrente.Text))
-                {
-                    var valorImpresion = decimal.Parse(txtValorImpresion.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("es-CO"));
-
-                    var frente = Convert.ToInt32(txtFrente.Text);
-
-                    txtValorTotalImpresiones.Text = (frente * valorImpresion).ToString("C0", CultureInfo.CurrentCulture);
-                }
-                   
-
             }
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void SetCamposInhabilitados()
+        {
+            //txtValorTotalImpresiones
+            if (!String.IsNullOrEmpty(txtValorImpresion.Text) && !String.IsNullOrEmpty(txtFrente.Text))
+            {
+                var valorImpresion = decimal.Parse(txtValorImpresion.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("es-CO"));
+
+                var frente = Convert.ToInt32(txtFrente.Text);
+
+                txtValorTotalImpresiones.Text = (frente * valorImpresion).ToString("C0", CultureInfo.CurrentCulture);
+            }
+
+            //txtImpresionestotales
+            //impresionesTotales = (cantidad / cavidad) + parseInt(papelextra);
+            if (!String.IsNullOrEmpty(txtCantidad.Text) && !String.IsNullOrEmpty(txtCavidad.Text) && !String.IsNullOrEmpty(txtpapelextra.Value))
+            {
+                int cantidad = Convert.ToInt32(txtCantidad.Text);
+                int cavidad = Convert.ToInt32(txtCavidad.Text);
+                int Impresionestotales = Convert.ToInt32(txtImpresionestotales.Text);
+                int papelextra = Convert.ToInt32(txtpapelextra.Value);
+
+                txtImpresionestotales.Text = ((cantidad / cavidad) + papelextra).ToString();
+            }
+
+            ////Calcular cantidad de pliegos
+            //cantidadPliegos = imprTotales / parseInt(dividendo);
+            if (!String.IsNullOrEmpty(txtImpresionestotales.Text) && !String.IsNullOrEmpty(txtDividendo.Value) && !String.IsNullOrEmpty(txtpapelextra.Value))
+            {
+                int imprTotales = Convert.ToInt32(txtImpresionestotales.Text);
+                int dividendo = Convert.ToInt32(txtDividendo.Value);
+                txtCantidadpliego.Text = (imprTotales / dividendo).ToString();
             }
         }
 
