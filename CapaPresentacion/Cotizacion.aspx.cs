@@ -9,6 +9,7 @@ using CapaEntidades;
 using CapaLogicaNegocio;
 using System.Data;
 using System.Globalization;
+using CapaPresentacion.Extensions;
 
 namespace CapaPresentacion
 {
@@ -254,12 +255,6 @@ namespace CapaPresentacion
             return millares;
         }
 
-        private decimal QuitarFormatoMoneda(string moneda)
-        {
-            return decimal.Parse(moneda, NumberStyles.Currency, CultureInfo.GetCultureInfo("es-CO"));
-        }
-
-
         private void RecuperarValorPlanchaEImpresion(bool escalcular)
         {
             try
@@ -271,96 +266,56 @@ namespace CapaPresentacion
 
                 var cantidad = Cast.ToInt(txtCantidad.Text);
 
-                if (!ddCorte.SelectedValue.Equals("0"))
+                if (ddCorte.SelectedValue.Equals("0"))
+                {
+                    txtvalorplancha.Text = txtValorImpresion.Text = "0";
+                }
+                else
                 {
                     if (txtMontaje.Text.Equals("1/2") || txtMontaje.Text.Equals("1/3"))
                     {
                         //PrecioPlanchaMayor = 22000; PrecioImpresionMayor = 25000
                         precioPlancha = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMayor", IdLitografia));
-                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMayor", IdLitografia));
-                        txtvalorplancha.Text = precioPlancha.ToString("C0", CultureInfo.CurrentCulture);
-                        txtValorImpresion.Text = PrecioImpresion.ToString("C0", CultureInfo.CurrentCulture);
-
-                        //Calculamos millares
-                        if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
-                        {
-                            millares = CalcularMillares(cantidad);
-
-                            GranTotalvalorImpresion = PrecioImpresion * millares;
-                        }
+                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMayor", IdLitografia));                       
                     }
                     else
                     {
                         //PrecioPlanchaMenor = 12000; PrecioImpresionMayor = 12000
-                        precioPlancha =Cast.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMenor", IdLitografia));
-                        PrecioImpresion =Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMenor", IdLitografia));
-                        txtvalorplancha.Text = precioPlancha.ToString("C0", CultureInfo.CurrentCulture);
-                        txtValorImpresion.Text = PrecioImpresion.ToString("C0", CultureInfo.CurrentCulture);
+                        precioPlancha = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMenor", IdLitografia));
+                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMenor", IdLitografia));  
+                    }
 
-                        //Calculamos millares
-                        if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
-                        {
-                            millares = CalcularMillares(cantidad);
+                    txtvalorplancha.Text = precioPlancha.FormatoMoneda();
+                    txtValorImpresion.Text = PrecioImpresion.FormatoMoneda();
 
-                            GranTotalvalorImpresion = PrecioImpresion * millares;
-                        }
-
+                    //Calculamos millares
+                    if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
+                    {
+                        millares = CalcularMillares(cantidad);
+                        GranTotalvalorImpresion = PrecioImpresion * millares;
                     }
                 }
-                else
-                {
-                    txtvalorplancha.Text = "0";
-                    txtValorImpresion.Text = "0";
-                }
-
-                //Calcular Frente y respaldo
-                decimal valorRespaldo;
-                decimal valorImpresionFrente;
-                decimal valorImpresionRespaldo;
-                decimal totalPlancha = 0;
-                decimal valorTotalImpresiones = 0;
-                decimal valorFrente;
-
-
-                if (!txtFrente.Text.Equals("0") && txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("No"))
-                {
-                    totalPlancha = Cast.ToInt(txtFrente.Text) * precioPlancha;
-                    valorTotalImpresiones = Cast.ToInt(txtFrente.Text) * GranTotalvalorImpresion;
-                }
-
-                if (!txtFrente.Text.Equals("0") && !txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("No"))
-                {
-                    valorFrente = Cast.ToInt(txtFrente.Text) * precioPlancha;
-                    valorRespaldo = Cast.ToInt(txtRespaldo.Text) * precioPlancha;
-                    totalPlancha = valorFrente + valorRespaldo;
-                    valorImpresionFrente = Cast.ToInt(txtFrente.Text) * GranTotalvalorImpresion;
-                    valorImpresionRespaldo = Cast.ToInt(txtRespaldo.Text) * GranTotalvalorImpresion;
-                    valorTotalImpresiones = valorImpresionFrente + valorImpresionRespaldo;
-                }
-
-                if (!txtFrente.Text.Equals("0") && !txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("Si"))
-                {
-                    var PapelExtra = Cast.ToInt(ohelper.RecuperarParametro("PapelExtra", IdLitografia));
-
-                    totalPlancha = Cast.ToInt(txtFrente.Text) * precioPlancha;
-
-                    valorTotalImpresiones = Cast.ToInt(txtFrente.Text) * GranTotalvalorImpresion;
-                }
-
+        
+                //Calcular Frente y respaldo                
+                var valorFrente = Cast.ToDecimal(txtFrente.Text);
+                var valorRespaldo = Cast.ToDecimal(txtRespaldo.Text);
+                var totalPlancha = valorFrente * precioPlancha;
+                var valorImpresionFrente = valorFrente * GranTotalvalorImpresion;
+                var valorImpresionRespaldo = valorRespaldo * GranTotalvalorImpresion;
+                var valorTotalImpresiones = valorImpresionFrente + valorImpresionRespaldo;
+            
                 //Se establecen valores de las funciones js
                 SetCamposInhabilitados();
 
-                var valorTotalPapel = QuitarFormatoMoneda(txtValorTotalPapel.Text);
-
+                var valorTotalPapel = txtValorTotalPapel.Text.QuitarFormatoMoneda();
                 var Totalfactura = (totalPlancha + valorTotalPapel + valorTotalImpresiones);
-
                 var costoDiseño = Cast.ToDecimal(txtCostoDiseno.Text);
 
                 Totalfactura += costoDiseño;             
 
                 if (escalcular)
                 {
-                    txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
+                    txtTotalfactura.Text = Totalfactura.FormatoMoneda();
                 }
             }
             catch (Exception)
@@ -373,11 +328,12 @@ namespace CapaPresentacion
         private void SetCamposInhabilitados()
         {     
             var cantidad = Cast.ToInt(txtCantidad.Text);
-            var valorImpresion = QuitarFormatoMoneda(txtValorImpresion.Text);
-            var millares = CalcularMillares(cantidad);
             var frente = Cast.ToInt(txtFrente.Text);
+            var valorImpresion = txtValorImpresion.Text.QuitarFormatoMoneda();
+            var millares = CalcularMillares(cantidad);
             var totalImpresiones = frente * (valorImpresion * millares);
-            txtValorTotalImpresiones.Text = totalImpresiones.ToString("C0", CultureInfo.CurrentCulture);            
+
+            txtValorTotalImpresiones.Text = totalImpresiones.FormatoMoneda();            
 
             int cavidad = Cast.ToInt(txtCavidad.Text);
             int papelextra = Cast.ToInt(txtpapelextra.Value);

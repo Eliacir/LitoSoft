@@ -519,6 +519,8 @@
     </Compile>
     <Compile Include="Custom\CustomMembershipProvider.cs" />
     <Compile Include="Custom\SessionManager.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GestionarLitografias.aspx.cs">
       <DependentUpon>GestionarLitografias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

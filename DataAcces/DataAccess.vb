@@ -191,6 +191,8 @@ Public Class DataAccess
         Dim sqlCommand As String = "RecuperarMontaje"
         Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
 
+        If (idCorte < 1) Then Return String.Empty
+
         db.AddInParameter(dbCommand, "IdCorte", DbType.Int32, idCorte)
 
         Using connection As DbConnection = db.CreateConnection()
