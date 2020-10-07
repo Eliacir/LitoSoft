@@ -78,7 +78,7 @@ namespace CapaPresentacion
             ddCorte.DataBind();
             ddCorte.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
-          
+
             CalcularImpresionesyPliego();
             //Calculamos el valor total papel
             CalcularvalorTotalPapel();
@@ -86,7 +86,7 @@ namespace CapaPresentacion
             //Valor del montaje segun el corte escogido
             txtMontaje.Text = ddCorte.SelectedValue.Trim();
 
-            RecuperarValorPlanchaEImpresion();
+            RecuperarValorPlanchaEImpresion(false);
 
             //Recuperar papel extra
             Int64 PapelExtra = Convert.ToInt64(ohelper.RecuperarParametro("PapelExtra", IdLitografia));
@@ -172,7 +172,7 @@ namespace CapaPresentacion
                 txtMontaje.Text = ohelper.RecuperarMontaje(idCorte);
 
                 CalcularImpresionesyPliego();
-                RecuperarValorPlanchaEImpresion();
+                RecuperarValorPlanchaEImpresion(false);
 
 
                 CalcularvalorTotalPapel();
@@ -191,7 +191,7 @@ namespace CapaPresentacion
             if (!ddSustrato.SelectedValue.Equals("0"))
             {
                 int IdPapel = Convert.ToInt32(ddSustrato.SelectedValue);
-                
+
                 decimal valorpapel = ohelper.RecuperarPrecioPapel(IdPapel);
                 if (!string.IsNullOrEmpty(txtCantidadpliego.Text))
                 {
@@ -210,7 +210,7 @@ namespace CapaPresentacion
             try
             {
                 //Calcular impresiones impresiones Totales
-                if (!string.IsNullOrEmpty(txtCantidad.Text) && (!string.IsNullOrEmpty(txtCavidad.Text))  && (!txtCantidad.Text.Equals("0")) && (!txtCavidad.Text.Equals("0")))
+                if (!string.IsNullOrEmpty(txtCantidad.Text) && (!string.IsNullOrEmpty(txtCavidad.Text)) && (!txtCantidad.Text.Equals("0")) && (!txtCavidad.Text.Equals("0")))
                 {
                     Int64 cantidad = Convert.ToInt64(txtCantidad.Text);
                     Int64 cavidad = Convert.ToInt64(txtCavidad.Text);
@@ -242,7 +242,7 @@ namespace CapaPresentacion
 
         }
 
-        private void RecuperarValorPlanchaEImpresion()
+        private void RecuperarValorPlanchaEImpresion(bool escalcular)
         {
             try
             {
@@ -318,7 +318,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    txtvalorplancha.Text = "0" ;
+                    txtvalorplancha.Text = "0";
                     txtValorImpresion.Text = "0";
                 }
 
@@ -330,38 +330,35 @@ namespace CapaPresentacion
                 decimal valorTotalImpresiones = 0;
                 decimal valorFrente;
 
-                if (!string.IsNullOrEmpty(txtFrente.Text) && !string.IsNullOrEmpty(txtRespaldo.Text))
-                {
-                    if (!txtFrente.Text.Equals(0) && txtRespaldo.Text.Equals(0) && ddMismaplancha.SelectedValue.Equals("No"))
-                    {
-                        totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
-                        valorTotalImpresiones = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
-                    }
-                    if (!txtFrente.Text.Equals(0) && !txtRespaldo.Text.Equals(0) && ddMismaplancha.SelectedValue.Equals("No"))
-                    {
-                        valorFrente = Convert.ToInt32(txtFrente.Text) * precioPlancha;
-                        valorRespaldo = Convert.ToInt32(txtRespaldo.Text) * precioPlancha;
-                        totalPlancha = valorFrente + valorRespaldo;
-                        valorImpresionFrente = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
-                        valorImpresionRespaldo = Convert.ToInt32(txtRespaldo.Text) * GranTotalvalorImpresion;
-                        valorTotalImpresiones = valorImpresionFrente + valorImpresionRespaldo;
-                    }
 
-                    if (!txtFrente.Text.Equals(0) && !txtRespaldo.Text.Equals(0) && ddMismaplancha.SelectedValue.Equals("Si"))
-                    {                     
-                        Int32 PapelExtra = Convert.ToInt32(ohelper.RecuperarParametro("PapelExtra", IdLitografia));
-                        contarmillar = 0;
-                        Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
-                        Int32 uno = ((imptotales - PapelExtra) * 2) + PapelExtra;
-                        while (Rangomillar < uno)
-                        {
-                            contarmillar++; 
-                            Rangomillar = Rangomillar + 1000;
-                        }
-                        totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
-                        valorTotalImpresiones = (Convert.ToInt32(txtFrente.Text) * contarmillar) * GranTotalvalorImpresion;
+                if (!txtFrente.Text.Equals("0") && txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("No"))
+                {
+                    totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
+                    valorTotalImpresiones = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
+                }
+                if (!txtFrente.Text.Equals("0") && !txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("No"))
+                {
+                    valorFrente = Convert.ToInt32(txtFrente.Text) * precioPlancha;
+                    valorRespaldo = Convert.ToInt32(txtRespaldo.Text) * precioPlancha;
+                    totalPlancha = valorFrente + valorRespaldo;
+                    valorImpresionFrente = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
+                    valorImpresionRespaldo = Convert.ToInt32(txtRespaldo.Text) * GranTotalvalorImpresion;
+                    valorTotalImpresiones = valorImpresionFrente + valorImpresionRespaldo;
+                }
+
+                if (!txtFrente.Text.Equals("0") && !txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("Si"))
+                {
+                    Int32 PapelExtra = Convert.ToInt32(ohelper.RecuperarParametro("PapelExtra", IdLitografia));
+                    contarmillar = 0;
+                    Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
+                    Int32 uno = ((imptotales - PapelExtra) * 2) + PapelExtra;
+                    while (Rangomillar < uno)
+                    {
+                        contarmillar++;
+                        Rangomillar = Rangomillar + 1000;
                     }
-           
+                    totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
+                    valorTotalImpresiones = (Convert.ToInt32(txtFrente.Text) * contarmillar) * GranTotalvalorImpresion;
                 }
 
                 txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
@@ -371,7 +368,13 @@ namespace CapaPresentacion
                     Totalfactura = Totalfactura + Convert.ToDecimal(txtCostoDiseno.Text);
                 }
                 string t = txtValorTotalImpresiones.Text;
-                txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
+
+                if (escalcular)
+                {
+                    txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
+                }
+
+
 
             }
             catch (Exception)
@@ -396,7 +399,7 @@ namespace CapaPresentacion
         {
             try
             {
-                RecuperarValorPlanchaEImpresion();
+                RecuperarValorPlanchaEImpresion(true);
             }
             catch (Exception)
             {
@@ -413,9 +416,9 @@ namespace CapaPresentacion
                 txtCostoDiseno.Text = String.Empty;
                 txtCavidad.Text = String.Empty;
                 CargarCombos();
-                txtValorpapel.Text = String.Empty; 
-                txtMontaje.Text = String.Empty; 
-                txtCantidadpliego.Text =  String.Empty;
+                txtValorpapel.Text = String.Empty;
+                txtMontaje.Text = String.Empty;
+                txtCantidadpliego.Text = String.Empty;
                 txtvalorplancha.Text = String.Empty;
                 txtValorImpresion.Text = String.Empty;
                 txtValorTotalPapel.Text = String.Empty;
@@ -438,7 +441,7 @@ namespace CapaPresentacion
                 {
                     MultiView.ActiveViewIndex = 0;
                     btnAcabados.Text = "Ocultar Acabados";
-                   
+
                 }
                 else
                 {
