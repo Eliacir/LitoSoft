@@ -373,6 +373,16 @@ namespace CapaPresentacion
                 string t = txtValorTotalImpresiones.Text;
                 txtTotalfactura.Text = Totalfactura.ToString("C0", CultureInfo.CurrentCulture);
 
+                if(!String.IsNullOrEmpty(txtValorImpresion.Text) && !String.IsNullOrEmpty(txtFrente.Text))
+                {
+                    var valorImpresion = decimal.Parse(txtValorImpresion.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("es-CO"));
+
+                    var frente = Convert.ToInt32(txtFrente.Text);
+
+                    txtValorTotalImpresiones.Text = (frente * valorImpresion).ToString("C0", CultureInfo.CurrentCulture);
+                }
+                   
+
             }
             catch (Exception)
             {
