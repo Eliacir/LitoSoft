@@ -12,7 +12,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : Convert.ToString(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : Convert.ToString(value);
             }
             catch { return null; }
         }
@@ -21,7 +21,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (char)'\0' : Convert.ToChar(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (char)'\0' : Convert.ToChar(value);
             }
             catch { return (char)'\0'; }
         }
@@ -30,7 +30,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (char?)Convert.ToChar(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (char?)Convert.ToChar(value);
             }
             catch { return null; }
         }
@@ -39,7 +39,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (byte)0 : Convert.ToByte(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (byte)0 : Convert.ToByte(value);
             }
             catch { return (byte)0; }
         }
@@ -48,7 +48,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (byte?)Convert.ToByte(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (byte?)Convert.ToByte(value);
             }
             catch { return null; }
         }
@@ -57,7 +57,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (short)0 : Convert.ToInt16(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (short)0 : Convert.ToInt16(value);
             }
             catch { return (short)0; }
         }
@@ -66,7 +66,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (short?)Convert.ToInt16(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (short?)Convert.ToInt16(value);
             }
             catch { return null; }
         }
@@ -75,7 +75,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (int)0 : Convert.ToInt32(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (int)0 : Convert.ToInt32(value);
             }
             catch { return (int)0; }
         }
@@ -84,7 +84,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (int?)Convert.ToInt32(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (int?)Convert.ToInt32(value);
             }
             catch { return null; }
         }
@@ -93,7 +93,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (long)0 : Convert.ToInt64(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (long)0 : Convert.ToInt64(value);
             }
             catch { return (long)0; }
         }
@@ -102,7 +102,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (long?)Convert.ToInt64(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (long?)Convert.ToInt64(value);
             }
             catch { return null; }
         }
@@ -111,7 +111,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (float)0 : Convert.ToSingle(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (float)0 : Convert.ToSingle(value);
             }
             catch { return (float)0; }
         }
@@ -121,7 +121,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (float?)Convert.ToSingle(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (float?)Convert.ToSingle(value);
             }
             catch { return null; }
         }
@@ -130,7 +130,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (double)0 : Convert.ToDouble(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (double)0 : Convert.ToDouble(value);
             }
             catch { return (double)0; }
         }
@@ -139,7 +139,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (double?)Convert.ToDouble(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (double?)Convert.ToDouble(value);
             }
             catch { return null; }
         }
@@ -148,7 +148,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (decimal)0 : Convert.ToDecimal(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (decimal)0 : Convert.ToDecimal(value);
             }
             catch { return (decimal)0; }
         }
@@ -157,7 +157,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (decimal?)Convert.ToDecimal(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (decimal?)Convert.ToDecimal(value);
             }
             catch { return null; }
         }
@@ -166,7 +166,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (bool)false : Convert.ToBoolean(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (bool)false : Convert.ToBoolean(value);
             }
             catch { return (bool)false; }
         }
@@ -175,7 +175,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (bool?)Convert.ToBoolean(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (bool?)Convert.ToBoolean(value);
             }
             catch { return null; }
         }
@@ -184,7 +184,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? (DateTime)DateTime.Now : Convert.ToDateTime(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? (DateTime)DateTime.Now : Convert.ToDateTime(value);
             }
             catch { return (DateTime)DateTime.Now; }
         }
@@ -193,7 +193,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (DateTime?)Convert.ToDateTime(value);
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (DateTime?)Convert.ToDateTime(value);
             }
             catch { return null; }
         }
@@ -202,7 +202,7 @@ namespace CapaPresentacion
         {
             try
             {
-                return (value is DBNull || value == null) ? null : (byte[])value;
+                return (value is DBNull || value == null || value.ToString() == String.Empty) ? null : (byte[])value;
             }
             catch { return null; }
         }

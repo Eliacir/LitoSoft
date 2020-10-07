@@ -242,18 +242,29 @@ namespace CapaPresentacion
 
         }
 
+        private int CalcularMillares(decimal cantidad)
+        {
+            const int millar = 1000;
+
+            var millares = (int)(cantidad / millar);
+
+            if (cantidad - (millares * millar) > 0)
+                millares++;
+
+            return millares;
+        }
+
         private void RecuperarValorPlanchaEImpresion(bool escalcular)
         {
             try
             {
                 decimal precioPlancha = 0;
                 decimal PrecioImpresion = 0;
-                Int32 imptotales = 0;
-                Int32 Rangomillar;
-                Int32 contarmillar = 0;
+                Int32 Rangomillar = 0;
                 decimal GranTotalvalorImpresion = 0;
 
-                Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
+                var cantidad = Cast.ToInt(txtCantidad.Text);
+
                 if (!ddCorte.SelectedValue.Equals("0"))
                 {
                     if (txtMontaje.Text.Equals("1/2") || txtMontaje.Text.Equals("1/3"))
@@ -267,23 +278,10 @@ namespace CapaPresentacion
                         //Calculamos millares
                         if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
                         {
-                            imptotales = Convert.ToInt32(txtImpresionestotales.Text);
-                            if (Rangomillar > imptotales)
-                            {
-                                contarmillar = 1;
-                                GranTotalvalorImpresion = PrecioImpresion;
-                            }
-                            else
-                            {
-                                while (Rangomillar < imptotales)
-                                {
-                                    contarmillar++;
-                                    Rangomillar = Rangomillar + 1000;
-                                    GranTotalvalorImpresion = GranTotalvalorImpresion + PrecioImpresion;
-                                }
-                            }
-                        }
+                            Rangomillar = CalcularMillares(cantidad);
 
+                            GranTotalvalorImpresion = PrecioImpresion * Rangomillar;
+                        }
                     }
                     else
                     {
@@ -296,21 +294,9 @@ namespace CapaPresentacion
                         //Calculamos millares
                         if (!string.IsNullOrEmpty(txtImpresionestotales.Text))
                         {
-                            imptotales = Convert.ToInt32(txtImpresionestotales.Text);
-                            if (Rangomillar > imptotales)
-                            {
-                                contarmillar = 1;
-                                GranTotalvalorImpresion = PrecioImpresion;
-                            }
-                            else
-                            {
-                                while (Rangomillar < imptotales)
-                                {
-                                    contarmillar++;
-                                    Rangomillar = Rangomillar + 1000;
-                                    GranTotalvalorImpresion = GranTotalvalorImpresion + PrecioImpresion;
-                                }
-                            }
+                            Rangomillar = CalcularMillares(cantidad);
+
+                            GranTotalvalorImpresion = PrecioImpresion * Rangomillar;
                         }
 
                     }
@@ -349,21 +335,15 @@ namespace CapaPresentacion
                 if (!txtFrente.Text.Equals("0") && !txtRespaldo.Text.Equals("0") && ddMismaplancha.SelectedValue.Equals("Si"))
                 {
                     Int32 PapelExtra = Convert.ToInt32(ohelper.RecuperarParametro("PapelExtra", IdLitografia));
-                    contarmillar = 0;
-                    Rangomillar = Convert.ToInt32(ohelper.RecuperarParametro("RangoMillar", IdLitografia));
-                    Int32 uno = ((imptotales - PapelExtra) * 2) + PapelExtra;
-                    while (Rangomillar < uno)
-                    {
-                        contarmillar++;
-                        Rangomillar = Rangomillar + 1000;
-                    }
+
                     totalPlancha = Convert.ToInt32(txtFrente.Text) * precioPlancha;
-                    valorTotalImpresiones = (Convert.ToInt32(txtFrente.Text) * contarmillar) * GranTotalvalorImpresion;
+
+                    valorTotalImpresiones = Convert.ToInt32(txtFrente.Text) * GranTotalvalorImpresion;
                 }
 
-                txtValorTotalPapel.Text = txtValorTotalPapel.Text.Replace("$", "");
+                var valorTotalPapel = Convert.ToDecimal(txtValorTotalPapel.Text.Replace("$", ""));
 
-                decimal Totalfactura = (totalPlancha + Convert.ToDecimal(txtValorTotalPapel.Text) + valorTotalImpresiones);
+                decimal Totalfactura = (totalPlancha + valorTotalPapel + valorTotalImpresiones);
 
                 //sumamos el costo del diseño al total de la factura
                 if (!string.IsNullOrEmpty(txtCostoDiseno.Text))
@@ -390,11 +370,17 @@ namespace CapaPresentacion
             //txtValorTotalImpresiones
             if (!String.IsNullOrEmpty(txtValorImpresion.Text) && !String.IsNullOrEmpty(txtFrente.Text))
             {
+                var cantidad = Cast.ToInt(txtCantidad.Text);
+
                 var valorImpresion = decimal.Parse(txtValorImpresion.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("es-CO"));
+
+                var millares = CalcularMillares(cantidad);
 
                 var frente = Convert.ToInt32(txtFrente.Text);
 
-                txtValorTotalImpresiones.Text = (frente * valorImpresion).ToString("C0", CultureInfo.CurrentCulture);
+                var totalImpresiones = frente * (valorImpresion * millares);
+
+                txtValorTotalImpresiones.Text = totalImpresiones.ToString("C0", CultureInfo.CurrentCulture);
             }
 
             //txtImpresionestotales
