@@ -69,11 +69,11 @@ namespace CapaPresentacion
             //Sacamos el valor del papel
             var idPapel = Convert.ToInt32(ddSustrato.SelectedValue);
             decimal valorpapel = ohelper.RecuperarPrecioPapel(idPapel);
-            txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
+            txtValorpapel.Text = valorpapel.FormatoMoneda();
 
 
             //Recuperamos Corte
-            ddCorte.DataSource = ohelper.RecuperarCorte();
+            ddCorte.DataSource = ohelper.RecuperarCorte(IdLitografia);
             ddCorte.DataTextField = "Corte";
             ddCorte.DataValueField = "IdCorte";
             ddCorte.DataBind();
@@ -148,10 +148,10 @@ namespace CapaPresentacion
         {
             try
             {
-                var idPapel = Convert.ToInt32(ddSustrato.SelectedValue);
+                var idPapel = Cast.ToInt(ddSustrato.SelectedValue);
 
                 decimal valorpapel = ohelper.RecuperarPrecioPapel(idPapel);
-                txtValorpapel.Text = valorpapel.ToString("C0", CultureInfo.CurrentCulture);
+                txtValorpapel.Text = valorpapel.FormatoMoneda();
                 CalcularImpresionesyPliego();
                 CalcularvalorTotalPapel();
 
@@ -168,7 +168,7 @@ namespace CapaPresentacion
             try
             {
                 //Valor del montaje segun el corte escogido
-                var idCorte = Convert.ToInt32(ddCorte.SelectedValue);
+                var idCorte = Cast.ToInt(ddCorte.SelectedValue);
 
                 txtMontaje.Text = ohelper.RecuperarMontaje(idCorte);
 
@@ -191,14 +191,12 @@ namespace CapaPresentacion
             //Calculamos el valor total papel
             if (!ddSustrato.SelectedValue.Equals("0"))
             {
-                int IdPapel = Convert.ToInt32(ddSustrato.SelectedValue);
+                var IdPapel = Cast.ToInt(ddSustrato.SelectedValue);
+                var valorpapel = ohelper.RecuperarPrecioPapel(IdPapel);
+                var catidadPliegos = Cast.ToInt(txtCantidadpliego.Text);
+                var ValorTotalPapel = valorpapel * catidadPliegos;
 
-                decimal valorpapel = ohelper.RecuperarPrecioPapel(IdPapel);
-                if (!string.IsNullOrEmpty(txtCantidadpliego.Text))
-                {
-                    decimal ValorTotalPapel = Convert.ToDecimal(valorpapel * Convert.ToInt32(txtCantidadpliego.Text));
-                    txtValorTotalPapel.Text = ValorTotalPapel.ToString("C0", CultureInfo.CurrentCulture);
-                }
+                txtValorTotalPapel.Text = ValorTotalPapel.FormatoMoneda();              
             }
             else
             {
@@ -209,35 +207,35 @@ namespace CapaPresentacion
         private void CalcularImpresionesyPliego()
         {
             try
-            {
-                //Calcular impresiones impresiones Totales
-                if (!string.IsNullOrEmpty(txtCantidad.Text) && (!string.IsNullOrEmpty(txtCavidad.Text)) && (!txtCantidad.Text.Equals("0")) && (!txtCavidad.Text.Equals("0")))
+            { 
+                var cantidad = Cast.ToInt(txtCantidad.Text);
+                var cavidad = Cast.ToInt(txtCavidad.Text);
+                var papelextra = Cast.ToInt(txtpapelextra.Value);
+
+                if (cavidad == 0) cavidad = 1;
+
+                var impresionesTotales = (cantidad / cavidad) + papelextra;
+
+                txtImpresionestotales.Text = impresionesTotales.ToString();
+
+                //Calcular cantidad de pliegos
+                if (!ddCorte.SelectedValue.Equals("0"))
                 {
-                    Int64 cantidad = Convert.ToInt64(txtCantidad.Text);
-                    Int64 cavidad = Convert.ToInt64(txtCavidad.Text);
-                    int papelextra = Convert.ToInt32(txtpapelextra.Value);
-                    Int64 impresionesTotales = (cantidad / cavidad) + papelextra;
+                    Separardividendo();
+                    var dividendo = Cast.ToInt(txtDividendo.Value);
 
-                    txtImpresionestotales.Text = impresionesTotales.ToString();
+                    if (dividendo == 0) dividendo = 1;
 
-                    //Calcular cantidad de pliegos
-                    if (!ddCorte.SelectedValue.Equals("0"))
-                    {
-                        Separardividendo();
-                        int dividendo = Convert.ToInt32(txtDividendo.Value);
-                        Int64 cantidadpliego = impresionesTotales / dividendo;
-                        txtCantidadpliego.Text = cantidadpliego.ToString();
-                    }
-                    else
-                    {
-                        txtCantidadpliego.Text = "0";
-                    }
-
+                    var cantidadpliego = impresionesTotales / dividendo;
+                    txtCantidadpliego.Text = cantidadpliego.ToString();
+                }
+                else
+                {
+                    txtCantidadpliego.Text = "0";
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -249,7 +247,7 @@ namespace CapaPresentacion
 
             var millares = (int)(cantidad / millar);
 
-            if (cantidad - (millares * millar) > 0)
+            if (cantidad % millar > 0)
                 millares++;
 
             return millares;
@@ -299,10 +297,8 @@ namespace CapaPresentacion
                 //Calcular Frente y respaldo                
                 var valorFrente = Cast.ToDecimal(txtFrente.Text);
                 var valorRespaldo = Cast.ToDecimal(txtRespaldo.Text);
-                var totalPlancha = valorFrente * precioPlancha;
-                var valorImpresionFrente = valorFrente * GranTotalvalorImpresion;
-                var valorImpresionRespaldo = valorRespaldo * GranTotalvalorImpresion;
-                var valorTotalImpresiones = valorImpresionFrente + valorImpresionRespaldo;
+                var totalPlancha = (valorFrente + valorRespaldo) * precioPlancha;
+                var valorTotalImpresiones = (valorFrente + valorRespaldo) * GranTotalvalorImpresion;
             
                 //Se establecen valores de las funciones js
                 SetCamposInhabilitados();
@@ -347,7 +343,14 @@ namespace CapaPresentacion
 
             if (dividendo == 0) dividendo = 1;
 
-            txtCantidadpliego.Text = (imprTotales / dividendo).ToString();            
+            txtCantidadpliego.Text = (imprTotales / dividendo).ToString();
+
+            var cantidadPliego = Cast.ToInt(txtCantidadpliego.Text);
+
+            var precioPapel = Cast.ToDecimal(txtValorpapel.Text.QuitarFormatoMoneda());
+
+            txtValorTotalPapel.Text = (cantidadPliego * precioPapel).FormatoMoneda();
+
         }
 
         private void Separardividendo()

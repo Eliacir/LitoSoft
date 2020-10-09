@@ -82,9 +82,9 @@ namespace CapaLogicaNegocio
            return oacces.RecuperarParametro(Nombre, IdLitografia);
         }
 
-        public DataSet RecuperarCorte()
+        public DataSet RecuperarCorte(int idLitografia)
         {
-            return oacces.RecuperarCorte();
+            return oacces.RecuperarCorte(idLitografia);
         }
 
         public string RecuperarMontaje(int idCorte)
