@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--   usamos para filtrar en control--%>
+    <%--               ACABADOS--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet" />
@@ -122,7 +122,7 @@
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Valore plancha</label>
+                            <label>Valor plancha</label>
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="txtvalorplancha" runat="server" Enabled="False"></asp:TextBox>
@@ -152,17 +152,26 @@
                         <div class="form-group">
                             <label>Frente</label>
                         </div>
-                        <div>
-                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" onchange="TotalImpresion()"></asp:TextBox>
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddFrente" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddFrente_SelectedIndexChanged" Height="20px" Width="100px">
+                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
+                                <asp:ListItem Value="Si">Si</asp:ListItem>
+                                <asp:ListItem Value="No">No</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
+
 
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Respaldo</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:DropDownList ID="ddRespaldo" runat="server" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddRespaldo_SelectedIndexChanged" Height="20px" Width="100px">
+                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
+                                <asp:ListItem Value="Si">Si</asp:ListItem>
+                                <asp:ListItem Value="No">No</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
 
@@ -171,11 +180,27 @@
                             <label>Misma Plancha</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddMismaplancha" runat="server" DataTextField="Corte" DataValueField="Montaje">
+                            <asp:DropDownList ID="ddMismaplancha" runat="server" Height="20px" Width="100px" DataTextField="Corte" DataValueField="Montaje">
                                 <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label id="lblValorfrente" runat="server">Cantidad Color Frente</label>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" onchange="TotalImpresion()" Enabled="False"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
 
@@ -188,6 +213,7 @@
                         </div>
                     </div>
                 </div>
+
                 <br />
 
                 <%--               ACABADOS--%>
@@ -327,13 +353,13 @@
         function TotalImpresion() {
             //Total impresion
             var cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
-            var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());           
+            var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());
             var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
             valorimp = valorimp.replace("$", "");
             valorimp = valorimp.replace(".", "");
             var millares = CalcularMillares(cantidad);
-            var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp * millares);                   
-            var valorimpfinal = formatCurrency(valortotalimpresiones); 
+            var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp * millares);
+            var valorimpfinal = formatCurrency(valortotalimpresiones);
             $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
         }
 

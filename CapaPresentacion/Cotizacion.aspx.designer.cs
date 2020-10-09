@@ -175,22 +175,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtValorTotalPapel;
         
         /// <summary>
-        /// Control txtFrente.
+        /// Control ddFrente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFrente;
+        protected global::System.Web.UI.WebControls.DropDownList ddFrente;
         
         /// <summary>
-        /// Control txtRespaldo.
+        /// Control ddRespaldo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRespaldo;
+        protected global::System.Web.UI.WebControls.DropDownList ddRespaldo;
         
         /// <summary>
         /// Control ddMismaplancha.
@@ -200,6 +200,42 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddMismaplancha;
+        
+        /// <summary>
+        /// Control lblValorfrente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblValorfrente;
+        
+        /// <summary>
+        /// Control txtFrente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFrente;
+        
+        /// <summary>
+        /// Control lblValorrespaldo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblValorrespaldo;
+        
+        /// <summary>
+        /// Control txtRespaldo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRespaldo;
         
         /// <summary>
         /// Control txtValorTotalImpresiones.

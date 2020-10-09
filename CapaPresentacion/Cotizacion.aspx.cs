@@ -392,6 +392,8 @@ namespace CapaPresentacion
                 txtFrente.Text = String.Empty;
                 txtRespaldo.Text = String.Empty;
                 ddMismaplancha.Text = "Seleccionar";
+                txtFrente.Enabled = true;
+                txtRespaldo.Enabled = false;
             }
             catch (Exception)
             {
@@ -422,6 +424,30 @@ namespace CapaPresentacion
                 throw;
             }
 
+        }
+
+        protected void ddFrente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddFrente.SelectedIndex == 1)
+            {
+                txtFrente.Enabled = true;
+            }
+            else
+            {
+                txtFrente.Enabled = false;
+            }        
+        }
+
+        protected void ddRespaldo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddRespaldo.SelectedIndex == 1)
+            {
+                txtRespaldo.Enabled = true;
+            }
+            else
+            {
+                txtRespaldo.Enabled = false;
+            }
         }
     }
 }
