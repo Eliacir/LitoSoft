@@ -184,7 +184,7 @@ namespace CapaPresentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddFrente;
-        
+
         /// <summary>
         /// Control ddRespaldo.
         /// </summary>
@@ -193,7 +193,7 @@ namespace CapaPresentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddRespaldo;
-        
+
         /// <summary>
         /// Control ddMismaplancha.
         /// </summary>
@@ -202,7 +202,7 @@ namespace CapaPresentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddMismaplancha;
-        
+
         /// <summary>
         /// Control lblValorfrente.
         /// </summary>
@@ -211,7 +211,7 @@ namespace CapaPresentacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblValorfrente;
-        
+
         /// <summary>
         /// Control txtFrente.
         /// </summary>
@@ -228,8 +228,8 @@ namespace CapaPresentacion
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRespaldo;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblValorrespaldo;
+
         /// <summary>
         /// Control txtRespaldo.
         /// </summary>
@@ -237,8 +237,8 @@ namespace CapaPresentacion
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddMismaplancha;
-        
+        protected global::System.Web.UI.WebControls.TextBox txtRespaldo;
+
         /// <summary>
         /// Control txtValorTotalImpresiones.
         /// </summary>
