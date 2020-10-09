@@ -48,7 +48,7 @@
                             <label>Costo Diseño</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtCostoDiseno" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtCostoDiseno" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
                             <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RqCostodiseno" ControlToValidate="txtCostoDiseno" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                         </div>
                     </div>
@@ -259,7 +259,7 @@
                                             <label>Precio Papel</label>
                                         </div>
                                         <div class="form-group">
-                                            <asp:TextBox ID="TextBox4" runat="server" Enabled="False"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecioPapel" runat="server" Enabled="False"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -337,15 +337,30 @@
             cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
             cavidad = ObtenerValorPorDefecto($('#<%=txtCavidad.ClientID%>').val());
             papelextra = ObtenerValorPorDefecto($('#<%=txtpapelextra.ClientID%>').val());
+
+            if (cavidad == 0) cavidad = 1;
+
             impresionesTotales = (cantidad / cavidad) + parseInt(papelextra);
             $('#<%=txtImpresionestotales.ClientID%>').val(impresionesTotales);
 
             //Calcular cantidad de pliegos
             var imprTotales = ObtenerValorPorDefecto($('#<%=txtImpresionestotales.ClientID%>').val());
             var dividendo = ObtenerValorPorDefecto($('#<%=txtDividendo.ClientID%>').val());
+
+            if (dividendo == 0) dividendo = 1;
+
             cantidadPliegos = imprTotales / parseInt(dividendo);
             cantidadPliegos = Math.trunc(cantidadPliegos);
+
             $('#<%=txtCantidadpliego.ClientID%>').val(cantidadPliegos);
+
+            var precioPapel = ObtenerValorPorDefecto($('#<%=txtValorpapel.ClientID%>').val());
+
+            precioPapel = QuitarFormatoMoneda(precioPapel);
+
+            var valorTotalPapel = formatCurrency(cantidadPliegos * precioPapel);
+
+            $('#<%=txtValorTotalPapel.ClientID%>').val(valorTotalPapel);
 
             TotalImpresion();
         }
@@ -355,8 +370,7 @@
             var cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
             var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());
             var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
-            valorimp = valorimp.replace("$", "");
-            valorimp = valorimp.replace(".", "");
+            valorimp = QuitarFormatoMoneda(valorimp);
             var millares = CalcularMillares(cantidad);
             var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp * millares);
             var valorimpfinal = formatCurrency(valortotalimpresiones);
@@ -371,12 +385,19 @@
             return value;
         }
 
+        function QuitarFormatoMoneda(valor) {
+            valor = valor.replace("$", "");
+            valor = valor.replace(".", "");
+
+            return valor;
+        }
+
         function CalcularMillares(cantidad) {
             const millar = 1000;
 
             var millares = parseInt(cantidad / millar);
 
-            if (cantidad - (millares * millar) > 0)
+            if (cantidad % millar > 0)
                 millares++;
 
             return millares;

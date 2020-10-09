@@ -170,10 +170,13 @@ Public Class DataAccess
         End Using
     End Function
 
-    Public Function RecuperarCorte() As DataSet
+    Public Function RecuperarCorte(idLitografia As Integer) As DataSet
         Dim db As Database = DatabaseFactory.CreateDatabase()
         Dim sqlCommand As String = "RecuperarCorte"
         Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "IdLitografia", DbType.Int32, idLitografia)
+
         Using connection As DbConnection = db.CreateConnection()
             connection.Open()
             Try
