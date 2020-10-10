@@ -200,7 +200,7 @@
                             <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False"></asp:TextBox>
+                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False" onchange="TotalImpresion()"></asp:TextBox>
                         </div>
                     </div>
 
@@ -369,10 +369,11 @@
             //Total impresion
             var cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
             var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());
+            var respaldo = ObtenerValorPorDefecto($('#<%=txtRespaldo.ClientID%>').val());
             var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
             valorimp = QuitarFormatoMoneda(valorimp);
             var millares = CalcularMillares(cantidad);
-            var valortotalimpresiones = parseFloat(frente) * parseFloat(valorimp * millares);
+            var valortotalimpresiones = (parseFloat(frente) + parseFloat(respaldo)) * parseFloat(valorimp * millares);
             var valorimpfinal = formatCurrency(valortotalimpresiones);
             $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
         }

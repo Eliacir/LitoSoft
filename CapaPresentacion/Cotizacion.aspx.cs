@@ -299,6 +299,8 @@ namespace CapaPresentacion
                 var valorRespaldo = Cast.ToDecimal(txtRespaldo.Text);
                 var totalPlancha = (valorFrente + valorRespaldo) * precioPlancha;
                 var valorTotalImpresiones = (valorFrente + valorRespaldo) * GranTotalvalorImpresion;
+
+                txtValorTotalImpresiones.Text = valorTotalImpresiones.FormatoMoneda();
             
                 //Se establecen valores de las funciones js
                 SetCamposInhabilitados();
@@ -323,13 +325,7 @@ namespace CapaPresentacion
 
         private void SetCamposInhabilitados()
         {     
-            var cantidad = Cast.ToInt(txtCantidad.Text);
-            var frente = Cast.ToInt(txtFrente.Text);
-            var valorImpresion = txtValorImpresion.Text.QuitarFormatoMoneda();
-            var millares = CalcularMillares(cantidad);
-            var totalImpresiones = frente * (valorImpresion * millares);
-
-            txtValorTotalImpresiones.Text = totalImpresiones.FormatoMoneda();            
+            var cantidad = Cast.ToInt(txtCantidad.Text);    
 
             int cavidad = Cast.ToInt(txtCavidad.Text);
             int papelextra = Cast.ToInt(txtpapelextra.Value);
