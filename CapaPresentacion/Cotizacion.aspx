@@ -181,6 +181,14 @@
                             </asp:DropDownList>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False" onchange="TotalImpresion()"></asp:TextBox>
+                        </div>
+                    </div>
 
                     <div class="col-md-2">
                         <div class="form-group">
@@ -195,14 +203,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
-                        </div>
-                        <div class="form-group">
-                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False" onchange="TotalImpresion()"></asp:TextBox>
-                        </div>
-                    </div>
+
 
                     <div class="col-md-2">
                         <div class="form-group">
@@ -219,7 +220,7 @@
                 <%--               ACABADOS--%>
                 <div class="row">
                     <div class="col-md-12">
-                        <asp:Button ID="btnAcabados" runat="server" Width="158px" ForeColor="White" BorderColor="#357ebd" Text="Mostrar acabados" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnAcabados_Click" />
+                        <asp:Button ID="btnAcabados" runat="server" Width="158px" ForeColor="White" BorderColor="#357ebd" Text="Mostrar acabados" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnAcabados_Click" Visible="False" />
 
                         <asp:MultiView ID="MultiView" runat="server">
                             <asp:View ID="VDatos" runat="server">
@@ -317,7 +318,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" ValidationGroup="vgcotizacion"/>
+                        <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" ValidationGroup="vgcotizacion" />
                         &nbsp;
                         <asp:Button ID="bntLimpiar" runat="server" Width="100px" ForeColor="White" BorderColor="#357ebd" Text="Limpiar" BorderStyle="None" CssClass="btn btn-success" Height="32px" OnClick="bntLimpiar_Click" />
                     </div>
