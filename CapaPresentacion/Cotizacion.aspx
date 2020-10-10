@@ -160,7 +160,14 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label id="lblValorfrente" runat="server">Cantidad Color Frente</label>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" onchange="TotalImpresion()" Enabled="False"></asp:TextBox>
+                        </div>
+                    </div>
 
                     <div class="col-md-2">
                         <div class="form-group">
@@ -187,14 +194,7 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label id="lblValorfrente" runat="server">Cantidad Color Frente</label>
-                        </div>
-                        <div>
-                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" onchange="TotalImpresion()" Enabled="False"></asp:TextBox>
-                        </div>
-                    </div>
+
                     <div class="col-md-2">
                         <div class="form-group">
                             <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
@@ -317,7 +317,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" />
+                        <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" ValidationGroup="vgcotizacion"/>
                         &nbsp;
                         <asp:Button ID="bntLimpiar" runat="server" Width="100px" ForeColor="White" BorderColor="#357ebd" Text="Limpiar" BorderStyle="None" CssClass="btn btn-success" Height="32px" OnClick="bntLimpiar_Click" />
                     </div>
@@ -325,7 +325,6 @@
             </div>
         </div>
     </section>
-
     <script>
         $('#<%=ddCorte.ClientID%>').chosen();
         $('#<%=ddSustrato.ClientID%>').chosen();
