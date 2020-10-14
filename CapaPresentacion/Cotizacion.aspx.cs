@@ -25,6 +25,8 @@ namespace CapaPresentacion
             {
                 Session["PanelPrincipal"] = "Gestionar Cotizaciones";
                 IdLitografia = Convert.ToInt16(Session["IdLitografia"]);
+                txtRangoMillar.Value = ohelper.RecuperarParametro("RangoMillar", IdLitografia);
+
                 if (!Page.IsPostBack)
                 {
                     CargarCombos();
@@ -196,7 +198,7 @@ namespace CapaPresentacion
                 var catidadPliegos = Cast.ToInt(txtCantidadpliego.Text);
                 var ValorTotalPapel = valorpapel * catidadPliegos;
 
-                txtValorTotalPapel.Text = ValorTotalPapel.FormatoMoneda();              
+                txtValorTotalPapel.Text = ValorTotalPapel.FormatoMoneda();
             }
             else
             {
@@ -207,7 +209,7 @@ namespace CapaPresentacion
         private void CalcularImpresionesyPliego()
         {
             try
-            { 
+            {
                 var cantidad = Cast.ToInt(txtCantidad.Text);
                 var cavidad = Cast.ToInt(txtCavidad.Text);
                 var papelextra = Cast.ToInt(txtpapelextra.Value);
@@ -247,7 +249,9 @@ namespace CapaPresentacion
 
             var millares = (int)(cantidad / millar);
 
-            if (cantidad % millar > 0)
+            var rangoMillar = Cast.ToInt(txtRangoMillar.Value);
+
+            if (cantidad % millar > rangoMillar)
                 millares++;
 
             return millares;
@@ -297,7 +301,15 @@ namespace CapaPresentacion
                 //Calcular Frente y respaldo                
                 var valorFrente = Cast.ToDecimal(txtFrente.Text);
                 var valorRespaldo = Cast.ToDecimal(txtRespaldo.Text);
-                var totalPlancha = (valorFrente + valorRespaldo) * precioPlancha;
+                var respaldo = valorRespaldo;
+
+                var esMismaPlancha = ddMismaplancha.SelectedValue;
+
+                if (esMismaPlancha == "Si" && valorFrente == valorRespaldo)
+                    respaldo = 0;
+
+                var totalPlancha = (valorFrente + respaldo) * precioPlancha;
+
                 var valorTotalImpresiones = (valorFrente + valorRespaldo) * GranTotalvalorImpresion;
 
                 txtValorTotalImpresiones.Text = valorTotalImpresiones.FormatoMoneda();
@@ -390,6 +402,7 @@ namespace CapaPresentacion
                 txtValorTotalPapel.Text = String.Empty;
                 txtFrente.Text = String.Empty;
                 txtRespaldo.Text = String.Empty;
+                txtImpresionestotales.Text = String.Empty;
                 ddMismaplancha.Text = "Seleccionar";
                 txtFrente.Enabled = true;
                 txtRespaldo.Enabled = false;
@@ -434,19 +447,31 @@ namespace CapaPresentacion
             else
             {
                 txtFrente.Enabled = false;
-            }        
+                txtFrente.Text = String.Empty;
+            }
+
+            RecuperarValorPlanchaEImpresion(true);
         }
 
         protected void ddRespaldo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddRespaldo.SelectedIndex == 1)
             {
-                txtRespaldo.Enabled = true;
+                txtRespaldo.Enabled = true;                
             }
             else
             {
                 txtRespaldo.Enabled = false;
+                txtRespaldo.Text = String.Empty;
             }
+
+            RecuperarValorPlanchaEImpresion(true);
         }
+
+        protected void ddMismaplancha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RecuperarValorPlanchaEImpresion(true);
+        }
+
     }
 }

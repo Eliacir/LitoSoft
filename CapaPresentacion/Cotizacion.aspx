@@ -19,6 +19,7 @@
             <div class="box-body">
                 <!--VALORES JS-->
                 <asp:HiddenField ID="txtpapelextra" runat="server" />
+                <asp:HiddenField ID="txtRangoMillar" runat="server" />
                 <asp:HiddenField ID="txtDividendo" runat="server" />
                 <!--FIN VALORES JS-->
                 <div class="row">
@@ -186,7 +187,7 @@
                             <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False" onchange="TotalImpresion()"></asp:TextBox>
+                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False" onchange="impresionesTotal()"></asp:TextBox>
                         </div>
                     </div>
 
@@ -195,7 +196,7 @@
                             <label>Misma Plancha</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddMismaplancha" runat="server" Height="20px" Width="100px" DataTextField="Corte" DataValueField="Montaje">
+                            <asp:DropDownList ID="ddMismaplancha" runat="server" Height="20px" Width="100px" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddMismaplancha_SelectedIndexChanged">
                                 <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
@@ -373,6 +374,12 @@
             var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
             valorimp = QuitarFormatoMoneda(valorimp);
             var millares = CalcularMillares(cantidad);
+
+            var esMismaPlancha = $('#<%=ddMismaplancha.ClientID%>').val();
+
+            if (esMismaPlancha == "Si" && frente == respaldo)
+                respaldo = 0;
+
             var valortotalimpresiones = (parseFloat(frente) + parseFloat(respaldo)) * parseFloat(valorimp * millares);
             var valorimpfinal = formatCurrency(valortotalimpresiones);
             $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
@@ -398,7 +405,9 @@
 
             var millares = parseInt(cantidad / millar);
 
-            if (cantidad % millar > 0)
+            var rangoMillar = parseInt($('#<%=txtRangoMillar.ClientID%>').val());
+
+            if (cantidad % millar > rangoMillar)
                 millares++;
 
             return millares;
