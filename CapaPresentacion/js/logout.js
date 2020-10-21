@@ -10,7 +10,7 @@
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
         success: function (response) {
-            if (response.d == true) {
+            if (response.d === true) {
                 window.location.href = "Login.aspx";
             }
         }

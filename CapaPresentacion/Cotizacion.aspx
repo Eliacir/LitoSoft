@@ -1,9 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Cotizacion.aspx.cs" Inherits="CapaPresentacion.Cotizacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style3 {
+            height: 20px;
+        }
+
+        .auto-style4 {
+            display: block;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            border-radius: 0px !important;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: none;
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            -webkit-border-radius: 0px !important;
+            -moz-border-radius: 0px !important;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            background-color: #fff;
+            background-image: none;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--               ACABADOS--%>
+    <%--ACABADOS--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
     <link href=" https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet" />
@@ -15,11 +39,11 @@
     </section>
 
     <section class="content">
-        <div class="box box-primary" style="left: 0px; top: 0px; height: 861px">
+        <div class="box box-primary" style="left: 0px; top: 0px; height: 1600px">
             <div class="box-body">
                 <!--VALORES JS-->
-                <asp:HiddenField ID="txtpapelextra" runat="server" />
                 <asp:HiddenField ID="txtRangoMillar" runat="server" />
+                <asp:HiddenField ID="txtpapelextra" runat="server" />
                 <asp:HiddenField ID="txtDividendo" runat="server" />
                 <!--FIN VALORES JS-->
                 <div class="row">
@@ -204,8 +228,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Total Impresiones</label>
@@ -214,98 +236,118 @@
                             <asp:TextBox ID="txtValorTotalImpresiones" runat="server" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
-                </div>
 
-                <br />
-
-                <%--               ACABADOS--%>
-                <div class="row">
-                    <div class="col-md-12">
-                        <asp:Button ID="btnAcabados" runat="server" Width="158px" ForeColor="White" BorderColor="#357ebd" Text="Mostrar acabados" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnAcabados_Click" Visible="False" />
-
-                        <asp:MultiView ID="MultiView" runat="server">
-                            <asp:View ID="VDatos" runat="server">
-
-                                <div class="row">
-                                    <br />
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Cantidad</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="TextBox1" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator1" ControlToValidate="txtCantidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Tamaño</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="TextBox2" runat="server" TextMode="Number"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator2" ControlToValidate="TextBox2" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Cavidad</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="TextBox3" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RequiredFieldValidator3" ControlToValidate="txtCavidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Precio Papel</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="txtPrecioPapel" runat="server" Enabled="False"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Frente</label>
-                                        </div>
-                                        <div>
-                                            <asp:TextBox ID="TextBox11" runat="server" TextMode="Number"></asp:TextBox>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Respaldo</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="TextBox12" runat="server" TextMode="Number"></asp:TextBox>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Misma Plancha</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:DropDownList ID="DropDownList3" runat="server" DataTextField="Corte" DataValueField="Montaje">
-                                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
-                                                <asp:ListItem Value="Si">Si</asp:ListItem>
-                                                <asp:ListItem Value="No">No</asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </asp:View>
-                            <asp:View ID="VOcultar" runat="server"></asp:View>
-                        </asp:MultiView>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Valor total en plancha</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtValorTotalplancha" runat="server" Enabled="False"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
 
                 <br />
+
+                <%-- ACABADOS--%>
+                <div class="row">
+                    <div class="col-md-12">
+                        <%--   <asp:Button ID="btnAcabados" runat="server" Width="158px" ForeColor="White" BorderColor="#357ebd" Text="Mostrar acabados" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnAcabados_Click" />--%>
+
+                        <asp:LinkButton ID="btnAcabados" runat="server" OnClick="btnAcabados_Click">Mostrar acabados</asp:LinkButton>
+                        <br />
+                        <br />
+                        <asp:MultiView ID="MultiView" runat="server">
+                            <asp:View ID="VDatos" runat="server">
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td class="auto-style3">
+                                                <label>Descripción Acabado</label>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <label>Frente</label>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <label>Respaldo</label>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <label>Valor Acabado</label>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:DropDownList ID="ddAcabados" runat="server" CssClass="auto-style4" DataTextField="Nombre" DataValueField="Precio" AutoPostBack="True" Width="329px" OnSelectedIndexChanged="ddAcabados_SelectedIndexChanged">
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <asp:CheckBox ID="ChkFrente" runat="server" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <asp:CheckBox ID="ChkRespaldo" runat="server" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <asp:TextBox ID="txtValorAcabado" runat="server" Enabled="False"></asp:TextBox>
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td>
+                                                <asp:ImageButton ID="btnAgregar" runat="server" ImageUrl="~/img/Agregar.png" OnClick="btnAgregar_Click" ToolTip="Agregar" />
+
+                                                <asp:ImageButton ID="btnActualizar" runat="server" ImageUrl="~/img/Editar.png" ToolTip="Actualizar" Visible="false" OnClick="btnActualizar_Click" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="row">                                   
+                                        <div class="box-body table-responsive">
+                                            <asp:GridView ID="GvAcabados" runat="server" class="table table-bordered" AutoGenerateColumns="False" AllowSorting="True" Width="818px" OnRowCommand="GvAcabados_RowCommand" OnRowCreated="GvAcabados_RowCreated" OnRowDataBound="GvAcabados_RowDataBound">
+                                                <Columns>
+                                                     <asp:BoundField DataField="RowNumber" HeaderText="Numero" />
+                                                    <asp:BoundField DataField="Acabado" HeaderText="Acabado" />
+                                                    <asp:BoundField DataField="Valor" HeaderText="Valor"  />
+                                                    <asp:BoundField DataField="Frente" HeaderText="Frente" >
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="Respaldo" HeaderText="Respaldo">
+                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                     </asp:BoundField>
+                                                    <asp:TemplateField HeaderText="Editar">
+                                                        <ItemTemplate>
+                                                            <asp:ImageButton ID="ImgActualizar" runat="server" ImageUrl="~/img/Editar.png"
+                                                                ToolTip="Editar" CausesValidation="true" CommandName="Actualizar"></asp:ImageButton>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Eliminar">
+                                                        <ItemTemplate>
+                                                            <asp:ImageButton ID="ImgEliminar" runat="server" OnClientClick="return confirm('Realmente desea eliminar acabado?')" ImageUrl="~/img/Eliminar.png"
+                                                                ToolTip="Eliminar" CommandName="Eliminar"></asp:ImageButton>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>                                 
+                                </div>
+
+                            </asp:View>
+                            <asp:View ID="VOcultar" runat="server">
+                            </asp:View>
+                        </asp:MultiView>
+                    </div>              
+                </div>
+
+                <br />
+
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -331,6 +373,7 @@
         $('#<%=ddCorte.ClientID%>').chosen();
         $('#<%=ddSustrato.ClientID%>').chosen();
         $('#<%=ddClientes.ClientID%>').chosen();
+        $('#<%=ddAcabados.ClientID%>').chosen();
 
 
         function impresionesTotal() {
@@ -371,18 +414,25 @@
             var cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
             var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());
             var respaldo = ObtenerValorPorDefecto($('#<%=txtRespaldo.ClientID%>').val());
+            var ValorRespaldo = respaldo;
             var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
             valorimp = QuitarFormatoMoneda(valorimp);
             var millares = CalcularMillares(cantidad);
 
-            var esMismaPlancha = $('#<%=ddMismaplancha.ClientID%>').val();
+            var esMismaPlancha = ObtenerValorPorDefecto($('#<%=ddMismaplancha.ClientID%>').val());
 
             if (esMismaPlancha == "Si" && frente == respaldo)
-                respaldo = 0;
+                ValorRespaldo = 0;
+
+            var precioPlancha = QuitarFormatoMoneda(ObtenerValorPorDefecto($('#<%=txtvalorplancha.ClientID%>').val()));
+            var totalPlancha = (frente + ValorRespaldo) * precioPlancha;
+
 
             var valortotalimpresiones = (parseFloat(frente) + parseFloat(respaldo)) * parseFloat(valorimp * millares);
             var valorimpfinal = formatCurrency(valortotalimpresiones);
             $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
+
+            $('#<%=txtValorTotalplancha.ClientID%>').val(totalPlancha);
         }
 
         function ObtenerValorPorDefecto(value) {

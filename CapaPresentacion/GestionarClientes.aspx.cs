@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -16,8 +17,10 @@ namespace CapaPresentacion
         DataHelper ohelper = new DataHelper();
         Int32 IdLitografia;
 
+        public object lblIPBehindProxy { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {        
             Session["IsOtraPagina"] = true;
             Session["PanelPrincipal"] = "Gestionar Clientes";
             IdLitografia = Convert.ToInt16(Session["IdLitografia"]);
@@ -173,6 +176,7 @@ namespace CapaPresentacion
             GvCliente.DataBind();
             dt = ds.Tables[0];
             Session["dtCliente"] = dt;
+
         }
 
         private Cliente GetCliente()

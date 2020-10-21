@@ -16,6 +16,11 @@ namespace CapaLogicaNegocio
 
         #region LITOGRAFIA
 
+        public DataSet RecuperarAcabados(int idLitografia)
+        {
+            return oacces.RecuperarAcabados(idLitografia);
+        }
+
         public void EliminarCliente(int Idcliente,Int32 IdLitografia)
         {
             oacces.EliminarCliente(Idcliente, IdLitografia);

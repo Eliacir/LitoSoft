@@ -17,6 +17,8 @@ namespace CapaPresentacion
     {
         DataHelper ohelper = new DataHelper();
         Int32 IdLitografia;
+        string frenteAcabado;
+        string respaldoAcabado;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -96,6 +98,14 @@ namespace CapaPresentacion
             txtpapelextra.Value = PapelExtra.ToString();
 
             Separardividendo();
+
+            //Cargar Acabados
+            ddAcabados.DataSource = ohelper.RecuperarAcabados(IdLitografia);
+            ddAcabados.DataTextField = "Descripcion";
+            ddAcabados.DataValueField = "IdAcabado";
+            ddAcabados.DataBind();
+            ddAcabados.Items.Insert(0, new ListItem("Seleccionar", "0"));
+
         }
 
         //protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
@@ -278,13 +288,13 @@ namespace CapaPresentacion
                     {
                         //PrecioPlanchaMayor = 22000; PrecioImpresionMayor = 25000
                         precioPlancha = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMayor", IdLitografia));
-                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMayor", IdLitografia));                       
+                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMayor", IdLitografia));
                     }
                     else
                     {
                         //PrecioPlanchaMenor = 12000; PrecioImpresionMayor = 12000
                         precioPlancha = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioPlanchaMenor", IdLitografia));
-                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMenor", IdLitografia));  
+                        PrecioImpresion = Cast.ToDecimal(ohelper.RecuperarParametro("PrecioImpresionMenor", IdLitografia));
                     }
 
                     txtvalorplancha.Text = precioPlancha.FormatoMoneda();
@@ -297,7 +307,7 @@ namespace CapaPresentacion
                         GranTotalvalorImpresion = PrecioImpresion * millares;
                     }
                 }
-        
+
                 //Calcular Frente y respaldo                
                 var valorFrente = Cast.ToDecimal(txtFrente.Text);
                 var valorRespaldo = Cast.ToDecimal(txtRespaldo.Text);
@@ -313,7 +323,9 @@ namespace CapaPresentacion
                 var valorTotalImpresiones = (valorFrente + valorRespaldo) * GranTotalvalorImpresion;
 
                 txtValorTotalImpresiones.Text = valorTotalImpresiones.FormatoMoneda();
-            
+
+                txtValorTotalplancha.Text = totalPlancha.FormatoMoneda();
+
                 //Se establecen valores de las funciones js
                 SetCamposInhabilitados();
 
@@ -321,7 +333,7 @@ namespace CapaPresentacion
                 var Totalfactura = (totalPlancha + valorTotalPapel + valorTotalImpresiones);
                 var costoDiseño = Cast.ToDecimal(txtCostoDiseno.Text);
 
-                Totalfactura += costoDiseño;             
+                Totalfactura += costoDiseño;
 
                 if (escalcular)
                 {
@@ -336,16 +348,16 @@ namespace CapaPresentacion
 
 
         private void SetCamposInhabilitados()
-        {     
-            var cantidad = Cast.ToInt(txtCantidad.Text);    
+        {
+            var cantidad = Cast.ToInt(txtCantidad.Text);
 
             int cavidad = Cast.ToInt(txtCavidad.Text);
             int papelextra = Cast.ToInt(txtpapelextra.Value);
 
             if (cavidad == 0) cavidad = 1;
 
-            txtImpresionestotales.Text = ((cantidad / cavidad) + papelextra).ToString();           
-        
+            txtImpresionestotales.Text = ((cantidad / cavidad) + papelextra).ToString();
+
             int imprTotales = Cast.ToInt(txtImpresionestotales.Text);
             int dividendo = Cast.ToInt(txtDividendo.Value);
 
@@ -420,6 +432,7 @@ namespace CapaPresentacion
             {
                 if (btnAcabados.Text.Contains("Mostrar"))
                 {
+                    ChkFrente.Checked = true;
                     MultiView.ActiveViewIndex = 0;
                     btnAcabados.Text = "Ocultar Acabados";
 
@@ -431,7 +444,7 @@ namespace CapaPresentacion
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -457,7 +470,7 @@ namespace CapaPresentacion
         {
             if (ddRespaldo.SelectedIndex == 1)
             {
-                txtRespaldo.Enabled = true;                
+                txtRespaldo.Enabled = true;
             }
             else
             {
@@ -473,5 +486,261 @@ namespace CapaPresentacion
             RecuperarValorPlanchaEImpresion(true);
         }
 
+
+        protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                if (ddAcabados.SelectedIndex > 0)
+                {
+                    frenteAcabado = "Si";
+                    respaldoAcabado = "No";
+
+                    if (ChkFrente.Checked == false)
+                    {
+                        frenteAcabado = "No";
+                    }
+
+                    if (ChkRespaldo.Checked)
+                    {
+                        respaldoAcabado = "Si";
+                    }
+
+                    if (ViewState["CurrentTable"] == null)
+                    {
+
+
+                        DataTable dt = new DataTable();
+                        DataRow row = null;
+                        dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
+                        dt.Columns.Add(new DataColumn("Acabado", typeof(string)));
+                        dt.Columns.Add(new DataColumn("Valor", typeof(string)));
+                        dt.Columns.Add(new DataColumn("Frente", typeof(string)));
+                        dt.Columns.Add(new DataColumn("Respaldo", typeof(string)));
+
+                        row = dt.NewRow();
+                        row["RowNumber"] = 1;
+                        row["Acabado"] = ddAcabados.SelectedItem;
+                        row["Valor"] = txtValorAcabado.Text;
+                        row["Frente"] = frenteAcabado;
+                        row["Respaldo"] = respaldoAcabado;
+
+                        dt.Rows.Add(row);
+
+                        //Store the DataTable in ViewState
+                        ViewState["CurrentTable"] = dt;
+
+                        GvAcabados.DataSource = dt;
+                        GvAcabados.DataBind();
+                    }
+                    else
+                    {
+                        AddNewRowToGrid();
+                    }
+
+                    //Mensaje Ok
+                    //string mensaje = "Acabado agregado satisfactoriamente.!";
+                    //ClientScript.RegisterStartupScript(this.GetType(), "Detalle Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
+
+                }
+                else
+                {
+                    string mensaje = "Seleccione un acabado.!";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Acabados", "<script>swal('', '" + mensaje + "', 'error')</script>");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.Message.Replace("'", "");
+                //Mensaje Error
+                ClientScript.RegisterStartupScript(this.GetType(), "Configuración", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
+            }
+        }
+
+        protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                frenteAcabado = "Si";
+                respaldoAcabado = "No";
+
+                if (ChkFrente.Checked == false)
+                {
+                    frenteAcabado = "No";
+                }
+
+                if (ChkRespaldo.Checked)
+                {
+                    respaldoAcabado = "Si";
+                }
+
+
+                //Obtenemos valores de la tabla
+                var Rowindex = Cast.ToInt(ViewState["indexGV"]);
+                var acabado = GvAcabados.Rows[Rowindex].Cells[1].Text = ddAcabados.SelectedItem.Text;
+                var valoracabado = GvAcabados.Rows[Rowindex].Cells[2].Text = txtValorAcabado.Text;
+                var frentegv = GvAcabados.Rows[Rowindex].Cells[3].Text = frenteAcabado;
+                var respaldogv = GvAcabados.Rows[Rowindex].Cells[4].Text = respaldoAcabado;
+
+
+                btnAgregar.Visible = true;
+                btnActualizar.Visible = false;
+
+                //Mensaje Ok
+                //string mensaje = "Item actualizado satisfactoriamente.!";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Detalle Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.Message;
+                //Mensaje Error
+                ClientScript.RegisterStartupScript(this.GetType(), "Configuración", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
+            }
+        }
+
+        protected void ddAcabados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+
+        private void AddNewRowToGrid()
+        {
+            if (ddAcabados.SelectedIndex > 0)
+            {
+                frenteAcabado = "Si";
+                respaldoAcabado = "No";
+
+                if (ChkFrente.Checked == false)
+                {
+                    frenteAcabado = "No";
+                }
+
+                if (ChkRespaldo.Checked)
+                {
+                    respaldoAcabado = "Si";
+                }
+
+                int rowIndex = 0;
+                if (ViewState["CurrentTable"] != null)
+                {
+                    DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+                    DataRow drCurrentRow = null;
+                    if (dtCurrentTable.Rows.Count > 0)
+                    {
+                        for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
+                        {
+                            drCurrentRow = dtCurrentTable.NewRow();
+                            drCurrentRow["RowNumber"] = i + 1;
+                            drCurrentRow["Acabado"] = ddAcabados.SelectedItem;
+                            drCurrentRow["Valor"] = txtValorAcabado.Text;
+                            drCurrentRow["Frente"] = frenteAcabado;
+                            drCurrentRow["Respaldo"] = respaldoAcabado;
+
+                            rowIndex++;
+                        }
+
+                        //add new row to DataTable
+                        dtCurrentTable.Rows.Add(drCurrentRow);
+                        //Store the current data to ViewState
+                        ViewState["CurrentTable"] = dtCurrentTable;
+
+                        //Rebind the Grid with the current data
+                        GvAcabados.DataSource = dtCurrentTable;
+                        GvAcabados.DataBind();
+                    }
+                }
+                else
+                {
+                    Response.Write("ViewState is null");
+                }
+            }
+            else
+            {
+                string mensaje = "Seleccione un acabado.!";
+                ClientScript.RegisterStartupScript(this.GetType(), "Acabados", "<script>swal('', '" + mensaje + "', 'error')</script>");
+
+            }
+        }
+
+
+
+
+        protected void GvAcabados_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void GvAcabados_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                ImageButton Imagen = (ImageButton)e.CommandSource;
+                DataControlFieldCell Celda = (DataControlFieldCell)Imagen.Parent;
+                GridViewRow fila = (GridViewRow)Celda.Parent;
+
+                switch (e.CommandName)
+                {
+                    case "Actualizar":
+                        {
+                            //Obtenemos valores de la tabla
+                            ViewState["NumeroAcabado"] = GvAcabados.Rows[fila.RowIndex].Cells[0].Text;
+                            var acabado = GvAcabados.Rows[fila.RowIndex].Cells[1].Text;
+                            var valoracabado = GvAcabados.Rows[fila.RowIndex].Cells[2].Text.Replace("&nbsp;", "");
+                            var frentegv = GvAcabados.Rows[fila.RowIndex].Cells[3].Text;
+                            var respaldogv = GvAcabados.Rows[fila.RowIndex].Cells[4].Text;
+
+                            ddAcabados.SelectedItem.Text = acabado;
+                            txtValorAcabado.Text = valoracabado;
+                            if (frentegv.Equals("Si"))
+                                ChkFrente.Checked = true;
+                            else
+                                ChkFrente.Checked = false;
+
+                            if (respaldogv.Equals("Si"))
+                                ChkRespaldo.Checked = true;
+                            else
+                                ChkRespaldo.Checked = false;
+
+                            btnAgregar.Visible = false;
+                            btnActualizar.Visible = true;
+
+                            ViewState["indexGV"] = fila.RowIndex;
+
+                            break;
+                        }
+                    case "Eliminar":
+                        {
+
+                            ViewState["NumeroAcabado"] = GvAcabados.Rows[fila.RowIndex].Cells[0].Text;
+
+                            DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+
+                            DataRow dr = dtCurrentTable.Rows[fila.RowIndex];
+                            dr.Delete();
+
+                            //Store the current data to ViewState
+                            ViewState["CurrentTable"] = dtCurrentTable;
+
+                            //Rebind the Grid with the current data
+                            GvAcabados.DataSource = dtCurrentTable;
+                            GvAcabados.DataBind();
+
+
+                            break;
+                        }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void GvAcabados_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
     }
 }

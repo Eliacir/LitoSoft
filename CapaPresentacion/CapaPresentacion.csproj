@@ -14,7 +14,7 @@
     <RootNamespace>CapaPresentacion</RootNamespace>
     <AssemblyName>CapaPresentacion</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -209,6 +209,7 @@
       <DependentUpon>dsPrincipal.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\EHerazo.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalEHM.pubxml" />
     <None Include="Properties\PublishProfiles\SysWeb.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -727,7 +728,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1103</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1103/</IISUrl>
+          <IISUrl>http://localhost/CapaPresentacion</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

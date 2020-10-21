@@ -9,6 +9,26 @@ Imports CapaEntidades
 Public Class DataAccess
 
 #Region "LITOGRAFIA"
+
+    Public Function RecuperarAcabados(idLitografia As Integer) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarAcabados"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "IdLitografia", DbType.Int32, idLitografia)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
     Public Sub EliminarCliente(IdCliente As Integer, IdLitografia As Int32)
         'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
         Dim DB As Database = DatabaseFactory.CreateDatabase()
