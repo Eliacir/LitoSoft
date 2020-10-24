@@ -347,6 +347,8 @@ namespace CapaPresentacion
         {
             if (acabado == null) return null;
 
+            CrearPlantillaDeFila(ref table);
+
             var row = table.NewRow();
 
             row["RowId"] = acabado.Codigo;
@@ -387,8 +389,6 @@ namespace CapaPresentacion
                 return;
 
             var table = ObtenerTablaAcabados()?? new DataTable();
-
-            CrearPlantillaDeFila(ref table);
 
             AcabadoActual = CrearAcabado();
 
