@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntidadAcabado.cs" />
+    <Compile Include="EntidadCotizacion.cs" />
     <Compile Include="CotizacionEnti.cs" />
     <Compile Include="InfoLitografia.cs" />
     <Compile Include="ImagenesProyectos.cs" />

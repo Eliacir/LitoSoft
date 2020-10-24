@@ -49,6 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\portable-net40+sl4+win8+wp8\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,8 +59,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataHelper.cs" />
+    <Compile Include="Extensions\CommonExtensions.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Models\Acabado.cs" />
+    <Compile Include="Calculations\CalcularAcabados.cs" />
+    <Compile Include="Calculations\CalcularCotizacion.cs" />
+    <Compile Include="Models\ColeccionAcabados.cs" />
+    <Compile Include="Models\Cotizacion.cs" />
+    <Compile Include="Helpers\DataHelper.cs" />
+    <Compile Include="Models\ParametrosDeCotizacion.cs" />
+    <Compile Include="Types\TipoAcabado.cs" />
+    <Compile Include="Types\TipoParametroCotizacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\TipoTroquelado.cs" />
+    <Compile Include="Util\Cast.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
@@ -68,6 +84,9 @@
       <Project>{7ba40914-e867-4654-8a5f-aa1460bec57c}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

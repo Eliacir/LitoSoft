@@ -1,27 +1,29 @@
 ﻿using CapaEntidades;
-using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
-namespace CapaLogicaNegocio
+namespace CapaLogicaNegocio.Helpers
 {
-
+    [Serializable]
     public class DataHelper
     {
         DataAccess.DataAccess oacces = new DataAccess.DataAccess();
 
         #region LITOGRAFIA
 
+        public IDataReader RecuperarAcabado(int idLitografia, string codigo)
+        {
+            return oacces.RecuperarAcabado(idLitografia, codigo);
+        }
+
         public DataSet RecuperarAcabados(int idLitografia)
         {
             return oacces.RecuperarAcabados(idLitografia);
         }
 
-        public void EliminarCliente(int Idcliente,Int32 IdLitografia)
+        public void EliminarCliente(int Idcliente, Int32 IdLitografia)
         {
             oacces.EliminarCliente(Idcliente, IdLitografia);
         }
@@ -38,11 +40,11 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public bool InsertarCliente(Cliente ocliente,Int32 idlitografia)
+        public bool InsertarCliente(Cliente ocliente, Int32 idlitografia)
         {
             try
             {
-                string res = oacces.InsertarCliente(ocliente.Nombre, ocliente.Documento, ocliente.Direccion, ocliente.Telefono,idlitografia);
+                string res = oacces.InsertarCliente(ocliente.Nombre, ocliente.Documento, ocliente.Direccion, ocliente.Telefono, idlitografia);
                 if (res.Contains("ok"))
                 {
                     return true;
@@ -82,9 +84,9 @@ namespace CapaLogicaNegocio
 
         }
 
-        public string RecuperarParametro(string Nombre,int IdLitografia)
+        public string RecuperarParametro(string Nombre, int IdLitografia)
         {
-           return oacces.RecuperarParametro(Nombre, IdLitografia);
+            return oacces.RecuperarParametro(Nombre, IdLitografia);
         }
 
         public DataSet RecuperarCorte(int idLitografia)
@@ -132,11 +134,11 @@ namespace CapaLogicaNegocio
 
                 throw;
             }
-          
+
         }
 
 
-        public DataSet RecuperarLitografiasPorNombre( string texto)
+        public DataSet RecuperarLitografiasPorNombre(string texto)
         {
             try
             {
@@ -181,7 +183,7 @@ namespace CapaLogicaNegocio
                 usuario = infoLitografia.UsuLitografia.NomUsuario;
                 clave = infoLitografia.UsuLitografia.Clave;
                 Estado = infoLitografia.UsuLitografia.Estado;
-                oacces.InsertarLitografia(infoLitografia.Nombre,infoLitografia.Direccion,infoLitografia.Telefono,infoLitografia.Imagen,usuario,clave,Estado);
+                oacces.InsertarLitografia(infoLitografia.Nombre, infoLitografia.Direccion, infoLitografia.Telefono, infoLitografia.Imagen, usuario, clave, Estado);
             }
             catch (Exception ex)
             {
@@ -202,7 +204,7 @@ namespace CapaLogicaNegocio
             }
         }
 
- #endregion
+        #endregion
 
         public object RecuperarDetalleCotizacionPorFiltro(int filtro, string texto)
         {
@@ -280,7 +282,7 @@ namespace CapaLogicaNegocio
         }
 
 
-      
+
         public DataSet RecuperarProyectosPorNombre(string text)
         {
             return oacces.RecuperarProyectosPorNombre(text);
@@ -500,7 +502,7 @@ namespace CapaLogicaNegocio
                 //    return true;
                 //}
                 //else
-                    return false;
+                return false;
             }
             catch (Exception ex)
             {
@@ -519,7 +521,7 @@ namespace CapaLogicaNegocio
                 //    return true;
                 //}
                 //else
-                    return false;
+                return false;
             }
             catch (Exception ex)
             {
@@ -636,7 +638,7 @@ namespace CapaLogicaNegocio
             }
         }
 
-      
+
         public DataSet RecuperarProyectosPorEmpleado(short Idempleado)
         {
             try

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Cotizacion.aspx.cs" Inherits="CapaPresentacion.Cotizacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="PaginaCotizacion.aspx.cs" Inherits="CapaPresentacion.PaginaCotizacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -44,7 +44,7 @@
                 <!--VALORES JS-->
                 <asp:HiddenField ID="txtRangoMillar" runat="server" />
                 <asp:HiddenField ID="txtpapelextra" runat="server" />
-                <asp:HiddenField ID="txtDividendo" runat="server" />
+                <asp:HiddenField ID="txtMontajeDecimal" runat="server" />
                 <!--FIN VALORES JS-->
                 <div class="row">
                     <div class="col-md-4">
@@ -64,7 +64,7 @@
                             <label>Cantidad</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
+                            <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCantidad_OnTextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RqCantidad" ControlToValidate="txtCantidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                             <label>Costo Diseño</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtCostoDiseno" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
+                            <asp:TextBox ID="txtCostoDiseno" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCostoDiseno_OnTextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RqCostodiseno" ControlToValidate="txtCostoDiseno" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                             <label>Cavidad</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtCavidad" runat="server" TextMode="Number" onchange="impresionesTotal()"></asp:TextBox>
+                            <asp:TextBox ID="txtCavidad" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtCavidad_OnTextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator runat="server" CssClass="text-red" ID="RqCavidad" ControlToValidate="txtCavidad" ErrorMessage="Campo requerido." ValidationGroup="vgcotizacion" />
                         </div>
                     </div>
@@ -179,7 +179,6 @@
                         </div>
                         <div class="form-group">
                             <asp:DropDownList ID="ddFrente" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddFrente_SelectedIndexChanged" Height="20px" Width="100px">
-                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
@@ -190,7 +189,7 @@
                             <label id="lblValorfrente" runat="server">Cantidad Color Frente</label>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" onchange="TotalImpresion()" Enabled="False"></asp:TextBox>
+                            <asp:TextBox ID="txtFrente" runat="server" TextMode="SingleLine" AutoPostBack="true" OnTextChanged="txtFrente_OnTextChanged" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
 
@@ -200,7 +199,6 @@
                         </div>
                         <div class="form-group">
                             <asp:DropDownList ID="ddRespaldo" runat="server" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddRespaldo_SelectedIndexChanged" Height="20px" Width="100px">
-                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
@@ -211,7 +209,7 @@
                             <label id="lblValorrespaldo" runat="server">Cantidad Color Respaldo</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" Enabled="False" onchange="impresionesTotal()"></asp:TextBox>
+                            <asp:TextBox ID="txtRespaldo" runat="server" TextMode="Number" AutoPostBack="true" OnTextChanged="txtRespaldo_OnTextChanged" Enabled="False"></asp:TextBox>
                         </div>
                     </div>
 
@@ -221,7 +219,6 @@
                         </div>
                         <div class="form-group">
                             <asp:DropDownList ID="ddMismaplancha" runat="server" Height="20px" Width="100px" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddMismaplancha_SelectedIndexChanged">
-                                <asp:ListItem Value="Seleccionar">Seleccionar</asp:ListItem>
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
@@ -267,11 +264,11 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td>
-                                                <label>Frente</label>
+                                                <label id="lblTituloValor1" runat="server">Frente</label>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td>
-                                                <label>Respaldo</label>
+                                                <label id="lblTituloValor2" runat="server">Respaldo</label>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td>
@@ -286,11 +283,22 @@
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td>
-                                                <asp:CheckBox ID="ChkFrente" runat="server" />
+                                                <asp:DropDownList ID="ddFrenteAcabado" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddFrenteAcabado_SelectedIndexChanged" Width="100px">
+                                                    <asp:ListItem Value="Si">Si</asp:ListItem>
+                                                    <asp:ListItem Value="No">No</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddTipoToquelado" runat="server" AutoPostBack="false" Height="20px" Visible="false" Width="100px">
+                                                    <asp:ListItem Value="Troquel">Troquel</asp:ListItem>
+                                                    <asp:ListItem Value="Refile">Refile</asp:ListItem>
+                                                </asp:DropDownList>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td>
-                                                <asp:CheckBox ID="ChkRespaldo" runat="server" />
+                                                <asp:DropDownList ID="ddRespaldoAcabado" runat="server" AutoPostBack="True" Height="20px" OnSelectedIndexChanged="ddRespaldoAcabado_SelectedIndexChanged" Width="100px">
+                                                    <asp:ListItem Value="Si">Si</asp:ListItem>
+                                                    <asp:ListItem Value="No">No</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:TextBox ID="txtValorToquelado" runat="server" Visible="false"></asp:TextBox>
                                             </td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                             <td>
@@ -310,27 +318,27 @@
                                         <div class="box-body table-responsive">
                                             <asp:GridView ID="GvAcabados" runat="server" class="table table-bordered" AutoGenerateColumns="False" AllowSorting="True" Width="818px" OnRowCommand="GvAcabados_RowCommand" OnRowCreated="GvAcabados_RowCreated" OnRowDataBound="GvAcabados_RowDataBound">
                                                 <Columns>
-                                                     <asp:BoundField DataField="RowNumber" HeaderText="Numero" />
-                                                    <asp:BoundField DataField="Acabado" HeaderText="Acabado" />
-                                                    <asp:BoundField DataField="Valor" HeaderText="Valor"  />
-                                                    <asp:BoundField DataField="Frente" HeaderText="Frente" >
+                                                    <asp:BoundField DataField="RowId" ReadOnly="True" visible="false" />                                                 
+                                                    <asp:BoundField DataField="RowNumber" ReadOnly="True" HeaderText="Numero"  />
+                                                    <asp:BoundField DataField="Acabado" ReadOnly="True" HeaderText="Acabado" />
+                                                    <asp:BoundField DataField="Valor" ReadOnly="True" HeaderText="Valor"  />
+                                                    <asp:BoundField DataField="Frente" ReadOnly="True" HeaderText="Frente" >
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:BoundField>
-                                                    <asp:BoundField DataField="Respaldo" HeaderText="Respaldo">
-                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                     </asp:BoundField>
+                                                    <asp:BoundField DataField="Respaldo" ReadOnly="True" HeaderText="Respaldo">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Troquelado" ReadOnly="True" SortExpression="TipoTroquelado" />
+                                                    <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor Troquelado" ReadOnly="True" SortExpression="ValorTroquelado" />
                                                     <asp:TemplateField HeaderText="Editar">
                                                         <ItemTemplate>
-                                                            <asp:ImageButton ID="ImgActualizar" runat="server" ImageUrl="~/img/Editar.png"
-                                                                ToolTip="Editar" CausesValidation="true" CommandName="Actualizar"></asp:ImageButton>
+                                                            <asp:ImageButton ID="ImgActualizar" runat="server" CausesValidation="true" CommandName="Actualizar" ImageUrl="~/img/Editar.png" ToolTip="Editar" />
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-
                                                     <asp:TemplateField HeaderText="Eliminar">
                                                         <ItemTemplate>
-                                                            <asp:ImageButton ID="ImgEliminar" runat="server" OnClientClick="return confirm('Realmente desea eliminar acabado?')" ImageUrl="~/img/Eliminar.png"
-                                                                ToolTip="Eliminar" CommandName="Eliminar"></asp:ImageButton>
+                                                            <asp:ImageButton ID="ImgEliminar" runat="server" CommandName="Eliminar" ImageUrl="~/img/Eliminar.png" OnClientClick="return confirm('Realmente desea eliminar acabado?')" ToolTip="Eliminar" />
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
@@ -347,7 +355,17 @@
                 </div>
 
                 <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Total Acabados</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtTotalAcabados" runat="server" Enabled="False"></asp:TextBox>
+                        </div>
 
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -361,9 +379,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <asp:Button ID="btnCalcular" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Calcular" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnCalcular_Click" ValidationGroup="vgcotizacion" />
+                        <asp:Button ID="btnGuardar" runat="server" Width="100px" Height="32px" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click"/>
                         &nbsp;
-                        <asp:Button ID="bntLimpiar" runat="server" Width="100px" ForeColor="White" BorderColor="#357ebd" Text="Limpiar" BorderStyle="None" CssClass="btn btn-success" Height="32px" OnClick="bntLimpiar_Click" />
+                        <asp:Button ID="bntLimpiar" runat="server" Width="100px" Height="32px" Text="Limpiar" CssClass="btn btn-primary" OnClick="bntLimpiar_Click" />
                     </div>
                 </div>
             </div>
@@ -374,103 +392,6 @@
         $('#<%=ddSustrato.ClientID%>').chosen();
         $('#<%=ddClientes.ClientID%>').chosen();
         $('#<%=ddAcabados.ClientID%>').chosen();
-
-
-        function impresionesTotal() {
-            //Calcular impresiones imprTotales
-            cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
-            cavidad = ObtenerValorPorDefecto($('#<%=txtCavidad.ClientID%>').val());
-            papelextra = ObtenerValorPorDefecto($('#<%=txtpapelextra.ClientID%>').val());
-
-            if (cavidad == 0) cavidad = 1;
-
-            impresionesTotales = (cantidad / cavidad) + parseInt(papelextra);
-            $('#<%=txtImpresionestotales.ClientID%>').val(impresionesTotales);
-
-            //Calcular cantidad de pliegos
-            var imprTotales = ObtenerValorPorDefecto($('#<%=txtImpresionestotales.ClientID%>').val());
-            var dividendo = ObtenerValorPorDefecto($('#<%=txtDividendo.ClientID%>').val());
-
-            if (dividendo == 0) dividendo = 1;
-
-            cantidadPliegos = imprTotales / parseInt(dividendo);
-            cantidadPliegos = Math.trunc(cantidadPliegos);
-
-            $('#<%=txtCantidadpliego.ClientID%>').val(cantidadPliegos);
-
-            var precioPapel = ObtenerValorPorDefecto($('#<%=txtValorpapel.ClientID%>').val());
-
-            precioPapel = QuitarFormatoMoneda(precioPapel);
-
-            var valorTotalPapel = formatCurrency(cantidadPliegos * precioPapel);
-
-            $('#<%=txtValorTotalPapel.ClientID%>').val(valorTotalPapel);
-
-            TotalImpresion();
-        }
-
-        function TotalImpresion() {
-            //Total impresion
-            var cantidad = ObtenerValorPorDefecto($('#<%=txtCantidad.ClientID%>').val());
-            var frente = ObtenerValorPorDefecto($('#<%=txtFrente.ClientID%>').val());
-            var respaldo = ObtenerValorPorDefecto($('#<%=txtRespaldo.ClientID%>').val());
-            var ValorRespaldo = respaldo;
-            var valorimp = ObtenerValorPorDefecto($('#<%=txtValorImpresion.ClientID%>').val());
-            valorimp = QuitarFormatoMoneda(valorimp);
-            var millares = CalcularMillares(cantidad);
-
-            var esMismaPlancha = ObtenerValorPorDefecto($('#<%=ddMismaplancha.ClientID%>').val());
-
-            if (esMismaPlancha == "Si" && frente == respaldo)
-                ValorRespaldo = 0;
-
-            var precioPlancha = QuitarFormatoMoneda(ObtenerValorPorDefecto($('#<%=txtvalorplancha.ClientID%>').val()));
-            var totalPlancha = (frente + ValorRespaldo) * precioPlancha;
-
-
-            var valortotalimpresiones = (parseFloat(frente) + parseFloat(respaldo)) * parseFloat(valorimp * millares);
-            var valorimpfinal = formatCurrency(valortotalimpresiones);
-            $('#<%=txtValorTotalImpresiones.ClientID%>').val(valorimpfinal);
-
-            $('#<%=txtValorTotalplancha.ClientID%>').val(totalPlancha);
-        }
-
-        function ObtenerValorPorDefecto(value) {
-            if (value === null || value === '' || value === undefined) {
-                return "0"
-            }
-
-            return value;
-        }
-
-        function QuitarFormatoMoneda(valor) {
-            valor = valor.replace("$", "");
-            valor = valor.replace(".", "");
-
-            return valor;
-        }
-
-        function CalcularMillares(cantidad) {
-            const millar = 1000;
-
-            var millares = parseInt(cantidad / millar);
-
-            var rangoMillar = parseInt($('#<%=txtRangoMillar.ClientID%>').val());
-
-            if (cantidad % millar > rangoMillar)
-                millares++;
-
-            return millares;
-        }
-
-        function formatCurrency(number) {
-            var formatted = new Intl.NumberFormat('es-co', {
-                style: 'currency',
-                currency: 'COP',
-                minimumFractionDigits: 0
-            }).format(number);
-            return formatted;
-        }
     </script>
 </asp:Content>
 

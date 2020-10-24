@@ -6,9 +6,8 @@ using System.Web.UI;
 using CapaEntidades;
 using CapaLogicaNegocio;
 
-using System.IO;
 using System.Collections;
-
+using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {

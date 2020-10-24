@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaLogicaNegocio;
 using System.Data;
+using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {

@@ -156,7 +156,7 @@
                         </a>
                     </li>
                                 <li id="CotizacionList" runat="server">
-                        <a href="Cotizacion.aspx" runat="server">
+                        <a href="PaginaCotizacion.aspx" runat="server">
                             <img src="img/Cotizaciones.png" class="auto-Menu" alt="User Image" />
                             <span>Gestionar Cotizaciones</span>
                         </a>

@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaEntidades;
 using CapaLogicaNegocio;
+using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {

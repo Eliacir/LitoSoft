@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace CapaPresentacion {
-    
-    
-    public partial class Cotizacion {
-        
+namespace CapaPresentacion
+{
+
+
+    public partial class PaginaCotizacion
+    {
+
         /// <summary>
         /// Control txtRangoMillar.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtRangoMillar;
-        
+
         /// <summary>
         /// Control txtpapelextra.
         /// </summary>
@@ -29,16 +31,16 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtpapelextra;
-        
+
         /// <summary>
-        /// Control txtDividendo.
+        /// Control txtMontajeDecimal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txtDividendo;
-        
+        protected global::System.Web.UI.WebControls.HiddenField txtMontajeDecimal;
+
         /// <summary>
         /// Control ddClientes.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddClientes;
-        
+
         /// <summary>
         /// Control txtCantidad.
         /// </summary>
@@ -56,7 +58,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
-        
+
         /// <summary>
         /// Control RqCantidad.
         /// </summary>
@@ -65,7 +67,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RqCantidad;
-        
+
         /// <summary>
         /// Control txtCostoDiseno.
         /// </summary>
@@ -74,7 +76,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCostoDiseno;
-        
+
         /// <summary>
         /// Control RqCostodiseno.
         /// </summary>
@@ -83,7 +85,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RqCostodiseno;
-        
+
         /// <summary>
         /// Control txtCavidad.
         /// </summary>
@@ -92,7 +94,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCavidad;
-        
+
         /// <summary>
         /// Control RqCavidad.
         /// </summary>
@@ -101,7 +103,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RqCavidad;
-        
+
         /// <summary>
         /// Control ddSustrato.
         /// </summary>
@@ -110,7 +112,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddSustrato;
-        
+
         /// <summary>
         /// Control txtValorpapel.
         /// </summary>
@@ -119,7 +121,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtValorpapel;
-        
+
         /// <summary>
         /// Control ddCorte.
         /// </summary>
@@ -128,7 +130,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddCorte;
-        
+
         /// <summary>
         /// Control txtMontaje.
         /// </summary>
@@ -137,7 +139,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMontaje;
-        
+
         /// <summary>
         /// Control txtImpresionestotales.
         /// </summary>
@@ -146,7 +148,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtImpresionestotales;
-        
+
         /// <summary>
         /// Control txtCantidadpliego.
         /// </summary>
@@ -155,7 +157,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCantidadpliego;
-        
+
         /// <summary>
         /// Control txtvalorplancha.
         /// </summary>
@@ -164,7 +166,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtvalorplancha;
-        
+
         /// <summary>
         /// Control txtValorImpresion.
         /// </summary>
@@ -173,7 +175,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtValorImpresion;
-        
+
         /// <summary>
         /// Control txtValorTotalPapel.
         /// </summary>
@@ -182,7 +184,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtValorTotalPapel;
-        
+
         /// <summary>
         /// Control ddFrente.
         /// </summary>
@@ -191,7 +193,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddFrente;
-        
+
         /// <summary>
         /// Control lblValorfrente.
         /// </summary>
@@ -200,7 +202,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblValorfrente;
-        
+
         /// <summary>
         /// Control txtFrente.
         /// </summary>
@@ -209,7 +211,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFrente;
-        
+
         /// <summary>
         /// Control ddRespaldo.
         /// </summary>
@@ -218,7 +220,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddRespaldo;
-        
+
         /// <summary>
         /// Control lblValorrespaldo.
         /// </summary>
@@ -227,7 +229,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblValorrespaldo;
-        
+
         /// <summary>
         /// Control txtRespaldo.
         /// </summary>
@@ -236,7 +238,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRespaldo;
-        
+
         /// <summary>
         /// Control ddMismaplancha.
         /// </summary>
@@ -245,7 +247,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddMismaplancha;
-        
+
         /// <summary>
         /// Control txtValorTotalImpresiones.
         /// </summary>
@@ -254,7 +256,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtValorTotalImpresiones;
-        
+
         /// <summary>
         /// Control txtValorTotalplancha.
         /// </summary>
@@ -263,7 +265,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtValorTotalplancha;
-        
+
         /// <summary>
         /// Control btnAcabados.
         /// </summary>
@@ -272,7 +274,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAcabados;
-        
+
         /// <summary>
         /// Control MultiView.
         /// </summary>
@@ -281,7 +283,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.MultiView MultiView;
-        
+
         /// <summary>
         /// Control VDatos.
         /// </summary>
@@ -290,7 +292,25 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View VDatos;
-        
+
+        /// <summary>
+        /// Control lblTituloValor1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloValor1;
+
+        /// <summary>
+        /// Control lblTituloValor2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloValor2;
+
         /// <summary>
         /// Control ddAcabados.
         /// </summary>
@@ -299,25 +319,43 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddAcabados;
-        
+
         /// <summary>
-        /// Control ChkFrente.
+        /// Control ddFrenteAcabado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkFrente;
-        
+        protected global::System.Web.UI.WebControls.DropDownList ddFrenteAcabado;
+
         /// <summary>
-        /// Control ChkRespaldo.
+        /// Control ddTipoToquelado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkRespaldo;
-        
+        protected global::System.Web.UI.WebControls.DropDownList ddTipoToquelado;
+
+        /// <summary>
+        /// Control ddRespaldoAcabado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddRespaldoAcabado;
+
+        /// <summary>
+        /// Control txtValorToquelado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtValorToquelado;
+
         /// <summary>
         /// Control txtValorAcabado.
         /// </summary>
@@ -326,7 +364,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtValorAcabado;
-        
+
         /// <summary>
         /// Control btnAgregar.
         /// </summary>
@@ -335,7 +373,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnAgregar;
-        
+
         /// <summary>
         /// Control btnActualizar.
         /// </summary>
@@ -344,7 +382,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnActualizar;
-        
+
         /// <summary>
         /// Control GvAcabados.
         /// </summary>
@@ -353,7 +391,7 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GvAcabados;
-        
+
         /// <summary>
         /// Control VOcultar.
         /// </summary>
@@ -362,7 +400,16 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View VOcultar;
-        
+
+        /// <summary>
+        /// Control txtTotalAcabados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotalAcabados;
+
         /// <summary>
         /// Control txtTotalfactura.
         /// </summary>
@@ -371,16 +418,16 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalfactura;
-        
+
         /// <summary>
-        /// Control btnCalcular.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCalcular;
-        
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
+
         /// <summary>
         /// Control bntLimpiar.
         /// </summary>
