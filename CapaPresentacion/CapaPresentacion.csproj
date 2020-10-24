@@ -140,26 +140,16 @@
     <Content Include="js\select2.min.js" />
     <Content Include="Litografia.aspx" />
     <Content Include="Configuracion.aspx" />
-    <Content Include="CrearPDFSinImagenes.aspx" />
-    <Content Include="CrearPDF.aspx" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Clientes.aspx" />
     <Content Include="css\sweetalert.css" />
-    <Content Include="Cotizaciones.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Empleados.aspx" />
     <Content Include="GestionarClientes.aspx" />
-    <Content Include="GestionarCotizaciones.aspx" />
-    <Content Include="GestionarImagenes.aspx" />
-    <Content Include="DetalleCotizacion.aspx" />
-    <Content Include="GestionarManoObra.aspx" />
-    <Content Include="GestionarInsumos.aspx" />
     <Content Include="img\Agregar.png" />
     <Content Include="img\Cliente.png" />
     <Content Include="img\Configuracion.png" />
@@ -178,10 +168,6 @@
     <Content Include="img\Salir.png" />
     <Content Include="img\SuministrosEquipos.PNG" />
     <Content Include="js\sweetalert.min.js" />
-    <Content Include="ManoObras.aspx" />
-    <Content Include="Insumos.aspx" />
-    <Content Include="Proyectos.aspx" />
-    <Content Include="GestionarProyectos.aspx" />
     <Content Include="GestionarEmpleados.aspx" />
     <Content Include="img\Logossyj.jpg" />
     <Content Include="js\bootstrap.min.js" />
@@ -196,18 +182,7 @@
     <Content Include="img\bootstrap-colorpicker\Thumbs.db" />
     <Content Include="img\Thumbs.db" />
     <Content Include="Home.Master" />
-    <Content Include="dsPrincipal.xsc">
-      <DependentUpon>dsPrincipal.xsd</DependentUpon>
-    </Content>
     <Content Include="bin\CapaPresentacion.dll.config" />
-    <None Include="dsPrincipal.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsPrincipal.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="dsPrincipal.xss">
-      <DependentUpon>dsPrincipal.xsd</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\EHerazo.pubxml" />
     <None Include="Properties\PublishProfiles\LocalEHM.pubxml" />
     <None Include="Properties\PublishProfiles\SysWeb.pubxml" />
@@ -541,115 +516,12 @@
     <Compile Include="Configuracion.aspx.designer.cs">
       <DependentUpon>Configuracion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clientes.aspx.cs">
-      <DependentUpon>Clientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clientes.aspx.designer.cs">
-      <DependentUpon>Clientes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CrearPDFSinImagenes.aspx.cs">
-      <DependentUpon>CrearPDFSinImagenes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CrearPDFSinImagenes.aspx.designer.cs">
-      <DependentUpon>CrearPDFSinImagenes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CrearPDF.aspx.cs">
-      <DependentUpon>CrearPDF.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CrearPDF.aspx.designer.cs">
-      <DependentUpon>CrearPDF.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Cotizaciones.aspx.cs">
-      <DependentUpon>Cotizaciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cotizaciones.aspx.designer.cs">
-      <DependentUpon>Cotizaciones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="dsPrincipal.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsPrincipal.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Empleados.aspx.cs">
-      <DependentUpon>Empleados.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Empleados.aspx.designer.cs">
-      <DependentUpon>Empleados.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GestionarClientes.aspx.cs">
       <DependentUpon>GestionarClientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GestionarClientes.aspx.designer.cs">
       <DependentUpon>GestionarClientes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarCotizaciones.aspx.cs">
-      <DependentUpon>GestionarCotizaciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarCotizaciones.aspx.designer.cs">
-      <DependentUpon>GestionarCotizaciones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarImagenes.aspx.cs">
-      <DependentUpon>GestionarImagenes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarImagenes.aspx.designer.cs">
-      <DependentUpon>GestionarImagenes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DetalleCotizacion.aspx.cs">
-      <DependentUpon>DetalleCotizacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetalleCotizacion.aspx.designer.cs">
-      <DependentUpon>DetalleCotizacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarManoObra.aspx.cs">
-      <DependentUpon>GestionarManoObra.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarManoObra.aspx.designer.cs">
-      <DependentUpon>GestionarManoObra.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarInsumos.aspx.cs">
-      <DependentUpon>GestionarInsumos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarInsumos.aspx.designer.cs">
-      <DependentUpon>GestionarInsumos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManoObras.aspx.cs">
-      <DependentUpon>ManoObras.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManoObras.aspx.designer.cs">
-      <DependentUpon>ManoObras.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Insumos.aspx.cs">
-      <DependentUpon>Insumos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Insumos.aspx.designer.cs">
-      <DependentUpon>Insumos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Proyectos.aspx.cs">
-      <DependentUpon>Proyectos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Proyectos.aspx.designer.cs">
-      <DependentUpon>Proyectos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarProyectos.aspx.cs">
-      <DependentUpon>GestionarProyectos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarProyectos.aspx.designer.cs">
-      <DependentUpon>GestionarProyectos.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionarEmpleados.aspx.cs">
       <DependentUpon>GestionarEmpleados.aspx</DependentUpon>
@@ -690,17 +562,6 @@
       <Project>{fd5f9def-c270-4775-b4f0-844de937ab1a}</Project>
       <Name>CapaLogicaNegocio</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Cotización.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cotizacion.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report2.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
