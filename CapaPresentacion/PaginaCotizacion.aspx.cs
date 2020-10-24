@@ -493,9 +493,9 @@ namespace CapaPresentacion
 
             Cotizacion.Acabados.QuitarAcabado(codigo);
 
-            FilaActualAcabado = 0;
-
             CargarAcabados(false);
+
+            ReenumerarFilas();
 
             LimpiarControlesAcabados();
         }
@@ -585,6 +585,23 @@ namespace CapaPresentacion
             LimpiarControlesAcabados();
 
             CargarAcabados(false);
+        }
+
+        /// <summary>
+        /// Numera nuevamente las filas de la grilla
+        /// </summary>
+        private void ReenumerarFilas()
+        {
+            var table = ObtenerTablaAcabados();
+
+            if (table == null) return;
+
+            var number = 1;
+
+            foreach(DataRow row in table.Rows)
+                row["RowNumber"] = number++;
+
+            CargarDatosGrilla(table);
         }
 
         /// <summary>
