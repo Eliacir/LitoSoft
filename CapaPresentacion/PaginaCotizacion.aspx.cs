@@ -169,7 +169,6 @@ namespace CapaPresentacion
             ddAcabados.SelectedIndex = 0;
         }
 
-
         /// <summary>
         /// Limpia todos los controles de la cotizacion
         /// </summary>
@@ -341,7 +340,7 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// Crear un acabado para la cotizacion
+        /// Crear una fila para la grilla de acabados
         /// </summary>
         private DataRow Crearfila(Acabado acabado, DataTable table)
         {
@@ -430,7 +429,7 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// Actualiza el cuador de texto del valor del acabado
+        /// Actualiza el cuadro de texto del valor del acabado
         /// </summary>
         private void ActualizarValorAcabado()
         {
@@ -495,7 +494,7 @@ namespace CapaPresentacion
 
             CargarAcabados(false);
 
-            ReenumerarFilas();
+            ActualizarValoresDeAcabados();
 
             LimpiarControlesAcabados();
         }
@@ -588,30 +587,15 @@ namespace CapaPresentacion
         }
 
         /// <summary>
-        /// Numera nuevamente las filas de la grilla
+        /// Actualiza los valores de todos los acabados agregados
         /// </summary>
-        private void ReenumerarFilas()
+        public void ActualizarValoresDeAcabados()
         {
             var table = ObtenerTablaAcabados();
 
             if (table == null) return;
 
             var number = 1;
-
-            foreach(DataRow row in table.Rows)
-                row["RowNumber"] = number++;
-
-            CargarDatosGrilla(table);
-        }
-
-        /// <summary>
-        /// Actualiza los valores de todos los acabados agregados
-        /// </summary>
-        public void ActualizarValorTodosLosAcabados()
-        {
-            var table = ObtenerTablaAcabados();
-
-            if (table == null) return;
 
             foreach (DataRow row in table.Rows)
             {
@@ -620,6 +604,8 @@ namespace CapaPresentacion
                 var acabado = Cotizacion.Acabados.ObtenerAcabado(codigo);
 
                 row["Valor"] = acabado.ValorTotal.FormatoMoneda();
+
+                row["RowNumber"] = number++;
             }
 
             CargarDatosGrilla(table);
@@ -660,7 +646,7 @@ namespace CapaPresentacion
 
             EstablecerValoresCalculados();
 
-            ActualizarValorTodosLosAcabados();
+            ActualizarValoresDeAcabados();
         }
 
         /// <summary>
