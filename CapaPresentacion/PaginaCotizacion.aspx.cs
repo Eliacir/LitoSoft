@@ -62,22 +62,6 @@ namespace CapaPresentacion
             }
         }
 
-
-        /// <summary>
-        /// Delvuelve el id del control con el foco
-        /// </summary>
-        private string FocusControId
-        {
-            get
-            {
-                return ViewState["FocusControId"].ToString();
-            }
-            set
-            {
-                ViewState["FocusControId"] = value;
-            }
-        }
-
         /// <summary>
         /// Indice de la fila de acabado modificada
         /// </summary>
@@ -211,6 +195,8 @@ namespace CapaPresentacion
             txtRespaldo.Enabled = false;
 
             CargarCombos();
+
+            ActualizarTotales();
         }
 
         /// <summary>
@@ -230,7 +216,11 @@ namespace CapaPresentacion
 
             MostrarTroquelado(ddAcabados.SelectedValue);
 
+            btnAgregar.ImageUrl = "~/img/Agregar.png";
+
             FilaActualAcabado = 0;
+
+            ActualizarTotales();
         }
 
         /// <summary>
@@ -410,11 +400,9 @@ namespace CapaPresentacion
 
             CargarDatosGrilla(table);
 
-            LimpiarControlesAcabados();
-
             Cotizacion.Acabados.AgregarAcabado(AcabadoActual);
 
-            ActualizarTotales();
+            LimpiarControlesAcabados();
 
             CargarAcabados(false);
         }
@@ -486,7 +474,6 @@ namespace CapaPresentacion
              txtValorAcabado.Text = row["Valor"].ToString();
 
              btnAgregar.ImageUrl = "~/img/Accept.png";
-
         }
 
         /// <summary>
@@ -510,7 +497,7 @@ namespace CapaPresentacion
 
             CargarAcabados(false);
 
-            ActualizarTotales();
+            LimpiarControlesAcabados();
         }
 
         /// <summary>
@@ -594,10 +581,6 @@ namespace CapaPresentacion
             acabado.UsaRespaldo = usaRespaldo?.In("Si");
 
             Cotizacion.Acabados.ModificarAcabado(acabado);
-
-            btnAgregar.ImageUrl = "~/img/Agregar.png";
-
-            ActualizarTotales();
 
             LimpiarControlesAcabados();
 
