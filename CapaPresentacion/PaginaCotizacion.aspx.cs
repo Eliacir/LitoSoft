@@ -158,6 +158,8 @@ namespace CapaPresentacion
                 {
                     var row = table.Rows.Find(acabado.Codigo);
 
+                    if (row == null) break;
+
                     table.Rows.Remove(row);
                 }
             }
