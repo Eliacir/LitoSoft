@@ -3,12 +3,34 @@ Imports System.Data.Common
 Imports System.Data.SqlClient
 Imports System.Data
 Imports CapaEntidades
+Imports System
 
 
-
+<Serializable>
 Public Class DataAccess
 
 #Region "LITOGRAFIA"
+
+    Public Function RecuperarAcabado(idLitografia As Integer, codigo As String) As IDataReader
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarAcabado"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "IdLitografia", DbType.Int32, idLitografia)
+
+        db.AddInParameter(dbCommand, "Codigo", DbType.String, codigo)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteReader(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
 
     Public Function RecuperarAcabados(idLitografia As Integer) As DataSet
         Dim db As Database = DatabaseFactory.CreateDatabase()

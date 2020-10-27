@@ -156,7 +156,7 @@
                         </a>
                     </li>
                                 <li id="CotizacionList" runat="server">
-                        <a href="Cotizacion.aspx" runat="server">
+                        <a href="PaginaCotizacion.aspx" runat="server">
                             <img src="img/Cotizaciones.png" class="auto-Menu" alt="User Image" />
                             <span>Gestionar Cotizaciones</span>
                         </a>
@@ -174,29 +174,8 @@
                         </a>
                     </li>
                     <li id="ProyectoList" runat="server">
-                        <a href="GestionarProyectos.aspx" runat="server">
-                            <img src="img/GestionProyecto.png" class="auto-Menu" alt="User Image" />
-                            <span>Gestionar Proyectos</span>
-                        </a>
-                    </li>
-                    <li id="InsumosList" runat="server">
-                        <a href="GestionarInsumos.aspx" runat="server">
-                            <img src="img/Producto.png" class="auto-Menu" alt="User Image" />
-                            <span>Gestionar Insumos</span>
-                        </a>
-                    </li>
-                    <li id="MenoObraList" runat="server">
-                        <a href="GestionarManoObra.aspx" runat="server">
-                            <img src="img/ManodeObra.png" class="auto-Menu" alt="User Image" />
-                            <span>Gestionar Mano de Obra</span>
-                        </a>
-                    </li>
-        
-                    <li id="ConfiguracionList" runat="server" visible="False">
                         <a href="Configuracion.aspx" runat="server" id="A1">
-                            <img src="img/configuracion.png" class="auto-Menu" alt="User Image" />
-                            <span>Configuración</span>
-                        </a>
+                        <img src="img/configuracion.png" class="auto-Menu" alt="User Image" /> <span>Configuración</span> </a>
                     </li>
                     <li>
                         <a href="Default.aspx" runat="server" id="MenuSalir">
