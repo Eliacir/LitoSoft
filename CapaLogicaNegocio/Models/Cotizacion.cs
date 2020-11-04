@@ -67,7 +67,7 @@ namespace CapaLogicaNegocio.Models
         /// Devuelve los millares correspondientes a la cantidad de impresiones
         /// </summary>
         public int Millares =>
-            CalcularCotizacion.CalcularMillares(Cantidad, Parametros.RangoMillar);
+            CalcularCotizacion.CalcularMillares(Cantidad, Cavidad, Parametros.RangoMillar);
 
         /// <summary>
         /// Devuelve la cantidad de pliegos de papel
@@ -97,7 +97,7 @@ namespace CapaLogicaNegocio.Models
         /// Devuelve el valor total de las impresiones
         /// </summary>
         public decimal ValorTotalImpresiones =>
-            CalcularCotizacion.CalcularValorTotalImpresiones(ColoresDelFrente, ColoresDelRespaldo, SubTotalImpresiones);
+            CalcularCotizacion.CalcularValorTotalImpresiones(ColoresDelFrente, ColoresDelRespaldo, SubTotalImpresiones, UsaLaMismaPlancha);
 
         /// <summary>
         /// Devuelve el valor total de la cotizacion o factura
