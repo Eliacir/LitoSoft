@@ -328,8 +328,8 @@
                                                     <asp:BoundField DataField="Respaldo" ReadOnly="True" HeaderText="Respaldo">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:BoundField>
-                                                    <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Troquelado" ReadOnly="True" SortExpression="TipoTroquelado" />
-                                                    <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor Troquelado" ReadOnly="True" SortExpression="ValorTroquelado" />
+                                                    <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Valor" ReadOnly="True" SortExpression="TipoTroquelado" />
+                                                    <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor" ReadOnly="True" SortExpression="ValorTroquelado" />
                                                     <asp:TemplateField HeaderText="Editar">
                                                         <ItemTemplate>
                                                             <asp:ImageButton ID="ImgActualizar" runat="server" CausesValidation="true" CommandName="Actualizar" ImageUrl="~/img/Editar.png" ToolTip="Editar" />
@@ -366,17 +366,27 @@
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Total Factura</label>
-                        </div>
-                        <div class="form-group">
-                            <asp:TextBox ID="txtTotalfactura" runat="server" Enabled="False"></asp:TextBox>
-                        </div>
-
-                    </div>
-                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Total Factura</label>
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtTotalfactura" runat="server" Enabled="False"></asp:TextBox>
+                            </div>
+                        </td>
+                         <td style="width: 10px"></td>
+                         <td>
+                            <div class="form-group">
+                                <label>Porcentaje Ganancia</label>
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtPorcentajeGanancia" runat="server" AutoPostBack="true" OnTextChanged="txtPorcentajeGanancia_OnTextChanged"></asp:TextBox>
+                            </div>
+                        </td>
+                      </tr>
+                </table>
                 <div class="row">
                     <div class="col-md-6">
                         <asp:Button ID="btnGuardar" runat="server" Width="100px" Height="32px" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click"/>

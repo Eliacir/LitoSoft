@@ -106,6 +106,12 @@ namespace CapaLogicaNegocio.Models
           CalcularCotizacion.CalcularTotalCotizacion(ValorTotalEnPlancha, ValorTotalDelPapel, ValorTotalImpresiones, CostoDiseño, Acabados.TotalAcabados);
 
         /// <summary>
+        /// Devuelve los valores numericos asociados al corte del papel
+        /// </summary>
+        public decimal ObtenerTotalConGanancia(decimal porcentaje) =>
+            CalcularCotizacion.CalcularTotalConGanancia(porcentaje, TotalCotizacion);
+
+        /// <summary>
         /// Devuelve si verdadero si usa frente y respaldo,
         /// y false si solo usa uno de los dos
         /// </summary>
@@ -115,6 +121,7 @@ namespace CapaLogicaNegocio.Models
         /// Devuelve los valores numericos asociados al corte del papel
         /// </summary>
         public (decimal X, decimal Y) Corte => CorteXY.ObtenerCorteXY();
+
 
         /// <summary>
         /// Devuelve el montaje como una fraccion decimal

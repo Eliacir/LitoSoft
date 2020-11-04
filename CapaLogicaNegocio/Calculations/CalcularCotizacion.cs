@@ -117,8 +117,12 @@ namespace CapaLogicaNegocio.Calculations
         public static decimal CalcularValorTotalImpresiones(int coloresDelFrente,
                                                             int coloresDelRespaldo,
                                                             decimal subTotalImpresiones,
-                                                            bool usaLaMismaPlancha) =>
-             CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha) * subTotalImpresiones;
+                                                            bool usaLaMismaPlancha)
+        {
+            var frenteRespaldo = CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha);
+
+            return frenteRespaldo * subTotalImpresiones;
+        }
 
         /// <summary>
         /// Calcula el valor total de la cotizacion o factura
@@ -129,6 +133,15 @@ namespace CapaLogicaNegocio.Calculations
                                                       decimal costoDiseño,
                                                       decimal totalAcabados) =>
            (valorTotalEnPlancha + valorTotalDelPapel + valorTotalImpresiones + costoDiseño + totalAcabados);
+
+
+        /// <summary>
+        /// Calcula valor total de las impresiones
+        /// </summary>
+        public static decimal CalcularTotalConGanancia(decimal porcentaje, decimal totalFactura) =>
+                 (1 + (porcentaje / 100m)) * totalFactura;
+
+       
 
 
     }
