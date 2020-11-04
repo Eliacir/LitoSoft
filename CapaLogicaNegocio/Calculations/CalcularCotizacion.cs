@@ -35,12 +35,6 @@ namespace CapaLogicaNegocio.Calculations
         }
 
         /// <summary>
-        /// Calcula el valor o precio de la plancha
-        /// </summary>
-        public static decimal CalcularSubtotalImpresiones(decimal precioImpresion, int millares) =>
-              precioImpresion * millares;
-
-        /// <summary>
         /// Calcula el valor total del papel
         /// </summary>
         public static decimal CalcularValorTotalPapel(decimal precioPapel, int cantidadPliegos) =>
@@ -69,11 +63,15 @@ namespace CapaLogicaNegocio.Calculations
         /// <summary>
         /// Calcula los millares en base a la cantidad
         /// </summary>
-        public static int CalcularMillares(int cantidad, int cavidad, int rangoMillar)
+        public static int CalcularMillares(decimal impresionesTotalesSinPapelExtra,
+                                           int rangoMillar,
+                                           bool usaRespaldoParaCalculos)
         {
             const int millar = 1000;
 
-            var impresionesTotales = CalcularImpresionesTotalesSinPapelExtra(cantidad, cavidad);
+            var factor = usaRespaldoParaCalculos ? 1 : 2;
+
+            var impresionesTotales = impresionesTotalesSinPapelExtra * factor;
 
             var millares = (int)(impresionesTotales / millar);
 
@@ -92,11 +90,20 @@ namespace CapaLogicaNegocio.Calculations
         {
             var respaldo = coloresDelRespaldo;
 
-            if (usaLaMismaPlancha && coloresDelFrente == coloresDelRespaldo)
+            if (!UsaRespaldoEnCalculos(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha))
                 respaldo = 0;
 
             return (coloresDelFrente + respaldo);
         }
+
+        /// <summary>
+        /// Indica si se debe tener en cuenta el respaldo para hacer calculos o no
+        /// </summary>
+        public static bool UsaRespaldoEnCalculos(int coloresDelFrente,
+                                                int coloresDelRespaldo,
+                                                bool usaLaMismaPlancha) =>
+            !usaLaMismaPlancha || coloresDelFrente != coloresDelRespaldo;
+       
 
         /// <summary>
         /// Calcula valor total en plancha
@@ -104,25 +111,22 @@ namespace CapaLogicaNegocio.Calculations
         public static decimal CalcularValorTotalEnPlancha(int coloresDelFrente,
                                                           int coloresDelRespaldo,
                                                           decimal precioPlancha,
-                                                          bool usaLaMismaPlancha)
-        {
-            var frenteRespaldo = CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha);
+                                                          bool usaLaMismaPlancha) =>
+               CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha) * precioPlancha;
 
-            return frenteRespaldo * precioPlancha;
-        }
+      
 
         /// <summary>
         /// Calcula valor total de las impresiones
         /// </summary>
         public static decimal CalcularValorTotalImpresiones(int coloresDelFrente,
                                                             int coloresDelRespaldo,
-                                                            decimal subTotalImpresiones,
-                                                            bool usaLaMismaPlancha)
-        {
-            var frenteRespaldo = CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha);
+                                                            int millares,
+                                                            decimal precioImpresion,
+                                                            bool usaLaMismaPlancha) =>
+             CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha) * millares * precioImpresion;
 
-            return frenteRespaldo * subTotalImpresiones;
-        }
+     
 
         /// <summary>
         /// Calcula el valor total de la cotizacion o factura
