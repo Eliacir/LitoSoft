@@ -58,16 +58,16 @@ namespace CapaLogicaNegocio.Models
             CalcularCotizacion.CalcularValorImpresion(Montaje, Parametros);
 
         /// <summary>
-        /// Devuelve el valor de las impresiones por los millares
+        /// Indica si se debe tener en cuenta el respaldo para hacer calculos o no
         /// </summary>
-        public decimal SubTotalImpresiones =>
-            CalcularCotizacion.CalcularSubtotalImpresiones(ValorImpresion, Millares);
+        private bool UsaRespaldoParaCalculos =>
+            CalcularCotizacion.UsaRespaldoEnCalculos(ColoresDelFrente, ColoresDelRespaldo, UsaLaMismaPlancha);
 
         /// <summary>
         /// Devuelve los millares correspondientes a la cantidad de impresiones
         /// </summary>
         public int Millares =>
-            CalcularCotizacion.CalcularMillares(Cantidad, Parametros.RangoMillar);
+            CalcularCotizacion.CalcularMillares(ImpresionesTotalesSinPapelExtra, Parametros.RangoMillar, UsaRespaldoParaCalculos);
 
         /// <summary>
         /// Devuelve la cantidad de pliegos de papel
@@ -80,6 +80,12 @@ namespace CapaLogicaNegocio.Models
         /// </summary>
         public int ImpresionesTotales =>
            CalcularCotizacion.CalcularImpresionesTotales(Cantidad, Cavidad, Parametros.PapelExtra);
+
+        /// <summary>
+        /// Devuelve las impresiones totales sin tener encuenta el papel extra
+        /// </summary>
+        public decimal ImpresionesTotalesSinPapelExtra =>
+            CalcularCotizacion.CalcularImpresionesTotalesSinPapelExtra(Cantidad, Cavidad);
 
         /// <summary>
         /// Devuelve el valor total del papel
@@ -97,13 +103,19 @@ namespace CapaLogicaNegocio.Models
         /// Devuelve el valor total de las impresiones
         /// </summary>
         public decimal ValorTotalImpresiones =>
-            CalcularCotizacion.CalcularValorTotalImpresiones(ColoresDelFrente, ColoresDelRespaldo, SubTotalImpresiones);
+            CalcularCotizacion.CalcularValorTotalImpresiones(ColoresDelFrente, ColoresDelRespaldo, Millares, ValorImpresion, UsaLaMismaPlancha);
 
         /// <summary>
         /// Devuelve el valor total de la cotizacion o factura
         /// </summary>
         public decimal TotalCotizacion =>
           CalcularCotizacion.CalcularTotalCotizacion(ValorTotalEnPlancha, ValorTotalDelPapel, ValorTotalImpresiones, CostoDiseño, Acabados.TotalAcabados);
+
+        /// <summary>
+        /// Devuelve los valores numericos asociados al corte del papel
+        /// </summary>
+        public decimal ObtenerTotalConGanancia(decimal porcentaje) =>
+            CalcularCotizacion.CalcularTotalConGanancia(porcentaje, TotalCotizacion);
 
         /// <summary>
         /// Devuelve si verdadero si usa frente y respaldo,
@@ -115,6 +127,7 @@ namespace CapaLogicaNegocio.Models
         /// Devuelve los valores numericos asociados al corte del papel
         /// </summary>
         public (decimal X, decimal Y) Corte => CorteXY.ObtenerCorteXY();
+
 
         /// <summary>
         /// Devuelve el montaje como una fraccion decimal

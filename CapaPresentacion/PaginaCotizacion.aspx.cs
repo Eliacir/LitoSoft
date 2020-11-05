@@ -25,7 +25,7 @@ namespace CapaPresentacion
 
             Session["PanelPrincipal"] = "Gestionar Cotizaciones";
 
-            var idLitografia = Convert.ToInt16(Session["IdLitografia"]);
+            var idLitografia = Cast.ToInt(Session["IdLitografia"]);
 
             Helper = new DataHelper();
 
@@ -219,7 +219,7 @@ namespace CapaPresentacion
 
             btnAgregar.ImageUrl = "~/img/Agregar.png";
 
-            FilaActualAcabado = 0;
+            FilaActualAcabado = -1;
 
             ActualizarTotales();
         }
@@ -330,13 +330,20 @@ namespace CapaPresentacion
 
             var usaTroquelado = codigo.In(TipoAcabado.Troquelado);
 
+            var usaSemicorte = codigo.In(TipoAcabado.Semicorte);
+
+            var usaRepujado = codigo.In(TipoAcabado.Repujado);
+
             bool? usaFrente = usaFrenteYRespaldo ? (bool?)ddFrenteAcabado.SelectedValue.In("Si") : null;
 
             bool? usaRespaldo = usaFrenteYRespaldo ? (bool?)ddRespaldoAcabado.SelectedValue.In("Si") : null;
 
             var tipoTroquelado = usaTroquelado ? ddTipoToquelado.SelectedValue.ToString() : null;
+                tipoTroquelado = tipoTroquelado ?? (usaSemicorte ? "Troquel" : null);
+                tipoTroquelado = tipoTroquelado ?? (usaRepujado ? "Cliset" : null);
 
-            var valorTroquelado = usaTroquelado ? Cast.ToDecimalNull(txtValorToquelado.Text) : null;
+            var valorTroquelado = usaTroquelado || usaSemicorte || usaRepujado ?
+                                    Cast.ToDecimalNull(txtValorToquelado.Text) : null;
 
             return new Acabado(Cotizacion, codigo, usaFrente, usaRespaldo, tipoTroquelado, valorTroquelado);         
         }
@@ -415,7 +422,9 @@ namespace CapaPresentacion
         {
             txtTotalAcabados.Text = Cotizacion.Acabados.TotalAcabados.FormatoMoneda();
 
-            txtTotalfactura.Text = Cotizacion.TotalCotizacion.FormatoMoneda();
+            var porcentaje = Cast.ToDecimal(txtPorcentajeGanancia.Text);
+
+            txtTotalfactura.Text = Cotizacion.ObtenerTotalConGanancia(porcentaje).FormatoMoneda();
         }
 
         /// <summary>
@@ -461,7 +470,10 @@ namespace CapaPresentacion
             if (codigo.In(TipoAcabado.Troquelado))
             {
                 ddTipoToquelado.SelectedValue = row["TipoTroquelado"].ToString();
+            }
 
+            if (codigo.In(TipoAcabado.Semicorte, TipoAcabado.Repujado, TipoAcabado.Troquelado))
+            {
                 txtValorToquelado.Text = row["ValorTroquelado"].ToString().QuitarFormatoMoneda().ToString();
             }
 
@@ -504,41 +516,69 @@ namespace CapaPresentacion
         /// <summary>
         /// Muestra u oculta los campos para establecer los valores del troquelado
         /// </summary>
-        /// <param name="visible"></param>
         private void MostrarTroquelado(string codigo)
         {
-            String[] names = { "Frente", "Respaldo", "Tipo", "Valor" };
+            String[] names = { "Frente", "Respaldo", "Tipo", "Valor", "Valor Troquelado", "Valor Cliset" };
 
             if (String.IsNullOrEmpty(codigo)) return;
 
             var usaFrenteYRespaldo = UsaFrenteYRespaldo(codigo);
 
-            lblTituloValor1.InnerText = usaFrenteYRespaldo ? names[0] : names[2];
-            lblTituloValor2.InnerText = usaFrenteYRespaldo ? names[1] : names[3];
-
             ddFrenteAcabado.Visible = usaFrenteYRespaldo;
             ddRespaldoAcabado.Visible = usaFrenteYRespaldo;
 
-            lblTituloValor1.Visible = true;
-            lblTituloValor2.Visible = true;
+            lblTituloValor1.Visible = usaFrenteYRespaldo;
+            lblTituloValor2.Visible = usaFrenteYRespaldo;
+
+            ddTipoToquelado.Visible = false;
+            txtValorToquelado.Visible = false;
+
+            lblTituloValor1.InnerText = names[0];
+            lblTituloValor2.InnerText = names[1];
+
+            txtValorToquelado.Text = null;
 
             if (codigo.In(TipoAcabado.Troquelado))
-            {              
-                ddTipoToquelado.Visible = !usaFrenteYRespaldo;
-                txtValorToquelado.Visible = !usaFrenteYRespaldo;
-            }
-            else
             {
-                ddTipoToquelado.Visible = false;
-                txtValorToquelado.Visible = false;
-                txtValorToquelado.Text = null;
+                lblTituloValor1.Visible = true;
+                lblTituloValor2.Visible = true;
 
-                if (!usaFrenteYRespaldo)
-                {
-                    lblTituloValor1.Visible = false;
-                    lblTituloValor2.Visible = false;
-                }
-            }          
+                lblTituloValor1.InnerText = names[2];
+                lblTituloValor2.InnerText = names[3];
+
+                ddTipoToquelado.Visible = true;
+                txtValorToquelado.Visible = true;
+
+                return;
+            }
+            
+            if (codigo.In(TipoAcabado.Semicorte))
+            {
+                lblTituloValor1.Visible = false;
+                lblTituloValor2.Visible = true;
+
+                lblTituloValor1.InnerText = String.Empty;
+                lblTituloValor2.InnerText = names[4];
+
+                ddTipoToquelado.Visible = false;
+                txtValorToquelado.Visible = true;
+
+                return;
+            }
+
+            if (codigo.In(TipoAcabado.Repujado))
+            {
+                lblTituloValor1.Visible = false;
+                lblTituloValor2.Visible = true;
+
+                lblTituloValor1.InnerText = String.Empty;
+                lblTituloValor2.InnerText = names[5];
+
+                ddTipoToquelado.Visible = false;
+                txtValorToquelado.Visible = true;
+
+                return;
+            }
         }
 
         /// <summary>
@@ -548,7 +588,7 @@ namespace CapaPresentacion
         {
             var row = ObtenerFilaActualDeTabla(FilaActualAcabado);
 
-            if (row == null || FilaActualAcabado < 1) return;
+            if (row == null || FilaActualAcabado < 0) return;
 
             var codigo = ddAcabados.SelectedValue;
             var nombreAcabado = ddAcabados.SelectedItem.Text;
@@ -556,11 +596,17 @@ namespace CapaPresentacion
 
             var usaFrenteYRespaldo = UsaFrenteYRespaldo(codigo);
             var usaTroquelado = codigo.In(TipoAcabado.Troquelado);
+            var usaSemicorte = codigo.In(TipoAcabado.Semicorte);
+            var usaRepujado = codigo.In(TipoAcabado.Repujado);
 
             var usaFrente = usaFrenteYRespaldo ? ddFrenteAcabado.SelectedValue : null;
             var usaRespaldo = usaFrenteYRespaldo ? ddRespaldoAcabado.SelectedValue : null;
             var tipoTroquelado = usaTroquelado ? ddTipoToquelado.SelectedValue : null;
-            var valorTroquelado = usaTroquelado ? Cast.ToDecimalNull(txtValorToquelado.Text) : null;
+                tipoTroquelado = tipoTroquelado ?? (usaSemicorte ? "Troquel" : null);
+                tipoTroquelado = tipoTroquelado ?? (usaRepujado ? "Cliset" : null);
+
+            var valorTroquelado = usaTroquelado || usaSemicorte || usaRepujado ? 
+                                        Cast.ToDecimalNull(txtValorToquelado.Text) : null;
 
             row["Acabado"] = nombreAcabado;
             row["Valor"] = valorAcabado;
@@ -734,7 +780,7 @@ namespace CapaPresentacion
         /// </summary>
         protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
         {
-            if (FilaActualAcabado > 0)
+            if (FilaActualAcabado >= 0)
                 GuardarAcabado();
             else
                 AgregarNuevoAcabado();
@@ -807,7 +853,12 @@ namespace CapaPresentacion
         protected void txtRespaldo_OnTextChanged(object sender, EventArgs e)
         {
             ActualizarTodosLosDatos();
-        }     
+        }
+
+        protected void txtPorcentajeGanancia_OnTextChanged(object sender, EventArgs e)
+        {
+            ActualizarTodosLosDatos();
+        }
 
         protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
         {
