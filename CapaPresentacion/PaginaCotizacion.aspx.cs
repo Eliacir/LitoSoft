@@ -422,9 +422,13 @@ namespace CapaPresentacion
         {
             txtTotalAcabados.Text = Cotizacion.Acabados.TotalAcabados.FormatoMoneda();
 
+            txtSubtotalFactura.Text = Cotizacion.TotalCotizacion.FormatoMoneda();
+
             var porcentaje = Cast.ToDecimal(txtPorcentajeGanancia.Text);
 
             txtTotalfactura.Text = Cotizacion.ObtenerTotalConGanancia(porcentaje).FormatoMoneda();
+
+            txtValorGanancia.Text = Cotizacion.ObtenerValorGanancia(porcentaje).FormatoMoneda();
         }
 
         /// <summary>

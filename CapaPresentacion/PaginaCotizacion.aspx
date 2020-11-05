@@ -366,6 +366,17 @@
 
                     </div>
                 </div>
+                 <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>SubTotal factura</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtSubtotalFactura" runat="server" Enabled="False"></asp:TextBox>
+                        </div>
+
+                    </div>
+                </div>
                 <table>
                     <tr>
                         <td>
@@ -377,14 +388,23 @@
                             </div>
                         </td>
                          <td style="width: 10px"></td>
-                         <td>
+                          <td>
                             <div class="form-group">
-                                <label>Porcentaje Ganancia</label>
+                                <label>Valor Ganancia</label>
                             </div>
                             <div class="form-group">
-                                <asp:TextBox ID="txtPorcentajeGanancia" runat="server" AutoPostBack="true" OnTextChanged="txtPorcentajeGanancia_OnTextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtValorGanancia" runat="server" AutoPostBack="false" Enabled="false"></asp:TextBox>
                             </div>
-                        </td>
+                        </td>     
+                        <td style="width: 10px"></td>
+                         <td style="width: 100px">
+                            <div class="form-group">
+                                <label>(%) Ganancia</label>
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtPorcentajeGanancia" style="width: 100px" runat="server" AutoPostBack="true" OnTextChanged="txtPorcentajeGanancia_OnTextChanged"></asp:TextBox>
+                            </div>
+                        </td>                       
                       </tr>
                 </table>
                 <div class="row">

@@ -112,10 +112,16 @@ namespace CapaLogicaNegocio.Models
           CalcularCotizacion.CalcularTotalCotizacion(ValorTotalEnPlancha, ValorTotalDelPapel, ValorTotalImpresiones, CostoDiseño, Acabados.TotalAcabados);
 
         /// <summary>
-        /// Devuelve los valores numericos asociados al corte del papel
+        /// Calcula valor total de la factura y suma la ganancia
         /// </summary>
         public decimal ObtenerTotalConGanancia(decimal porcentaje) =>
             CalcularCotizacion.CalcularTotalConGanancia(porcentaje, TotalCotizacion);
+
+        /// <summary>
+        /// Calcula valor total del porcentaje de ganancia 
+        /// </summary>
+        public decimal ObtenerValorGanancia(decimal porcentaje) =>
+            CalcularCotizacion.CalcularValorGanancia(porcentaje, TotalCotizacion);
 
         /// <summary>
         /// Devuelve si verdadero si usa frente y respaldo,

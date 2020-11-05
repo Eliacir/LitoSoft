@@ -89,7 +89,7 @@ namespace CapaLogicaNegocio.Models
         /// <summary>
         /// Devuelve la sumatoria total del valor de los acabados
         /// </summary>
-        public decimal TotalAcabados => Acabados.Sum(x => x.ValorTotal);
+        public decimal TotalAcabados => Acabados.Sum(x => x.ValorTotal + (x.ValorTroquelado ?? 0));
 
 
     }

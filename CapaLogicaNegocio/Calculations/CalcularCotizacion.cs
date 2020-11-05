@@ -140,13 +140,17 @@ namespace CapaLogicaNegocio.Calculations
 
 
         /// <summary>
-        /// Calcula valor total de las impresiones
+        /// Calcula valor total de la factura y suma la ganancia
         /// </summary>
         public static decimal CalcularTotalConGanancia(decimal porcentaje, decimal totalFactura) =>
                  (1 + (porcentaje / 100m)) * totalFactura;
 
-       
 
+        /// <summary>
+        /// Calcula valor total del porcentaje de ganancia 
+        /// </summary>
+        public static decimal CalcularValorGanancia(decimal porcentaje, decimal totalFactura) =>
+                  (porcentaje / 100m) * totalFactura;
 
     }
 }

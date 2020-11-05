@@ -55,7 +55,7 @@ namespace CapaLogicaNegocio.Calculations
             var y = cotizacion.Corte.Y;
             var precio = acabado.Precio;
             var precioMinimo = acabado.PrecioMinimo;
-            var impresionesTotales = cotizacion.ImpresionesTotales;
+            var impresionesTotales = cotizacion.ImpresionesTotalesSinPapelExtra;
 
             var total = (x * y) * precio * impresionesTotales;
 
@@ -107,7 +107,7 @@ namespace CapaLogicaNegocio.Calculations
             var precio = acabado.Precio;
             var precioMaximo = acabado.PrecioMaximo;
             var precioMinimo = acabado.PrecioMinimo;
-            var impresionesTotales = cotizacion.ImpresionesTotales;
+            var impresionesTotales = cotizacion.ImpresionesTotalesSinPapelExtra;
 
             var total = (x * y) * precio * impresionesTotales;
 
