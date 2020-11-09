@@ -92,7 +92,7 @@ namespace CapaPresentacion
                         {
                             ViewState["esEditar"] = true;
                             btnRegistrar.Text = "Actualizar";
-                            Session["IdClienteGC"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
+                            Session["Codigocliente"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
                             ValoresGVClientes();
                             btnCancelar.Visible = true;
                             break;
@@ -100,8 +100,8 @@ namespace CapaPresentacion
                     case "Eliminar":
                         {
 
-                            Session["IdClienteGC"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
-                            ohelper.EliminarCliente(Convert.ToInt32(Session["IdClienteGC"]),IdLitografia);
+                            Session["Codigocliente"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
+                            ohelper.EliminarCliente(Convert.ToInt32(Session["Codigocliente"]),IdLitografia);
                             string mensaje = "Cliente eliminado satisfactoriamente.";
                             //Mensaje ok
                             CargarClientes();
@@ -193,7 +193,7 @@ namespace CapaPresentacion
         private Cliente GetEditarCliente()
         {
             Cliente oCliente = new Cliente();
-            oCliente.IdCliente = Convert.ToInt32(Session["IdClienteGC"]);
+            oCliente.IdCliente = Convert.ToInt32(Session["Codigocliente"]);
             oCliente.Nombre = txtnombre.Text;
             oCliente.Documento = txtdocumento.Text;
             oCliente.Direccion = txtDireccion.Text;
@@ -206,7 +206,7 @@ namespace CapaPresentacion
         {
             try
             {
-                short IdCliente = Cast.ToShort(Session["IdClienteGC"]);
+                short IdCliente = Cast.ToShort(Session["Codigocliente"]);
 
                 using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente,IdLitografia))
                 {
@@ -235,6 +235,7 @@ namespace CapaPresentacion
         {
             try
             {
+                ViewState["esEditar"] = false;
                 LimpiarControles();
             }
             catch (Exception)
@@ -251,6 +252,7 @@ namespace CapaPresentacion
             txtDireccion.Text = String.Empty;
             txttelefono.Text = String.Empty;
             btnCancelar.Visible = false;
+            btnRegistrar.Text = "Registrar";
         }
 
 

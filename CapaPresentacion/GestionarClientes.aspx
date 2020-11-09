@@ -86,7 +86,7 @@
                     <div class="box-body table-responsive">
                         <asp:GridView ID="GvCliente" runat="server" class="table table-bordered" AutoGenerateColumns="False" DataKeyNames="IdCliente" OnRowCommand="GvCliente_RowCommand" AllowSorting="True" OnPageIndexChanging="GvCliente_PageIndexChanging" OnSorting="GvCliente_Sorting">
                             <Columns>
-                                <asp:BoundField DataField="IdCliente" HeaderText="Código" InsertVisible="False" ReadOnly="True" SortExpression="IdCliente" />
+                                <asp:BoundField DataField="Codigo" HeaderText="Número" SortExpression="Codigo" />
                                 <asp:BoundField DataField="Nombre" HeaderText="Nómbre" SortExpression="Nombre" />
                                 <asp:BoundField DataField="Documento" HeaderText="Documento" SortExpression="Documento" />
                                 <asp:BoundField DataField="Telefono" HeaderText="Teléfono" SortExpression="Telefono" />
