@@ -91,6 +91,13 @@
                                 <asp:BoundField DataField="Documento" HeaderText="Documento" SortExpression="Documento" />
                                 <asp:BoundField DataField="Telefono" HeaderText="Teléfono" SortExpression="Telefono" />
                                 <asp:BoundField DataField="Direccion" HeaderText="Dirección" SortExpression="Direccion" />
+                                <asp:TemplateField HeaderText="Cotizaciones">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="ImgDetalleC" runat="server" ImageUrl="~/img/DetalleCotizacion.png"
+                                            ToolTip="Detalle Cotización" CausesValidation="true" CommandName="Cotizaciones"></asp:ImageButton>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Editar">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="ImgActualizar" runat="server" ImageUrl="~/img/Editar.png"
@@ -117,7 +124,7 @@
 
 
     <script type="text/javascript">
-    </script>
+</script>
 </asp:Content>
 
 

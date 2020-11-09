@@ -27,6 +27,8 @@ namespace CapaPresentacion
 
             var idLitografia = Cast.ToInt(Session["IdLitografia"]);
 
+            Session["IsOtraPagina"] = true;
+
             Helper = new DataHelper();
 
             if (!Page.IsPostBack)

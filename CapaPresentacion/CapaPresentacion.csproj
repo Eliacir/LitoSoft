@@ -116,6 +116,8 @@
     <Content Include="bin\Syncfusion.Licensing.dll" />
     <Content Include="bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll" />
     <Content Include="bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll" />
+    <Content Include="ImprimirCotizacion.aspx" />
+    <Content Include="PaginaCotizaciones.aspx" />
     <Content Include="PaginaCotizacion.aspx" />
     <Content Include="css\select2.css" />
     <Content Include="css\select2.min.css" />
@@ -471,6 +473,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Cast.cs" />
+    <Compile Include="ImprimirCotizacion.aspx.cs">
+      <DependentUpon>ImprimirCotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImprimirCotizacion.aspx.designer.cs">
+      <DependentUpon>ImprimirCotizacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaCotizaciones.aspx.cs">
+      <DependentUpon>PaginaCotizaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaCotizaciones.aspx.designer.cs">
+      <DependentUpon>PaginaCotizaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaginaCotizacion.aspx.cs">
       <DependentUpon>PaginaCotizacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

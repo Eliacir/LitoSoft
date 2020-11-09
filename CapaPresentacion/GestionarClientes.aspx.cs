@@ -21,14 +21,18 @@ namespace CapaPresentacion
         public object lblIPBehindProxy { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
-        {        
-            Session["IsOtraPagina"] = true;
+        {
+
+            MaintainScrollPositionOnPostBack = true;
+
             Session["PanelPrincipal"] = "Gestionar Clientes";
+
             IdLitografia = Convert.ToInt16(Session["IdLitografia"]);
+
+            Session["IsOtraPagina"] = true;
+
             if (!Page.IsPostBack)
-            {
-               
-                Session["IsOtraPagina"] = false;
+            {             
                 CargarClientes();
                 //  MostrarOcultarCamposRegistro(false);
             }
@@ -85,14 +89,21 @@ namespace CapaPresentacion
                 DataControlFieldCell Celda = (DataControlFieldCell)Imagen.Parent;
                 GridViewRow fila = (GridViewRow)Celda.Parent;
 
+
+                Session["Codigocliente"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
+
                 switch (e.CommandName)
                 {
 
+                    case "Cotizaciones":
+                        {             
+                            Response.Redirect("PaginaCotizaciones.aspx", false);
+                            break;
+                        }
                     case "Actualizar":
                         {
                             ViewState["esEditar"] = true;
                             btnRegistrar.Text = "Actualizar";
-                            Session["Codigocliente"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
                             ValoresGVClientes();
                             btnCancelar.Visible = true;
                             break;
@@ -100,7 +111,6 @@ namespace CapaPresentacion
                     case "Eliminar":
                         {
 
-                            Session["Codigocliente"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
                             ohelper.EliminarCliente(Convert.ToInt32(Session["Codigocliente"]),IdLitografia);
                             string mensaje = "Cliente eliminado satisfactoriamente.";
                             //Mensaje ok
