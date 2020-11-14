@@ -32,7 +32,10 @@ namespace CapaPresentacion
             Session["IsOtraPagina"] = true;
 
             if (!Page.IsPostBack)
-            {             
+            {
+                //Mostramos tabla de clientes
+                HabilitarCamposRegistro(false);
+
                 CargarClientes();
                 //  MostrarOcultarCamposRegistro(false);
             }
@@ -53,8 +56,7 @@ namespace CapaPresentacion
                         ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'success')</script>");
                         btnRegistrar.Text = "Registrar";
                         ViewState["esEditar"] = false;
-                    }
-
+                    }            
                 }
                 else
                 {
@@ -70,7 +72,8 @@ namespace CapaPresentacion
                 LimpiarControles();
                 CargarClientes();
 
-                //  MostrarOcultarCamposRegistro(false);
+                // Mostramos tabla de clientes
+               HabilitarCamposRegistro(false);
             }
             catch (Exception ex)
             {
@@ -105,7 +108,10 @@ namespace CapaPresentacion
                             ViewState["esEditar"] = true;
                             btnRegistrar.Text = "Actualizar";
                             ValoresGVClientes();
-                            btnCancelar.Visible = true;
+
+                            // Mostramos campos del clientes
+                            HabilitarCamposRegistro(true);
+                          
                             break;
                         }
                     case "Eliminar":
@@ -247,6 +253,8 @@ namespace CapaPresentacion
             {
                 ViewState["esEditar"] = false;
                 LimpiarControles();
+
+                HabilitarCamposRegistro(false);
             }
             catch (Exception)
             {
@@ -265,23 +273,28 @@ namespace CapaPresentacion
             btnRegistrar.Text = "Registrar";
         }
 
+        protected void btnAgregar_Click(object sender, ImageClickEventArgs e)
+        {
+            HabilitarCamposRegistro(true);
+            btnAgregar.Visible = false;
+        }
 
-        //private void MostrarOcultarCamposRegistro(bool mostrar)
-        //{
-        //    txtnombre.Visible = mostrar;
-        //    txtdocumento.Visible = mostrar;
-        //    txtDireccion.Visible = mostrar;
-        //    txttelefono.Visible = mostrar;
-
-        //    lblNombre.Visible = mostrar;
-        //    lbldireccion.Visible = mostrar;
-        //    lbltelefono.Visible = mostrar;
-        //    lbldocumento.Visible = mostrar;
-
-
-        //    btnRegistrar.Visible = mostrar;
-        //    btnCancelar.Visible = mostrar;
-        //}
-
+        private void HabilitarCamposRegistro(bool mostrar)
+        {
+       
+            if (mostrar)
+            {
+                // Mostramos campos de registro o actualizacion
+                MultiView.ActiveViewIndex = 0;
+                btnCancelar.Visible = true;
+                btnAgregar.Visible = false;
+            }
+            else
+            {
+                // Ocultar campos de registro o actualizacion
+                MultiView.ActiveViewIndex = 1;
+                btnAgregar.Visible = true;
+            }
+        }
     }
 }

@@ -131,6 +131,10 @@ namespace CapaPresentacion
             DataSet dataSet = Helper.RecuperarClientes(id);
             CrearCombo(ref ddClientes, "Nombre", "IdCliente", dataSet);
 
+            //Recuperamos Productos
+             dataSet = Helper.RecuperarProductos(id);
+            CrearCombo(ref ddProductos, "Nombre", "IdProducto", dataSet);
+
             //Recuperamos Papel
             dataSet = Helper.RecuperarPapel(id);
             CrearCombo(ref ddSustrato, "Nombre", "IdPapel", dataSet);
@@ -272,6 +276,11 @@ namespace CapaPresentacion
             Cotizacion.SetPapel(papel.Id, papel.Name);
 
             Cotizacion.SetCorte(corte.Id, corte.Name);
+
+            Cotizacion.IdCliente = Cast.ToInt(ddClientes.SelectedValue);
+
+            Cotizacion.IdProducto = Cast.ToInt(ddProductos.SelectedValue);
+
 
         }
 

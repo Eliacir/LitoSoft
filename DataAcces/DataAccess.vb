@@ -168,6 +168,23 @@ Public Class DataAccess
         End Using
     End Function
 
+    Public Function RecuperarProductos(ByVal Idlitografia As Int32) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "Recuperarproductos"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+        db.AddInParameter(dbCommand, "IdLitografia", DbType.String, Idlitografia)
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
     Public Function RecuperarParametro(nombre As String, idlitografia As Int32) As String
         'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
         Dim DB As Database = DatabaseFactory.CreateDatabase()

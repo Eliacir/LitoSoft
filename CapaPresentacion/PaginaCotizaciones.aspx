@@ -21,11 +21,9 @@
     <section class="content">
         <div class="row">
             <div class="col-md-3">
-                <asp:Button ID="btnAgregarCotizacion" runat="server" CssClass="btn btn-primary" Width="200px" Text="Agregar Cotización" OnClick="btnAgregarCotizacion_Click" />
+                  <asp:ImageButton ID="btnAgregarCotizacion" runat="server" ImageUrl="~/img/Agregar.png" ToolTip="Agregar" OnClick="btnAgregarCotizacion_Click" />
             </div>
         </div>
-
-        <br />
         <!--datatable -->
         <div class="row">
             <div class="col-md-12">
@@ -40,7 +38,7 @@
                             <asp:ListItem>Nómbre</asp:ListItem>
                         </asp:DropDownList>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="txtfiltro" runat="server" Width="50%" Height="30px"></asp:TextBox>
+                         <asp:TextBox ID="txtfiltro" runat="server" Width="30%" Height="30px"></asp:TextBox>
                         &nbsp;
                         <asp:Button ID="btnBuscarRepresentante" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Buscar" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnBuscarCotizaciones_Click" />
                     </div>

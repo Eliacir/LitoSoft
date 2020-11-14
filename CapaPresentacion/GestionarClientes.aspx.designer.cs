@@ -13,6 +13,33 @@ namespace CapaPresentacion {
     public partial class GestionarClientes {
         
         /// <summary>
+        /// Control btnAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnAgregar;
+        
+        /// <summary>
+        /// Control MultiView.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView MultiView;
+        
+        /// <summary>
+        /// Control viewRegistro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View viewRegistro;
+        
+        /// <summary>
         /// Control vistaNuevo.
         /// </summary>
         /// <remarks>
@@ -146,6 +173,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelar;
+        
+        /// <summary>
+        /// Control viewTabla.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View viewTabla;
         
         /// <summary>
         /// Control DDFiltro.

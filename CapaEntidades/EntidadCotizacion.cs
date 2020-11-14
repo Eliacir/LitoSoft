@@ -11,10 +11,31 @@ namespace CapaEntidades
     [Serializable]
     public class EntidadCotizacion
     {
+
         /// <summary>
         /// Devuelve el id de la litografia
         /// </summary>
         public int IdLitografia { get; set; }
+
+        /// <summary>
+        /// Devuelve el id del cliente
+        /// </summary>
+        public int IdCliente { get; set; }
+
+        /// <summary>
+        /// Devuelve el id del producto
+        /// </summary>
+        public int IdProducto { get; set; }
+
+        /// <summary>
+        /// Devuelve el id del Papel
+        /// </summary>
+        public int IdPapel { get; set; }
+
+        /// <summary>
+        /// Devuelve el id del Papel
+        /// </summary>
+        public int IdCorte { get; set; }
 
         /// <summary>
         /// Devuelve o establece el precio del papel

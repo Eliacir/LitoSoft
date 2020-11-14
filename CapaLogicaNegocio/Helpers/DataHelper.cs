@@ -70,6 +70,18 @@ namespace CapaLogicaNegocio.Helpers
             }
         }
 
+        public DataSet RecuperarProductos(Int32 Idlitografia)
+        {
+            try
+            {
+                return oacces.RecuperarProductos(Idlitografia);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet RecuperarPapel(Int32 idLitografia)
         {
             try

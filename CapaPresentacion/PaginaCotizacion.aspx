@@ -47,12 +47,21 @@
                 <asp:HiddenField ID="txtMontajeDecimal" runat="server" />
                 <!--FIN VALORES JS-->
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Cliente</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddClientes" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="Precio" AutoPostBack="True">
+                            <asp:DropDownList ID="ddClientes" runat="server" CssClass="form-control" AutoPostBack="True">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Producto</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddProductos" runat="server" CssClass="form-control" AutoPostBack="True">
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -92,7 +101,7 @@
                             <label>Sustrato</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddSustrato" runat="server" CssClass="form-control" DataTextField="Nombre" DataValueField="Precio" AutoPostBack="True" OnSelectedIndexChanged="ddSustrato_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddSustrato" runat="server" CssClass="form-control"  AutoPostBack="True" OnSelectedIndexChanged="ddSustrato_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -110,7 +119,7 @@
                             <label>Corte X-Y</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddCorte" runat="server" CssClass="form-control" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddCorte_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddCorte" runat="server" CssClass="form-control"   AutoPostBack="True" OnSelectedIndexChanged="ddCorte_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -198,7 +207,7 @@
                             <label>Respaldo</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddRespaldo" runat="server" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddRespaldo_SelectedIndexChanged" Height="20px" Width="100px">
+                            <asp:DropDownList ID="ddRespaldo" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddRespaldo_SelectedIndexChanged" Height="20px" Width="100px">
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
@@ -218,7 +227,7 @@
                             <label>Misma Plancha</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID="ddMismaplancha" runat="server" Height="20px" Width="100px" DataTextField="Corte" DataValueField="Montaje" AutoPostBack="True" OnSelectedIndexChanged="ddMismaplancha_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddMismaplancha" runat="server" Height="20px" Width="100px" AutoPostBack="True" OnSelectedIndexChanged="ddMismaplancha_SelectedIndexChanged">
                                 <asp:ListItem Value="Si">Si</asp:ListItem>
                                 <asp:ListItem Value="No">No</asp:ListItem>
                             </asp:DropDownList>
@@ -314,44 +323,44 @@
                                     </table>
                                 </div>
 
-                                <div class="row">                                   
-                                        <div class="box-body table-responsive">
-                                            <asp:GridView ID="GvAcabados" runat="server" class="table table-bordered" AutoGenerateColumns="False" AllowSorting="True" Width="818px" OnRowCommand="GvAcabados_RowCommand" OnRowCreated="GvAcabados_RowCreated" OnRowDataBound="GvAcabados_RowDataBound">
-                                                <Columns>
-                                                    <asp:BoundField DataField="RowId" ReadOnly="True" visible="false" />                                                 
-                                                    <asp:BoundField DataField="RowNumber" ReadOnly="True" HeaderText="Numero"  />
-                                                    <asp:BoundField DataField="Acabado" ReadOnly="True" HeaderText="Acabado" />
-                                                    <asp:BoundField DataField="Valor" ReadOnly="True" HeaderText="Valor"  />
-                                                    <asp:BoundField DataField="Frente" ReadOnly="True" HeaderText="Frente" >
-                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Respaldo" ReadOnly="True" HeaderText="Respaldo">
+                                <div class="row">
+                                    <div class="box-body table-responsive">
+                                        <asp:GridView ID="GvAcabados" runat="server" class="table table-bordered" AutoGenerateColumns="False" AllowSorting="True" Width="818px" OnRowCommand="GvAcabados_RowCommand" OnRowCreated="GvAcabados_RowCreated" OnRowDataBound="GvAcabados_RowDataBound">
+                                            <Columns>
+                                                <asp:BoundField DataField="RowId" ReadOnly="True" Visible="false" />
+                                                <asp:BoundField DataField="RowNumber" ReadOnly="True" HeaderText="Numero" />
+                                                <asp:BoundField DataField="Acabado" ReadOnly="True" HeaderText="Acabado" />
+                                                <asp:BoundField DataField="Valor" ReadOnly="True" HeaderText="Valor" />
+                                                <asp:BoundField DataField="Frente" ReadOnly="True" HeaderText="Frente">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Valor" ReadOnly="True" SortExpression="TipoTroquelado" />
-                                                    <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor" ReadOnly="True" SortExpression="ValorTroquelado" />
-                                                    <asp:TemplateField HeaderText="Editar">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="ImgActualizar" runat="server" CausesValidation="true" CommandName="Actualizar" ImageUrl="~/img/Editar.png" ToolTip="Editar" />
-                                                        </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Eliminar">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="ImgEliminar" runat="server" CommandName="Eliminar" ImageUrl="~/img/Eliminar.png" OnClientClick="return confirm('Realmente desea eliminar acabado?')" ToolTip="Eliminar" />
-                                                        </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
-                                        </div>                                 
+                                                </asp:BoundField>
+                                                <asp:BoundField DataField="Respaldo" ReadOnly="True" HeaderText="Respaldo">
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:BoundField>
+                                                <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Valor" ReadOnly="True" SortExpression="TipoTroquelado" />
+                                                <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor" ReadOnly="True" SortExpression="ValorTroquelado" />
+                                                <asp:TemplateField HeaderText="Editar">
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="ImgActualizar" runat="server" CausesValidation="true" CommandName="Actualizar" ImageUrl="~/img/Editar.png" ToolTip="Editar" />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Eliminar">
+                                                    <ItemTemplate>
+                                                        <asp:ImageButton ID="ImgEliminar" runat="server" CommandName="Eliminar" ImageUrl="~/img/Eliminar.png" OnClientClick="return confirm('Realmente desea eliminar acabado?')" ToolTip="Eliminar" />
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
                                 </div>
 
                             </asp:View>
                             <asp:View ID="VOcultar" runat="server">
                             </asp:View>
                         </asp:MultiView>
-                    </div>              
+                    </div>
                 </div>
 
                 <br />
@@ -366,7 +375,7 @@
 
                     </div>
                 </div>
-                 <div class="row">
+                <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>SubTotal factura</label>
@@ -387,29 +396,29 @@
                                 <asp:TextBox ID="txtTotalfactura" runat="server" Enabled="False"></asp:TextBox>
                             </div>
                         </td>
-                         <td style="width: 10px"></td>
-                          <td>
+                        <td style="width: 10px"></td>
+                        <td>
                             <div class="form-group">
                                 <label>Valor Ganancia</label>
                             </div>
                             <div class="form-group">
                                 <asp:TextBox ID="txtValorGanancia" runat="server" AutoPostBack="false" Enabled="false"></asp:TextBox>
                             </div>
-                        </td>     
+                        </td>
                         <td style="width: 10px"></td>
-                         <td style="width: 100px">
+                        <td style="width: 100px">
                             <div class="form-group">
                                 <label>(%) Ganancia</label>
                             </div>
                             <div class="form-group">
-                                <asp:TextBox ID="txtPorcentajeGanancia" style="width: 100px" runat="server" AutoPostBack="true" OnTextChanged="txtPorcentajeGanancia_OnTextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtPorcentajeGanancia" Style="width: 100px" runat="server" AutoPostBack="true" OnTextChanged="txtPorcentajeGanancia_OnTextChanged"></asp:TextBox>
                             </div>
-                        </td>                       
-                      </tr>
+                        </td>
+                    </tr>
                 </table>
                 <div class="row">
                     <div class="col-md-6">
-                        <asp:Button ID="btnGuardar" runat="server" Width="100px" Height="32px" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click"/>
+                        <asp:Button ID="btnGuardar" runat="server" Width="100px" Height="32px" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="vgcotizacion" />
                         &nbsp;
                         <asp:Button ID="bntLimpiar" runat="server" Width="100px" Height="32px" Text="Limpiar" CssClass="btn btn-primary" OnClick="bntLimpiar_Click" />
                     </div>
@@ -422,6 +431,8 @@
         $('#<%=ddSustrato.ClientID%>').chosen();
         $('#<%=ddClientes.ClientID%>').chosen();
         $('#<%=ddAcabados.ClientID%>').chosen();
+        $('#<%=ddProductos.ClientID%>').chosen();
+        
     </script>
 </asp:Content>
 
