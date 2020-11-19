@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CapaEntidades;
 using System.Web.SessionState;
-using CapaEntidades;
 
 namespace CapaPresentacion.Custom
 {

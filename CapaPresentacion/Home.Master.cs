@@ -1,11 +1,5 @@
-﻿using CapaEntidades;
-using CapaLogicaNegocio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
@@ -16,7 +10,7 @@ namespace CapaPresentacion
         {
             try
             {
-                
+
                 if (Convert.ToBoolean(Session["IsOtraPagina"]))
                 {
                     lblOpcionmenu.Text = Session["PanelPrincipal"].ToString();
@@ -27,10 +21,10 @@ namespace CapaPresentacion
                 {
                     Int16 TipoUsuario = Convert.ToInt16(Session["TipoUsuario"].ToString());
 
-                    
+
                     ProyectoList.Visible = false;
                     EmpleadosList.Visible = false;
-                   
+
 
                     //Si el usuario  es administrador  solo podra crear litografias
                     if (TipoUsuario == 1)
@@ -44,9 +38,9 @@ namespace CapaPresentacion
                     }
                     else
                     {
-                       LitografiaList.Visible = false;
+                        LitografiaList.Visible = false;
 
-                        byte[] logo  =  (byte[])(Session["Logo"]);
+                        byte[] logo = (byte[])(Session["Logo"]);
 
                         if (logo != null)
                         {
@@ -54,7 +48,7 @@ namespace CapaPresentacion
                             string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(logo);
                             //Esto es para mostrar la imagen seleccionada y mostrarla 
                             Imglogo.ImageUrl = ImagenDataURL64;
-                       }
+                        }
                     }
                 }
             }
@@ -64,7 +58,7 @@ namespace CapaPresentacion
                 //string mensaje = ex.Message;
                 //ClientScript.RegisterStartupScript(this.GetType(), "Proyectos", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
             }
-           
+
 
         }
 

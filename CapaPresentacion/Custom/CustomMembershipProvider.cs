@@ -1,12 +1,7 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using CapaEntidades;
-using CapaLogicaNegocio;
-using CapaPresentacion;
+using System;
+using System.Web.Security;
 
 namespace CapaPresentacion.Custom
 {
@@ -16,7 +11,7 @@ namespace CapaPresentacion.Custom
         {
             Default d = new Default();
             bool ok = false;
-            Usuario ousuario = d.RecuperarUsuario(username,password);
+            Usuario ousuario = d.RecuperarUsuario(username, password);
             if (ousuario != null)
             {
                 ok = true;

@@ -1,8 +1,6 @@
 ﻿using CapaEntidades;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 
 namespace CapaLogicaNegocio.Helpers
 {
@@ -12,6 +10,37 @@ namespace CapaLogicaNegocio.Helpers
         DataAccess.DataAccess oacces = new DataAccess.DataAccess();
 
         #region LITOGRAFIA
+
+        public IDataReader RecuperarClientePorIdcliente(short IdCliente, Int32 IdLitografia)
+        {
+            try
+            {
+                return oacces.RecuperarClientePorIdcliente(IdCliente, IdLitografia);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool ActualizarCliente(Cliente ocliente, Int32 idlitografia)
+        {
+            try
+            {
+                string res = oacces.ActualizarCliente(ocliente.Nombre, ocliente.Documento, ocliente.Direccion, ocliente.IdCliente, ocliente.Telefono, idlitografia);
+                if (res.Contains("ok"))
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public IDataReader RecuperarAcabado(int idLitografia, string codigo)
         {
@@ -215,116 +244,37 @@ namespace CapaLogicaNegocio.Helpers
             }
         }
 
+        public int InsertarCotizacion(EntidadCotizacion cotizacion)
+        {
+            return oacces.InsertarCotizacion(cotizacion.IdCliente,
+                                              cotizacion.IdProducto,
+                                              cotizacion.IdPapel,
+                                              cotizacion.IdCorte,
+                                              cotizacion.Cantidad,
+                                              cotizacion.CostoDiseño,
+                                              cotizacion.Cavidad,
+                                              cotizacion.Montaje,
+                                              cotizacion.UsaFrente,
+                                              cotizacion.UsaRespaldo,
+                                              cotizacion.ColoresDelFrente,
+                                              cotizacion.ColoresDelRespaldo,
+                                              cotizacion.UsaLaMismaPlancha);
+        }
+
+
+        public void InsertarAcabadoCotizacion(EntidadAcabado acabado, int idCotizacion)
+        {
+            oacces.InsertarAcabadoCotizacion(acabado.Nombre,
+                                             acabado.Precio,
+                                             acabado.ValorTroquelado,
+                                             acabado.TipoTroquelado,
+                                             acabado.UsaFrente,
+                                             acabado.UsaRespaldo,
+                                             idCotizacion,
+                                             acabado.Id);
+        }
         #endregion
 
-        public DataSet RecuperarEmpleadosPorFiltro(int filtro, string texto)
-        {
-            try
-            {
-                return oacces.RecuperarEmpleadosPorFiltro(filtro, texto);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
-        public DataSet RecuperarEmpleados()
-        {
-            try
-            {
-                return oacces.RecuperarEmpleados();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        public bool InsertarEmpresa(Empresa oEmpresa)
-        {
-            try
-            {
-                string res = oacces.InsertarEmpresa(oEmpresa.Nombre, oEmpresa.Ruc, oEmpresa.Direccion, oEmpresa.Telefono, oEmpresa.Correo);
-                if (res.Contains("ok"))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public bool ActualizarEmpresa(Empresa oEmpresa)
-        {
-            try
-            {
-                string res = oacces.ActualizarEmpresa(oEmpresa.IdEmpresa, oEmpresa.Nombre, oEmpresa.Ruc, oEmpresa.Direccion, oEmpresa.Telefono, oEmpresa.Correo);
-                if (res.Contains("ok"))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void EliminarEmpleado(int IdEmpleado)
-        {
-            oacces.EliminarEmpleado(IdEmpleado);
-        }
-
-        public bool ActualizarCliente(Cliente ocliente, Int32 idlitografia)
-        {
-            try
-            {
-                string res = oacces.ActualizarCliente(ocliente.Nombre, ocliente.Documento, ocliente.Direccion, ocliente.IdCliente, ocliente.Telefono, idlitografia);
-                if (res.Contains("ok"))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public IDataReader RecuperarClientePorIdcliente(short IdCliente, Int32 IdLitografia)
-        {
-            try
-            {
-                return oacces.RecuperarClientePorIdcliente(IdCliente, IdLitografia);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public IDataReader RecuperarEmpresa()
-        {
-            try
-            {
-                return oacces.RecuperarEmpresa();
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
+﻿using CapaLogicaNegocio.Helpers;
+using System;
 using System.Web.UI;
-using CapaEntidades;
-using CapaLogicaNegocio;
-
-using System.IO;
-using System.Collections;
-using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {

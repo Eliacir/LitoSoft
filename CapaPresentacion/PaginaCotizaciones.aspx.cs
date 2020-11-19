@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CapaLogicaNegocio.Helpers;
+using System;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaEntidades;
-using CapaLogicaNegocio;
-using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {
@@ -55,8 +49,8 @@ namespace CapaPresentacion
                             var IdCotizacion = GvCotizacion.Rows[fila.RowIndex].Cells[0].Text;
 
                             //Comentado mientras se implementa la carga de los daos en la grilla 
-                           // Response.Redirect("ImprimirCotizacion.aspx?IdCotizacion=" + IdCotizacion, false);
-                           
+                            // Response.Redirect("ImprimirCotizacion.aspx?IdCotizacion=" + IdCotizacion, false);
+
                             break;
                         }
                     case "Actualizar":
@@ -65,11 +59,11 @@ namespace CapaPresentacion
                             Session["IdCotizacion"] = GvCotizacion.Rows[fila.RowIndex].Cells[0].Text;
                             Response.Redirect("PaginaCotizacion.aspx", false);
                             break;
-                        }                    
+                        }
                     case "Eliminar":
                         {
                             Session["IdCotizacion"] = GvCotizacion.Rows[fila.RowIndex].Cells[0].Text;
-                           // ohelper.EliminarCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
+                            // ohelper.EliminarCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
                             string mensaje = "Cotización eliminada satisfactoriamente.";
                             //Mensaje ok
                             ClientScript.RegisterStartupScript(this.GetType(), "Gestionar Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
@@ -80,7 +74,7 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string mensaje = ex.Message.Replace("'","");
+                string mensaje = ex.Message.Replace("'", "");
                 //Mensaje Error
                 ClientScript.RegisterStartupScript(this.GetType(), "Gestionar Cotización", "<script>swal('', '" + mensaje + "', 'error')</script>");
             }

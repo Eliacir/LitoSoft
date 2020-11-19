@@ -1,7 +1,6 @@
 ﻿using CapaEntidades;
 using CapaLogicaNegocio.Calculations;
 using CapaLogicaNegocio.Helpers;
-using CapaLogicaNegocio.Types;
 using CapaLogicaNegocio.Util;
 using System;
 

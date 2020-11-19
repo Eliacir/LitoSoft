@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
+﻿using CapaLogicaNegocio.Extensions;
+using CapaLogicaNegocio.Helpers;
+using CapaLogicaNegocio.Models;
+using CapaLogicaNegocio.Types;
+using System;
+using System.Data;
+using System.Threading;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaEntidades;
-using CapaLogicaNegocio;
-using System.Data;
-using System.Globalization;
-using CapaLogicaNegocio.Extensions;
-using CapaLogicaNegocio.Models;
-using CapaLogicaNegocio.Helpers;
-using CapaLogicaNegocio.Types;
 
 namespace CapaPresentacion
 {
@@ -36,8 +30,8 @@ namespace CapaPresentacion
                 Cotizacion = new Cotizacion(idLitografia);
 
                 LimpiarTodosLosDatos();
-            }                   
-        }    
+            }
+        }
 
         /// <summary>
         /// Devuelve el controlador de acceso a datos
@@ -71,7 +65,7 @@ namespace CapaPresentacion
         {
             get
             {
-               return Cast.ToInt(ViewState["FilaActualAcabado"]);
+                return Cast.ToInt(ViewState["FilaActualAcabado"]);
             }
             set
             {
@@ -132,7 +126,7 @@ namespace CapaPresentacion
             CrearCombo(ref ddClientes, "Nombre", "IdCliente", dataSet);
 
             //Recuperamos Productos
-             dataSet = Helper.RecuperarProductos(id);
+            dataSet = Helper.RecuperarProductos(id);
             CrearCombo(ref ddProductos, "Nombre", "IdProducto", dataSet);
 
             //Recuperamos Papel
@@ -218,7 +212,7 @@ namespace CapaPresentacion
             ddFrenteAcabado.SelectedValue = "Si";
             ddRespaldoAcabado.SelectedValue = "No";
 
-            txtValorAcabado.Text = String.Empty;         
+            txtValorAcabado.Text = String.Empty;
             txtValorToquelado.Text = String.Empty;
 
             MostrarTroquelado(ddAcabados.SelectedValue);
@@ -271,7 +265,7 @@ namespace CapaPresentacion
 
             Cotizacion.ColoresDelRespaldo = Cast.ToInt(txtRespaldo.Text);
 
-            Cotizacion.UsaLaMismaPlancha = (ddMismaplancha.Text.Equals("No")) ? false : true;
+            Cotizacion.UsaLaMismaPlancha = !ddMismaplancha.Text.Equals("No");
 
             Cotizacion.SetPapel(papel.Id, papel.Name);
 
@@ -281,6 +275,9 @@ namespace CapaPresentacion
 
             Cotizacion.IdProducto = Cast.ToInt(ddProductos.SelectedValue);
 
+            Cotizacion.IdPapel = Cast.ToInt(ddSustrato.SelectedValue);
+
+            Cotizacion.IdCorte = Cast.ToInt(ddCorte.SelectedValue);
 
         }
 
@@ -288,7 +285,7 @@ namespace CapaPresentacion
         /// Establece los valores calculados de la cotizacion en la pagina
         /// </summary>
         private void EstablecerValoresCalculados()
-        {    
+        {
             txtValorpapel.Text = Cotizacion.PrecioPapel.FormatoMoneda();
 
             txtMontaje.Text = Cotizacion.Montaje;
@@ -327,7 +324,7 @@ namespace CapaPresentacion
         /// </summary>
         private DataTable ObtenerTablaAcabados() =>
             ViewState["TablaAcabados"] as DataTable;
-      
+
         /// <summary>
         /// Crear un acabado para la cotizacion
         /// </summary>
@@ -350,13 +347,13 @@ namespace CapaPresentacion
             bool? usaRespaldo = usaFrenteYRespaldo ? (bool?)ddRespaldoAcabado.SelectedValue.In("Si") : null;
 
             var tipoTroquelado = usaTroquelado ? ddTipoToquelado.SelectedValue.ToString() : null;
-                tipoTroquelado = tipoTroquelado ?? (usaSemicorte ? "Troquel" : null);
-                tipoTroquelado = tipoTroquelado ?? (usaRepujado ? "Cliset" : null);
+            tipoTroquelado = tipoTroquelado ?? (usaSemicorte ? "Troquel" : null);
+            tipoTroquelado = tipoTroquelado ?? (usaRepujado ? "Cliset" : null);
 
             var valorTroquelado = usaTroquelado || usaSemicorte || usaRepujado ?
                                     Cast.ToDecimalNull(txtValorToquelado.Text) : null;
 
-            return new Acabado(Cotizacion, codigo, usaFrente, usaRespaldo, tipoTroquelado, valorTroquelado);         
+            return new Acabado(Cotizacion, codigo, usaFrente, usaRespaldo, tipoTroquelado, valorTroquelado);
         }
 
         /// <summary>
@@ -396,7 +393,7 @@ namespace CapaPresentacion
             table.Columns.Add(new DataColumn("TipoTroquelado", typeof(string)));
             table.Columns.Add(new DataColumn("ValorTroquelado", typeof(string)));
             table.Columns.Add(new DataColumn("Frente", typeof(string)));
-            table.Columns.Add(new DataColumn("Respaldo", typeof(string)));          
+            table.Columns.Add(new DataColumn("Respaldo", typeof(string)));
         }
 
         /// <summary>
@@ -407,7 +404,7 @@ namespace CapaPresentacion
             if (ddAcabados.SelectedIndex < 1)
                 return;
 
-            var table = ObtenerTablaAcabados()?? new DataTable();
+            var table = ObtenerTablaAcabados() ?? new DataTable();
 
             AcabadoActual = CrearAcabado();
 
@@ -461,7 +458,7 @@ namespace CapaPresentacion
         {
             AcabadoActual = CrearAcabado();
 
-            if(AcabadoActual != null)
+            if (AcabadoActual != null)
                 txtValorAcabado.Text = AcabadoActual.ValorTotal.FormatoMoneda();
         }
 
@@ -481,7 +478,7 @@ namespace CapaPresentacion
             ddAcabados.Enabled = false;
 
             ddAcabados.SelectedValue = codigo;
-   
+
             if (codigo.In(TipoAcabado.Troquelado))
             {
                 ddTipoToquelado.SelectedValue = row["TipoTroquelado"].ToString();
@@ -499,9 +496,9 @@ namespace CapaPresentacion
                 ddRespaldoAcabado.SelectedValue = row["Respaldo"].ToString();
             }
 
-             txtValorAcabado.Text = row["Valor"].ToString();
+            txtValorAcabado.Text = row["Valor"].ToString();
 
-             btnAgregar.ImageUrl = "~/img/Accept.png";
+            btnAgregar.ImageUrl = "~/img/Accept.png";
         }
 
         /// <summary>
@@ -566,7 +563,7 @@ namespace CapaPresentacion
 
                 return;
             }
-            
+
             if (codigo.In(TipoAcabado.Semicorte))
             {
                 lblTituloValor1.Visible = false;
@@ -617,10 +614,10 @@ namespace CapaPresentacion
             var usaFrente = usaFrenteYRespaldo ? ddFrenteAcabado.SelectedValue : null;
             var usaRespaldo = usaFrenteYRespaldo ? ddRespaldoAcabado.SelectedValue : null;
             var tipoTroquelado = usaTroquelado ? ddTipoToquelado.SelectedValue : null;
-                tipoTroquelado = tipoTroquelado ?? (usaSemicorte ? "Troquel" : null);
-                tipoTroquelado = tipoTroquelado ?? (usaRepujado ? "Cliset" : null);
+            tipoTroquelado = tipoTroquelado ?? (usaSemicorte ? "Troquel" : null);
+            tipoTroquelado = tipoTroquelado ?? (usaRepujado ? "Cliset" : null);
 
-            var valorTroquelado = usaTroquelado || usaSemicorte || usaRepujado ? 
+            var valorTroquelado = usaTroquelado || usaSemicorte || usaRepujado ?
                                         Cast.ToDecimalNull(txtValorToquelado.Text) : null;
 
             row["Acabado"] = nombreAcabado;
@@ -732,7 +729,7 @@ namespace CapaPresentacion
                        TipoAcabado.Semicorte,
                        TipoAcabado.Repujado,
                        TipoAcabado.Sanduchado);
-        
+
         #endregion
 
 
@@ -870,16 +867,26 @@ namespace CapaPresentacion
             ActualizarTodosLosDatos();
         }
 
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Cotizacion.GuardarCotizacion();
+
+            string mensaje = "Cotización guardada con exito";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
+
+            Thread.Sleep(2000);
+
+            Response.Redirect("PaginaCotizaciones.aspx", true);
+        }
+
+
         protected void txtPorcentajeGanancia_OnTextChanged(object sender, EventArgs e)
         {
             ActualizarTodosLosDatos();
         }
 
         protected void btnActualizar_Click(object sender, ImageClickEventArgs e)
-        {
-        }
-
-        protected void btnGuardar_Click(object sender, EventArgs e)
         {
         }
 
@@ -893,7 +900,7 @@ namespace CapaPresentacion
 
 
 
-        
+
 
         #endregion
 

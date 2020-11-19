@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CapaEntidades;
+using CapaLogicaNegocio.Helpers;
+using System;
 using System.Data;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaEntidades;
-using CapaLogicaNegocio;
-using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {
@@ -56,13 +50,13 @@ namespace CapaPresentacion
                         ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'success')</script>");
                         btnRegistrar.Text = "Registrar";
                         ViewState["esEditar"] = false;
-                    }            
+                    }
                 }
                 else
                 {
 
                     Cliente oCliente = GetCliente();
-                    bool res = ohelper.InsertarCliente(oCliente,IdLitografia);
+                    bool res = ohelper.InsertarCliente(oCliente, IdLitografia);
                     if (res)
                     {
                         string mensaje = "Cliente agregado con exito";
@@ -73,12 +67,12 @@ namespace CapaPresentacion
                 CargarClientes();
 
                 // Mostramos tabla de clientes
-               HabilitarCamposRegistro(false);
+                HabilitarCamposRegistro(false);
             }
             catch (Exception ex)
             {
                 CargarClientes();
-                string mensaje = ex.Message.Replace("'","");
+                string mensaje = ex.Message.Replace("'", "");
                 ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'error')</script>");
             }
 
@@ -99,7 +93,7 @@ namespace CapaPresentacion
                 {
 
                     case "Cotizaciones":
-                        {             
+                        {
                             Response.Redirect("PaginaCotizaciones.aspx", false);
                             break;
                         }
@@ -111,13 +105,13 @@ namespace CapaPresentacion
 
                             // Mostramos campos del clientes
                             HabilitarCamposRegistro(true);
-                          
+
                             break;
                         }
                     case "Eliminar":
                         {
 
-                            ohelper.EliminarCliente(Convert.ToInt32(Session["Codigocliente"]),IdLitografia);
+                            ohelper.EliminarCliente(Convert.ToInt32(Session["Codigocliente"]), IdLitografia);
                             string mensaje = "Cliente eliminado satisfactoriamente.";
                             //Mensaje ok
                             CargarClientes();
@@ -130,7 +124,7 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string mensaje = ex.Message.Replace("'","");
+                string mensaje = ex.Message.Replace("'", "");
                 //Mensaje Error
                 ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'error')</script>");
             }
@@ -224,7 +218,7 @@ namespace CapaPresentacion
             {
                 short IdCliente = Cast.ToShort(Session["Codigocliente"]);
 
-                using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente,IdLitografia))
+                using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente, IdLitografia))
                 {
                     if (reader != null)
                     {
@@ -281,7 +275,7 @@ namespace CapaPresentacion
 
         private void HabilitarCamposRegistro(bool mostrar)
         {
-       
+
             if (mostrar)
             {
                 // Mostramos campos de registro o actualizacion

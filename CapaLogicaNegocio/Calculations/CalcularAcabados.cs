@@ -1,7 +1,6 @@
 ﻿using CapaLogicaNegocio.Extensions;
 using CapaLogicaNegocio.Models;
 using CapaLogicaNegocio.Types;
-using System;
 
 namespace CapaLogicaNegocio.Calculations
 {

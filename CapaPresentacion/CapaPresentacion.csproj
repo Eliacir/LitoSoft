@@ -129,7 +129,6 @@
     <Content Include="js\select2.js" />
     <Content Include="js\select2.min.js" />
     <Content Include="Litografia.aspx" />
-    <Content Include="Configuracion.aspx" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
@@ -158,7 +157,6 @@
     <Content Include="img\Salir.png" />
     <Content Include="img\SuministrosEquipos.PNG" />
     <Content Include="js\sweetalert.min.js" />
-    <Content Include="GestionarEmpleados.aspx" />
     <Content Include="img\Logossyj.jpg" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\Empleados.js" />
@@ -513,26 +511,12 @@
     <Compile Include="Litografia.aspx.designer.cs">
       <DependentUpon>Litografia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion.aspx.cs">
-      <DependentUpon>Configuracion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Configuracion.aspx.designer.cs">
-      <DependentUpon>Configuracion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GestionarClientes.aspx.cs">
       <DependentUpon>GestionarClientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GestionarClientes.aspx.designer.cs">
       <DependentUpon>GestionarClientes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarEmpleados.aspx.cs">
-      <DependentUpon>GestionarEmpleados.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarEmpleados.aspx.designer.cs">
-      <DependentUpon>GestionarEmpleados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>

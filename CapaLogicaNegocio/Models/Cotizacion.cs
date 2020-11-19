@@ -161,5 +161,14 @@ namespace CapaLogicaNegocio.Models
             CorteXY = nombreCorte;
         }
 
+
+        public void GuardarCotizacion()
+        {
+            var idCotizacion = Helper.InsertarCotizacion(this);
+
+            foreach (var acabado in Acabados.ObtenerTodos())
+                Helper.InsertarAcabadoCotizacion(acabado, idCotizacion);
+        }
+
     }
 }

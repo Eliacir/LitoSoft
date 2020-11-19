@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CapaEntidades
 {
@@ -20,7 +17,7 @@ namespace CapaEntidades
         public Int16 Estado { get; set; }
 
 
-        public  Empleado()
+        public Empleado()
         {
 
         }

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CapaEntidades;
+using CapaLogicaNegocio.Helpers;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using CapaEntidades;
-using CapaLogicaNegocio;
-using CapaLogicaNegocio.Helpers;
 
 namespace CapaPresentacion
 {
@@ -47,9 +41,9 @@ namespace CapaPresentacion
                 if (btnRegistrar.Text == "Actualizar")
                 {
                     InfoLitografia infoLitografia = GetEditarLitografia();
-                     ohelper.ActualizarLitografia(infoLitografia);
-                     Response.Redirect("GestionarLitografias.aspx", false);
-                    
+                    ohelper.ActualizarLitografia(infoLitografia);
+                    Response.Redirect("GestionarLitografias.aspx", false);
+
                 }
                 else
                 {
@@ -94,7 +88,7 @@ namespace CapaPresentacion
             {
                 oUsuario.Estado = false;
             }
-             
+
 
             oLitografia.UsuLitografia = oUsuario;
             return oLitografia;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CapaEntidades
+﻿namespace CapaEntidades
 {
     public class Cliente
     {
@@ -14,7 +9,7 @@ namespace CapaEntidades
         public string Telefono { get; set; }
 
 
-        public  Cliente()
+        public Cliente()
         {
 
         }

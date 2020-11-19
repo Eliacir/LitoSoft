@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using CapaEntidades;
-using CapaLogicaNegocio;
+﻿using CapaEntidades;
 using CapaLogicaNegocio.Helpers;
 using CapaPresentacion.Custom;
+using System;
+using System.Data;
+using System.Web.Security;
+using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
@@ -22,7 +17,7 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-   
+
             }
 
         }
@@ -105,7 +100,7 @@ namespace CapaPresentacion
                     {
                         SessionManager _SessionManager = new SessionManager(Session);
                         _SessionManager.UserSessionUsuario = usuario;
-                
+
 
                         Session["TipoUsuario"] = usuario.IdTipoUsuario;
                         Session["IdLitografia"] = usuario.IdLitografia;
@@ -117,7 +112,7 @@ namespace CapaPresentacion
                             if (ImgLito != null)
                             {
                                 Session["logo"] = ImgLito;
-                        
+
                             }
                             FormsAuthentication.RedirectFromLoginPage(LoginUser.UserName, false);
                             //Response.Redirect("Panelgeneral.aspx", false);

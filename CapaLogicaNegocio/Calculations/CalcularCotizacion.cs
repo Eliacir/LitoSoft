@@ -103,7 +103,7 @@ namespace CapaLogicaNegocio.Calculations
                                                 int coloresDelRespaldo,
                                                 bool usaLaMismaPlancha) =>
             !usaLaMismaPlancha || coloresDelFrente != coloresDelRespaldo;
-       
+
 
         /// <summary>
         /// Calcula valor total en plancha
@@ -114,7 +114,7 @@ namespace CapaLogicaNegocio.Calculations
                                                           bool usaLaMismaPlancha) =>
                CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha) * precioPlancha;
 
-      
+
 
         /// <summary>
         /// Calcula valor total de las impresiones
@@ -126,7 +126,7 @@ namespace CapaLogicaNegocio.Calculations
                                                             bool usaLaMismaPlancha) =>
              CalcularColores(coloresDelFrente, coloresDelRespaldo, usaLaMismaPlancha) * millares * precioImpresion;
 
-     
+
 
         /// <summary>
         /// Calcula el valor total de la cotizacion o factura

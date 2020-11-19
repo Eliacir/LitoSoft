@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CapaEntidades
 {
@@ -16,7 +13,7 @@ namespace CapaEntidades
 
 
 
-        public  Usuario()
+        public Usuario()
         {
 
         }
