@@ -71,7 +71,7 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string mensaje = ex.Message;
+                string mensaje = ex.Message.Replace("'","");
                 //Mensaje Error
                 ClientScript.RegisterStartupScript(this.GetType(), "Iniciar sesión", "<script>swal('', '" + mensaje + "', 'error')</script>");
                 //Mensaje Ok

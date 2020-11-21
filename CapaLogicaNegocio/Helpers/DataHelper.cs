@@ -11,6 +11,21 @@ namespace CapaLogicaNegocio.Helpers
 
         #region LITOGRAFIA
 
+        public void EliminarCotizacion(int IdCotizacion)
+        {
+            oacces.EliminarCotizacion(IdCotizacion);
+        }
+
+        public DataSet RecuperarCotizacionIdClientePorFiltro(int filtro, string text, int idcliente)
+        {
+            return oacces.RecuperarCotizacionIdClientePorFiltro(filtro, text, idcliente);
+        }
+
+        public DataSet RecuperarCotizacionesPorFiltro(int filtro, string text)
+        {
+            return oacces.RecuperarCotizacionesPorFiltro(filtro, text);
+        }
+
         public IDataReader RecuperarClientePorIdcliente(short IdCliente, Int32 IdLitografia)
         {
             try
@@ -135,6 +150,8 @@ namespace CapaLogicaNegocio.Helpers
             return oacces.RecuperarCorte(idLitografia);
         }
 
+
+
         public string RecuperarMontaje(int idCorte)
         {
             return oacces.RecuperarMontaje(idCorte);
@@ -202,6 +219,16 @@ namespace CapaLogicaNegocio.Helpers
             }
         }
 
+        public DataSet RecuperarCotizacionPorIdCliente(int idcliente)
+        {
+            return oacces.RecuperarCotizacionPorIdCliente(idcliente);
+        }
+
+        public DataSet RecuperarCotizaciones()
+        {
+            return oacces.RecuperarCotizaciones();
+        }
+
         public DataSet RecuperarLitografias()
         {
             try
@@ -258,7 +285,13 @@ namespace CapaLogicaNegocio.Helpers
                                               cotizacion.UsaRespaldo,
                                               cotizacion.ColoresDelFrente,
                                               cotizacion.ColoresDelRespaldo,
-                                              cotizacion.UsaLaMismaPlancha);
+                                              cotizacion.UsaLaMismaPlancha,
+                                              cotizacion.TotalAcabados,
+                                              cotizacion.SubtotalFactura,
+                                              cotizacion.ValorGanancia,
+                                              cotizacion.PorcentajeGanancia,
+                                              cotizacion.TotalFactura
+                                              );
         }
 
 

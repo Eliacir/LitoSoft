@@ -10,6 +10,7 @@ namespace CapaPresentacion
     {
         DataHelper ohelper = new DataHelper();
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IsOtraPagina"] = true;
@@ -20,15 +21,24 @@ namespace CapaPresentacion
 
             if (!Page.IsPostBack)
             {
+
+                ViewState["idcliente"] = 0;
+
+                ViewState["idcliente"]  = Cast.ToInt(Request.QueryString["Id"]);
+
+                if (Cast.ToInt(ViewState["idcliente"]) == 0)
+                {
+                    DDFiltro.Items.Insert(3, "Cliente");
+                }
+
                 //Comentado mientras se implementa la recuperacion los datos
-                //CargarCotizaciones();
+                CargarCotizaciones();
 
             }
         }
 
         protected void btnAgregarCotizacion_Click(object sender, EventArgs e)
         {
-            Session["IsEditar"] = false;
             Response.Redirect("PaginaCotizacion.aspx", false);
             GvCotizacion.DataBind();
         }
@@ -41,29 +51,23 @@ namespace CapaPresentacion
                 DataControlFieldCell Celda = (DataControlFieldCell)Imagen.Parent;
                 GridViewRow fila = (GridViewRow)Celda.Parent;
 
+                ViewState["IdCotizacion"] = Convert.ToInt32(this.GvCotizacion.DataKeys[fila.RowIndex].Value);
+
+                var IdCotizacion = ViewState["IdCotizacion"];
+
                 switch (e.CommandName)
                 {
 
                     case "Imprimir":
                         {
-                            var IdCotizacion = GvCotizacion.Rows[fila.RowIndex].Cells[0].Text;
+     
+                            Response.Redirect("ImprimirCotizacion.aspx?IdCotizacion=" + IdCotizacion, false);
 
-                            //Comentado mientras se implementa la carga de los daos en la grilla 
-                            // Response.Redirect("ImprimirCotizacion.aspx?IdCotizacion=" + IdCotizacion, false);
-
-                            break;
-                        }
-                    case "Actualizar":
-                        {
-                            Session["IsEditar"] = true;
-                            Session["IdCotizacion"] = GvCotizacion.Rows[fila.RowIndex].Cells[0].Text;
-                            Response.Redirect("PaginaCotizacion.aspx", false);
                             break;
                         }
                     case "Eliminar":
                         {
-                            Session["IdCotizacion"] = GvCotizacion.Rows[fila.RowIndex].Cells[0].Text;
-                            // ohelper.EliminarCotizacion(Convert.ToInt32(Session["IdCotizacion"]));
+                            ohelper.EliminarCotizacion(Cast.ToInt(IdCotizacion));
                             string mensaje = "Cotización eliminada satisfactoriamente.";
                             //Mensaje ok
                             ClientScript.RegisterStartupScript(this.GetType(), "Gestionar Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
@@ -84,8 +88,8 @@ namespace CapaPresentacion
         {
             try
             {
-                e.Row.Cells[0].Visible = false;
-                e.Row.Cells[8].Visible = false;
+               // e.Row.Cells[0].Visible = false;
+
             }
             catch (Exception)
             {
@@ -100,8 +104,16 @@ namespace CapaPresentacion
             {
                 if (!String.IsNullOrEmpty(txtfiltro.Text) && DDFiltro.SelectedIndex > 0)
                 {
-                    //GvCotizacion.DataSource = ohelper.RecuperarCotizacionesPorFiltro(Convert.ToInt32(DDFiltro.SelectedIndex), txtfiltro.Text,idLitografia);
-                    GvCotizacion.DataBind();
+                    if (Cast.ToInt(ViewState["idcliente"]) > 0)
+                    {
+                        GvCotizacion.DataSource = ohelper.RecuperarCotizacionIdClientePorFiltro(Convert.ToInt32(DDFiltro.SelectedIndex), txtfiltro.Text, Cast.ToInt(ViewState["idcliente"]));
+                        GvCotizacion.DataBind();
+                    }
+                    else 
+                    {
+                        GvCotizacion.DataSource = ohelper.RecuperarCotizacionesPorFiltro(Convert.ToInt32(DDFiltro.SelectedIndex), txtfiltro.Text);
+                        GvCotizacion.DataBind();
+                    }               
                 }
                 else
                 {
@@ -142,9 +154,21 @@ namespace CapaPresentacion
 
         public void CargarCotizaciones()
         {
+
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            //ds = ohelper.RecuperarCotizaciones(idlitografia);
+
+            if (Cast.ToInt(ViewState["idcliente"]) > 0)
+            {
+                ds = ohelper.RecuperarCotizacionPorIdCliente(Cast.ToInt(ViewState["idcliente"]));
+                GvCotizacion.Columns[1].Visible = false;
+                btnAgregarCotizacion.Visible = false;
+            }
+            else
+            {
+                ds = ohelper.RecuperarCotizaciones();
+            }
+                             
             GvCotizacion.DataSource = ds;
             GvCotizacion.DataBind();
             dt = ds.Tables[0];

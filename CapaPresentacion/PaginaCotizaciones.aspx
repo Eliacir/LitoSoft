@@ -33,21 +33,33 @@
                     </div>
                     <div class="box-body table-responsive">
                         <asp:DropDownList ID="DDFiltro" runat="server" Width="18%" Height="30px" AutoPostBack="False">
-                            <asp:ListItem>Buscar por...</asp:ListItem>
-                            <asp:ListItem>Código</asp:ListItem>
-                            <asp:ListItem>Nómbre</asp:ListItem>
+                            <asp:ListItem>Buscar por ...</asp:ListItem>
+                            <asp:ListItem>Producto</asp:ListItem>
+                            <asp:ListItem>Papel</asp:ListItem>
                         </asp:DropDownList>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                          <asp:TextBox ID="txtfiltro" runat="server" Width="30%" Height="30px"></asp:TextBox>
                         &nbsp;
-                        <asp:Button ID="btnBuscarRepresentante" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Buscar" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnBuscarCotizaciones_Click" />
+                        <asp:Button ID="btnBuscar" runat="server" Width="100px" BackColor="#428bca" ForeColor="White" BorderColor="#357ebd" Text="Buscar" BorderStyle="None" CssClass="btn btn-primary" Height="32px" OnClick="btnBuscarCotizaciones_Click" />
                     </div>
+
+
+
                     <div class="box-body table-responsive">
-                        <asp:GridView ID="GvCotizacion" runat="server" class="table table-bordered" AutoGenerateColumns="False" DataKeyNames="IdCotizacion" OnRowCommand="GvCotizacion_RowCommand" OnRowCreated="GvCotizacion_RowCreated" AllowSorting="True" OnPageIndexChanging="GvCotizacion_PageIndexChanging" OnSorting="GvCotizacion_Sorting">
+                        <asp:GridView ID="GvCotizacion" runat="server"  class="table table-bordered" AutoGenerateColumns="False" DataKeyNames="IdCotizacion" OnRowCommand="GvCotizacion_RowCommand" OnRowCreated="GvCotizacion_RowCreated" AllowSorting="True" OnPageIndexChanging="GvCotizacion_PageIndexChanging" OnSorting="GvCotizacion_Sorting"
+                            EmptyDataText="No hay cotizaciones para mostrar">
                             <Columns>
-                                <asp:BoundField DataField="IdCotizacion" HeaderText="IdCotizacion" InsertVisible="False" ReadOnly="True" />
-                                <asp:BoundField DataField="CodigoCotizacion" HeaderText="Código" InsertVisible="False" ReadOnly="True" SortExpression="CodigoCotizacion" />
-                                <asp:BoundField DataField="Decripcion" HeaderText="Decripcion" SortExpression="Decripcion" />         
+                                <asp:BoundField DataField="IdCotizacion" HeaderText="IdCotizacion" InsertVisible="False" ReadOnly="True" Visible="false"/>   
+                                
+                                <asp:BoundField DataField="Cliente" HeaderText="Cliente Cotización"  />    
+                                <asp:BoundField DataField="Producto" HeaderText="Producto" />                                      
+                                <asp:BoundField DataField="Papel" HeaderText="Papel" /> 
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />                               
+                                <asp:BoundField DataField="CostoDiseno" HeaderText="Costo Diseño" />  
+                                <asp:BoundField DataField="TotalAcabados" HeaderText="Total Acabados" />  
+                                <asp:BoundField DataField="SubtotalFactura" HeaderText="Subtotal Factura" /> 
+                                 <asp:BoundField DataField="TotalFactura" HeaderText="Total Factura" /> 
+
                                 <asp:TemplateField HeaderText="Imprimir">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="ImgPdf" runat="server" ImageUrl="~/img/pdf.png"
@@ -55,13 +67,7 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Editar">
-                                    <ItemTemplate>
-                                        <asp:ImageButton ID="ImgActualizar" runat="server" ImageUrl="~/img/Editar.png"
-                                            ToolTip="Editar" CausesValidation="true" CommandName="Actualizar"></asp:ImageButton>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:TemplateField>
+       
                                 <asp:TemplateField HeaderText="Eliminar">
                                     <ItemTemplate>
                                         <asp:ImageButton ID="ImgEliminar" runat="server" OnClientClick="return confirm('Realmente desea eliminar el cliente?')" ImageUrl="~/img/Eliminar.png"

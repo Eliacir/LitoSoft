@@ -97,5 +97,19 @@ namespace CapaEntidades
         /// </summary>
         public bool UsaLaMismaPlancha { get; set; }
 
+        #region Totales
+
+        public decimal TotalAcabados { get; set; }
+
+        public decimal SubtotalFactura { get; set; }
+
+        public decimal ValorGanancia { get; set; }
+
+        public decimal PorcentajeGanancia { get; set; }
+
+        public decimal TotalFactura { get; set; }
+
+        #endregion
+
     }
 }

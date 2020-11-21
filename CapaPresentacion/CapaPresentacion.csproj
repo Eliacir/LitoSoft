@@ -171,6 +171,17 @@
     <Content Include="img\Thumbs.db" />
     <Content Include="Home.Master" />
     <Content Include="bin\CapaPresentacion.dll.config" />
+    <Content Include="dsPrincipal.xsc">
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </Content>
+    <None Include="dsPrincipal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPrincipal.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="dsPrincipal.xss">
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\EHerazo.pubxml" />
     <None Include="Properties\PublishProfiles\LocalEHM.pubxml" />
     <None Include="Properties\PublishProfiles\SysWeb.pubxml" />
@@ -471,6 +482,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Cast.cs" />
+    <Compile Include="dsPrincipal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPrincipal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImprimirCotizacion.aspx.cs">
       <DependentUpon>ImprimirCotizacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -565,6 +581,14 @@
   <ItemGroup>
     <Folder Include="bin\zh-CHS\" />
     <Folder Include="bin\zh-CHT\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cotización.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informeprueba.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

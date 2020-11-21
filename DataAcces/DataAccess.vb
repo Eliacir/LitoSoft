@@ -11,6 +11,70 @@ Public Class DataAccess
 
 #Region "LITOGRAFIA"
 
+    Public Sub EliminarCotizacion(idcotizacion As Integer)
+        'Crea el objeto base de datos, esto representa la conexion a la base de datos indicada en el archivo de configuracion
+        Dim DB As Database = DatabaseFactory.CreateDatabase()
+        'Crea un sqlComand a partir del nombre del procedimiento almacenado
+        Dim SqlCommand As String = "EliminarCotizacion"
+        Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
+
+        DB.AddInParameter(DatabaseCommand, "IdCotizacion", DbType.Int32, idcotizacion)
+
+        Using connection As DbConnection = DB.CreateConnection()
+            connection.Open()
+            Try
+                'Ejecuta el Procedimiento Almacenado
+                DB.ExecuteNonQuery(DatabaseCommand)
+            Catch
+                Throw
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Sub
+
+    Public Function RecuperarCotizacionIdClientePorFiltro(filtro As Integer, text As String, idcliente As Integer) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarCotizacionIdClientePorFiltro"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "Filtro", DbType.Int32, filtro)
+        db.AddInParameter(dbCommand, "Texto", DbType.String, text)
+        db.AddInParameter(dbCommand, "IdCliente", DbType.String, idcliente)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
+
+    Public Function RecuperarCotizacionesPorFiltro(filtro As Integer, text As String) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarCotizacionesPorFiltro"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "Filtro", DbType.Int32, filtro)
+        db.AddInParameter(dbCommand, "Texto", DbType.String, text)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
     Public Function InsertarCotizacion(IdCliente As Integer,
                                         IdProducto As Integer,
                                         IdPapel As Integer,
@@ -23,8 +87,12 @@ Public Class DataAccess
                                         Respaldo As Boolean,
                                         ColoresFrente As Integer,
                                         ColoresRespaldo As Integer,
-                                        MismaPlancha As Boolean
-                                         ) As Integer
+                                        MismaPlancha As Boolean,
+                                        TotalAcabados As Decimal,
+                                        SubtotalFactura As Decimal,
+                                        ValorGanancia As Decimal,
+                                        PorcentajeGanancia As Decimal,
+                                        TotalFactura As Decimal) As Integer
         Dim db As Database = DatabaseFactory.CreateDatabase()
         Dim sqlCommand As String = "InsertarCotizacion"
         Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
@@ -56,6 +124,16 @@ Public Class DataAccess
         db.AddInParameter(dbCommand, "MismaPlancha", DbType.Boolean, MismaPlancha)
 
         db.AddOutParameter(dbCommand, "IdCotizacion", DbType.Int32, Integer.MaxValue)
+
+        db.AddInParameter(dbCommand, "TotalAcabados", DbType.Decimal, TotalAcabados)
+
+        db.AddInParameter(dbCommand, "SubtotalFactura", DbType.Decimal, SubtotalFactura)
+
+        db.AddInParameter(dbCommand, "ValorGanancia", DbType.Decimal, ValorGanancia)
+
+        db.AddInParameter(dbCommand, "PorcentajeGanancia", DbType.Decimal, PorcentajeGanancia)
+
+        db.AddInParameter(dbCommand, "TotalFactura", DbType.Decimal, TotalFactura)
 
 
 
@@ -148,6 +226,42 @@ Public Class DataAccess
         Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
 
         db.AddInParameter(dbCommand, "IdLitografia", DbType.Int32, idLitografia)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
+    Public Function RecuperarCotizaciones() As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarCotizaciones"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        Using connection As DbConnection = db.CreateConnection()
+            connection.Open()
+            Try
+                Return db.ExecuteDataSet(dbCommand)
+            Catch ex As Exception
+                Throw ex
+            Finally
+                connection.Close()
+            End Try
+        End Using
+    End Function
+
+    Public Function RecuperarCotizacionPorIdCliente(idCliente As Integer) As DataSet
+        Dim db As Database = DatabaseFactory.CreateDatabase()
+        Dim sqlCommand As String = "RecuperarCotizacionPorIdcliente"
+        Dim dbCommand As DbCommand = db.GetStoredProcCommand(sqlCommand)
+
+        db.AddInParameter(dbCommand, "IdCliente", DbType.Int32, idCliente)
 
         Using connection As DbConnection = db.CreateConnection()
             connection.Open()

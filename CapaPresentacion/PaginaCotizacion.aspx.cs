@@ -194,6 +194,12 @@ namespace CapaPresentacion
             txtImpresionestotales.Text = String.Empty;
             txtFrente.Enabled = false;
             txtRespaldo.Enabled = false;
+            txtValorTotalImpresiones.Text = String.Empty;
+            txtValorTotalplancha.Text = String.Empty;
+            txtSubtotalFactura.Text = String.Empty;
+            txtTotalfactura.Text = String.Empty;
+            txtValorGanancia.Text = String.Empty;
+            txtPorcentajeGanancia.Text = String.Empty;
 
             CargarCombos();
 
@@ -279,7 +285,16 @@ namespace CapaPresentacion
 
             Cotizacion.IdCorte = Cast.ToInt(ddCorte.SelectedValue);
 
-        }
+            Cotizacion.ValorGanancia = Cast.ToDecimal(txtValorGanancia.Text);
+
+            Cotizacion.PorcentajeGanancia = Cast.ToDecimal(txtPorcentajeGanancia.Text);
+
+            Cotizacion.TotalAcabados = Cast.ToDecimal(txtTotalAcabados.Text);
+
+            Cotizacion.SubtotalFactura = Cast.ToDecimal(txtSubtotalFactura.Text);
+
+            Cotizacion.TotalFactura = Cast.ToDecimal(txtTotalfactura.Text);
+    }
 
         /// <summary>
         /// Establece los valores calculados de la cotizacion en la pagina
@@ -869,15 +884,27 @@ namespace CapaPresentacion
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            Cotizacion.GuardarCotizacion();
+            try
+            {
+                int idcliente = Cast.ToInt(ddClientes.SelectedValue);
 
-            string mensaje = "Cotización guardada con exito";
+                Cotizacion.GuardarCotizacion();
 
-            ClientScript.RegisterStartupScript(this.GetType(), "Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
+                string mensaje = "Cotización guardada con exito";
 
-            Thread.Sleep(2000);
+                ClientScript.RegisterStartupScript(this.GetType(), "Cotización", "<script>swal('', '" + mensaje + "', 'success')</script>");
 
-            Response.Redirect("PaginaCotizaciones.aspx", true);
+                Thread.Sleep(2000);
+
+                Response.Redirect("PaginaCotizaciones.aspx?Id=" + idcliente, true);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.Message.Replace("'", ""); ;
+                //Mensaje Error
+                ClientScript.RegisterStartupScript(this.GetType(), "Pagina Cotización", "<script>swal('', '" + mensaje + "', 'error')</script>");
+            }
+
         }
 
 

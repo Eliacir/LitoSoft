@@ -337,8 +337,8 @@
                                                 <asp:BoundField DataField="Respaldo" ReadOnly="True" HeaderText="Respaldo">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:BoundField>
-                                                <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Valor" ReadOnly="True" SortExpression="TipoTroquelado" />
-                                                <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor" ReadOnly="True" SortExpression="ValorTroquelado" />
+                                                <asp:BoundField DataField="TipoTroquelado" HeaderText="Tipo Valor" ReadOnly="True"/>
+                                                <asp:BoundField DataField="ValorTroquelado" HeaderText="Valor" ReadOnly="True"  />
                                                 <asp:TemplateField HeaderText="Editar">
                                                     <ItemTemplate>
                                                         <asp:ImageButton ID="ImgActualizar" runat="server" CausesValidation="true" CommandName="Actualizar" ImageUrl="~/img/Editar.png" ToolTip="Editar" />

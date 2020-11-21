@@ -88,7 +88,7 @@
                                     <asp:DropDownList ID="DDFiltro" runat="server" Width="18%" Height="30px" AutoPostBack="False">
                                         <asp:ListItem>Buscar por...</asp:ListItem>
                                         <asp:ListItem>Número Documento</asp:ListItem>
-                                        <asp:ListItem>Nombre</asp:ListItem>
+                                        <asp:ListItem>Nómbre</asp:ListItem>
                                     </asp:DropDownList>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                          <asp:TextBox ID="txtfiltro" runat="server" Width="30%" Height="30px"></asp:TextBox>
@@ -96,8 +96,10 @@
                                     <asp:Button ID="btnBuscarRepresentante" runat="server" Width="100px" ForeColor="White" BorderColor="#357ebd" Text="Buscar" BorderStyle="None" CssClass="btn btn-primary" Height="34px" OnClick="btnBuscar_Click" />
                                 </div>
                                 <div class="box-body table-responsive">
-                                    <asp:GridView ID="GvCliente" runat="server" class="table table-bordered" AutoGenerateColumns="False" DataKeyNames="IdCliente" OnRowCommand="GvCliente_RowCommand" AllowSorting="True" OnPageIndexChanging="GvCliente_PageIndexChanging" OnSorting="GvCliente_Sorting">
+                                    <asp:GridView ID="GvCliente" runat="server" class="table table-bordered" AutoGenerateColumns="False" DataKeyNames="IdCliente" OnRowCommand="GvCliente_RowCommand" AllowSorting="True" OnPageIndexChanging="GvCliente_PageIndexChanging" OnSorting="GvCliente_Sorting"
+                                        EmptyDataText="No hay clientes para mostrar">
                                         <Columns>
+                                              <asp:BoundField DataField="IdCliente" ReadOnly="True" InsertVisible="False" SortExpression="IdCliente" HeaderText="Id" ItemStyle-HorizontalAlign="Center" Visible="False" />
                                             <asp:BoundField DataField="Codigo" HeaderText="Número"  />
                                             <asp:BoundField DataField="Nombre" HeaderText="Nómbre" />
                                             <asp:BoundField DataField="Documento" HeaderText="Documento" />

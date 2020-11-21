@@ -31,7 +31,6 @@ namespace CapaPresentacion
                 HabilitarCamposRegistro(false);
 
                 CargarClientes();
-                //  MostrarOcultarCamposRegistro(false);
             }
         }
 
@@ -74,6 +73,7 @@ namespace CapaPresentacion
                 CargarClientes();
                 string mensaje = ex.Message.Replace("'", "");
                 ClientScript.RegisterStartupScript(this.GetType(), "Clientes", "<script>swal('', '" + mensaje + "', 'error')</script>");
+                CargarClientes();
             }
 
         }
@@ -87,14 +87,16 @@ namespace CapaPresentacion
                 GridViewRow fila = (GridViewRow)Celda.Parent;
 
 
-                Session["Codigocliente"] = Convert.ToInt32(GvCliente.Rows[fila.RowIndex].Cells[0].Text);
+                ViewState["IdClienteDeCliente"] = Convert.ToInt32(this.GvCliente.DataKeys[fila.RowIndex].Value);
+
+                int idcliente = Cast.ToInt(ViewState["IdClienteDeCliente"]);
 
                 switch (e.CommandName)
                 {
 
                     case "Cotizaciones":
                         {
-                            Response.Redirect("PaginaCotizaciones.aspx", false);
+                            Response.Redirect("PaginaCotizaciones.aspx?Id=" + idcliente , false);
                             break;
                         }
                     case "Actualizar":
@@ -111,7 +113,7 @@ namespace CapaPresentacion
                     case "Eliminar":
                         {
 
-                            ohelper.EliminarCliente(Convert.ToInt32(Session["Codigocliente"]), IdLitografia);
+                            ohelper.EliminarCliente(Convert.ToInt32(ViewState["IdClienteDeCliente"]), IdLitografia);
                             string mensaje = "Cliente eliminado satisfactoriamente.";
                             //Mensaje ok
                             CargarClientes();
@@ -203,7 +205,7 @@ namespace CapaPresentacion
         private Cliente GetEditarCliente()
         {
             Cliente oCliente = new Cliente();
-            oCliente.IdCliente = Convert.ToInt32(Session["Codigocliente"]);
+            oCliente.IdCliente = Convert.ToInt32(ViewState["IdClienteDeCliente"]);
             oCliente.Nombre = txtnombre.Text;
             oCliente.Documento = txtdocumento.Text;
             oCliente.Direccion = txtDireccion.Text;
@@ -216,7 +218,7 @@ namespace CapaPresentacion
         {
             try
             {
-                short IdCliente = Cast.ToShort(Session["Codigocliente"]);
+                short IdCliente = Cast.ToShort(ViewState["IdClienteDeCliente"]);
 
                 using (var reader = ohelper.RecuperarClientePorIdcliente(IdCliente, IdLitografia))
                 {
