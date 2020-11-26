@@ -5,6 +5,7 @@ namespace CapaPresentacion
 {
     public partial class Home : System.Web.UI.MasterPage
     {
+        public object ClientScript { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,8 +56,9 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 throw;
-                //string mensaje = ex.Message;
-                //ClientScript.RegisterStartupScript(this.GetType(), "Proyectos", "<script>swal('Error', '" + mensaje + "', 'error')</script>");
+               // string mensaje = ex.Message.Replace("'","");
+               //ClientScript.RegisterStartupScript(GetType(), "Gestionar Cotización", "<script>swal('', '" + mensaje + "', 'error')</script>");
+
             }
 
 

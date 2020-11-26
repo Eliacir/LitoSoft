@@ -896,11 +896,12 @@ namespace CapaPresentacion
 
                 Thread.Sleep(2000);
 
-                Response.Redirect("PaginaCotizaciones.aspx?Id=" + idcliente, true);
+                Response.Redirect("PaginaCotizaciones.aspx?Id=" + idcliente, false);
             }
             catch (Exception ex)
             {
-                string mensaje = ex.Message.Replace("'", ""); ;
+                string mensaje = ex.Message.Replace("'", "");
+                mensaje = mensaje.Replace('"',' ');
                 //Mensaje Error
                 ClientScript.RegisterStartupScript(this.GetType(), "Pagina Cotización", "<script>swal('', '" + mensaje + "', 'error')</script>");
             }

@@ -4,9 +4,17 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="content">
+
+        <div class="row">
+            <div class="col-md-3">
+                <asp:Button ID="btnAtras" OnClick="btnAtras_Click" runat="server" CssClass="btn btn-primary" Width="150px" Text="Atrás" />
+            </div>
+        </div>
+
+        <br />
         <!--Visualizar La imagen a subir -->
         <div class="row">
             <div class="col-md-12">
@@ -14,8 +22,8 @@
                     Width="1139px" Height="550px">
                     <LocalReport ReportPath="Cotización.rdlc">
                         <DataSources>
-                            <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DsCotizacion" />    
-                             <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="DsAcabadosCotizacion" />  
+                            <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DsCotizacion" />
+                            <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="DsAcabadosCotizacion" />
                         </DataSources>
                     </LocalReport>
                 </rsweb:ReportViewer>

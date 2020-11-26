@@ -16,8 +16,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-primary">
-
+         
                     <asp:MultiView ID="MultiView" runat="server">
                         <asp:View ID="viewRegistro" runat="server">
                             <br />
@@ -80,31 +79,45 @@
                     <!--datatable -->
                     <div class="row">
                         <div class="col-md-12">
-                            
+                            <div class="box box-primary">
                                 <div class="box-header">
                                     <h3 class="box-title">Lista de Clientes</h3>
                                 </div>
                                 <div class="box-body table-responsive">
-                                    <asp:DropDownList ID="DDFiltro" runat="server" Width="18%" Height="30px" AutoPostBack="False">
-                                        <asp:ListItem>Buscar por...</asp:ListItem>
-                                        <asp:ListItem>Número Documento</asp:ListItem>
-                                        <asp:ListItem>Nómbre</asp:ListItem>
-                                    </asp:DropDownList>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="txtfiltro" runat="server" Width="30%" Height="30px"></asp:TextBox>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <asp:DropDownList ID="DDFiltro" runat="server" Width="150px" Height="30px" AutoPostBack="False">
+                                                    <asp:ListItem>Buscar por...</asp:ListItem>
+                                                    <asp:ListItem>Número Documento</asp:ListItem>
+                                                    <asp:ListItem>Nómbre</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td>
+                                                                <asp:TextBox ID="txtfiltro" runat="server" CssClass="form-control"  Width="300px" Height="30px"></asp:TextBox>
+                                            </td>
+                                            <td>
 
-                                    <asp:Button ID="btnBuscarRepresentante" runat="server" Width="100px" ForeColor="White" BorderColor="#357ebd" Text="Buscar" BorderStyle="None" CssClass="btn btn-primary" Height="34px" OnClick="btnBuscar_Click" />
+
+                                                 <asp:Button ID="btnBuscarRepresentante" runat="server" Text="Buscar" CssClass="btn btn-primary"  OnClick="btnBuscar_Click" />
+
+                                            </td>
+                                        </tr>
+                                    </table>
+         
+
+           
                                 </div>
                                 <div class="box-body table-responsive">
                                     <asp:GridView ID="GvCliente" runat="server" class="table table-bordered" AutoGenerateColumns="False" DataKeyNames="IdCliente" OnRowCommand="GvCliente_RowCommand" AllowSorting="True" OnPageIndexChanging="GvCliente_PageIndexChanging" OnSorting="GvCliente_Sorting"
                                         EmptyDataText="No hay clientes para mostrar">
                                         <Columns>
-                                              <asp:BoundField DataField="IdCliente" ReadOnly="True" InsertVisible="False" SortExpression="IdCliente" HeaderText="Id" ItemStyle-HorizontalAlign="Center" Visible="False" />
-                                            <asp:BoundField DataField="Codigo" HeaderText="Número"  />
+                                            <asp:BoundField DataField="IdCliente" ReadOnly="True" InsertVisible="False" SortExpression="IdCliente" HeaderText="Id" ItemStyle-HorizontalAlign="Center" Visible="False" />
+                                            <asp:BoundField DataField="Codigo" HeaderText="Número" />
                                             <asp:BoundField DataField="Nombre" HeaderText="Nómbre" />
                                             <asp:BoundField DataField="Documento" HeaderText="Documento" />
-                                            <asp:BoundField DataField="Telefono" HeaderText="Teléfono"  />
-                                            <asp:BoundField DataField="Direccion" HeaderText="Dirección"  />
+                                            <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
+                                            <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
                                             <asp:TemplateField HeaderText="Cotizaciones">
                                                 <ItemTemplate>
                                                     <asp:ImageButton ID="ImgDetalleC" runat="server" ImageUrl="~/img/DetalleCotizacion.png"
@@ -129,10 +142,11 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
-                            
+
+                            </div>
                         </div>
                     </div>
-                </div>
+      
             </div>
         </div>
 

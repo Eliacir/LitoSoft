@@ -23,6 +23,18 @@ namespace CapaPresentacion
         {
 
         }
+
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("PaginaCotizaciones.aspx", false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }
