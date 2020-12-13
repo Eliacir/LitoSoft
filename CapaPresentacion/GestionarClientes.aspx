@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label id="lbldocumento" runat="server">Nro. Documento</label>
+                                    <label id="lbldocumento" runat="server">Nit/Rut</label>
                                 </div>
                                 <div class="form-group">
                                     <asp:TextBox ID="txtdocumento" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>

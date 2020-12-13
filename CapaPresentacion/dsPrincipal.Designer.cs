@@ -24,9 +24,9 @@ namespace CapaPresentacion {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class dsPrincipal : global::System.Data.DataSet {
         
-        private RecuperarCotizacionPorIdCotizacionDataTable tableRecuperarCotizacionPorIdCotizacion;
-        
         private RecuperarAcabadosCotizacionPorIdCotizacionDataTable tableRecuperarAcabadosCotizacionPorIdCotizacion;
+        
+        private RecuperarCotizacionPorIdCotizacionDataTable tableRecuperarCotizacionPorIdCotizacion;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -56,11 +56,11 @@ namespace CapaPresentacion {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["RecuperarCotizacionPorIdCotizacion"] != null)) {
-                    base.Tables.Add(new RecuperarCotizacionPorIdCotizacionDataTable(ds.Tables["RecuperarCotizacionPorIdCotizacion"]));
-                }
                 if ((ds.Tables["RecuperarAcabadosCotizacionPorIdCotizacion"] != null)) {
                     base.Tables.Add(new RecuperarAcabadosCotizacionPorIdCotizacionDataTable(ds.Tables["RecuperarAcabadosCotizacionPorIdCotizacion"]));
+                }
+                if ((ds.Tables["RecuperarCotizacionPorIdCotizacion"] != null)) {
+                    base.Tables.Add(new RecuperarCotizacionPorIdCotizacionDataTable(ds.Tables["RecuperarCotizacionPorIdCotizacion"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -84,9 +84,9 @@ namespace CapaPresentacion {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public RecuperarCotizacionPorIdCotizacionDataTable RecuperarCotizacionPorIdCotizacion {
+        public RecuperarAcabadosCotizacionPorIdCotizacionDataTable RecuperarAcabadosCotizacionPorIdCotizacion {
             get {
-                return this.tableRecuperarCotizacionPorIdCotizacion;
+                return this.tableRecuperarAcabadosCotizacionPorIdCotizacion;
             }
         }
         
@@ -94,9 +94,9 @@ namespace CapaPresentacion {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public RecuperarAcabadosCotizacionPorIdCotizacionDataTable RecuperarAcabadosCotizacionPorIdCotizacion {
+        public RecuperarCotizacionPorIdCotizacionDataTable RecuperarCotizacionPorIdCotizacion {
             get {
-                return this.tableRecuperarAcabadosCotizacionPorIdCotizacion;
+                return this.tableRecuperarCotizacionPorIdCotizacion;
             }
         }
         
@@ -167,11 +167,11 @@ namespace CapaPresentacion {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["RecuperarCotizacionPorIdCotizacion"] != null)) {
-                    base.Tables.Add(new RecuperarCotizacionPorIdCotizacionDataTable(ds.Tables["RecuperarCotizacionPorIdCotizacion"]));
-                }
                 if ((ds.Tables["RecuperarAcabadosCotizacionPorIdCotizacion"] != null)) {
                     base.Tables.Add(new RecuperarAcabadosCotizacionPorIdCotizacionDataTable(ds.Tables["RecuperarAcabadosCotizacionPorIdCotizacion"]));
+                }
+                if ((ds.Tables["RecuperarCotizacionPorIdCotizacion"] != null)) {
+                    base.Tables.Add(new RecuperarCotizacionPorIdCotizacionDataTable(ds.Tables["RecuperarCotizacionPorIdCotizacion"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -206,16 +206,16 @@ namespace CapaPresentacion {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableRecuperarCotizacionPorIdCotizacion = ((RecuperarCotizacionPorIdCotizacionDataTable)(base.Tables["RecuperarCotizacionPorIdCotizacion"]));
-            if ((initTable == true)) {
-                if ((this.tableRecuperarCotizacionPorIdCotizacion != null)) {
-                    this.tableRecuperarCotizacionPorIdCotizacion.InitVars();
-                }
-            }
             this.tableRecuperarAcabadosCotizacionPorIdCotizacion = ((RecuperarAcabadosCotizacionPorIdCotizacionDataTable)(base.Tables["RecuperarAcabadosCotizacionPorIdCotizacion"]));
             if ((initTable == true)) {
                 if ((this.tableRecuperarAcabadosCotizacionPorIdCotizacion != null)) {
                     this.tableRecuperarAcabadosCotizacionPorIdCotizacion.InitVars();
+                }
+            }
+            this.tableRecuperarCotizacionPorIdCotizacion = ((RecuperarCotizacionPorIdCotizacionDataTable)(base.Tables["RecuperarCotizacionPorIdCotizacion"]));
+            if ((initTable == true)) {
+                if ((this.tableRecuperarCotizacionPorIdCotizacion != null)) {
+                    this.tableRecuperarCotizacionPorIdCotizacion.InitVars();
                 }
             }
         }
@@ -228,21 +228,21 @@ namespace CapaPresentacion {
             this.Namespace = "http://tempuri.org/dsPrincipal.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableRecuperarCotizacionPorIdCotizacion = new RecuperarCotizacionPorIdCotizacionDataTable();
-            base.Tables.Add(this.tableRecuperarCotizacionPorIdCotizacion);
             this.tableRecuperarAcabadosCotizacionPorIdCotizacion = new RecuperarAcabadosCotizacionPorIdCotizacionDataTable();
             base.Tables.Add(this.tableRecuperarAcabadosCotizacionPorIdCotizacion);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeRecuperarCotizacionPorIdCotizacion() {
-            return false;
+            this.tableRecuperarCotizacionPorIdCotizacion = new RecuperarCotizacionPorIdCotizacionDataTable();
+            base.Tables.Add(this.tableRecuperarCotizacionPorIdCotizacion);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeRecuperarAcabadosCotizacionPorIdCotizacion() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeRecuperarCotizacionPorIdCotizacion() {
             return false;
         }
         
@@ -302,674 +302,10 @@ namespace CapaPresentacion {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void RecuperarCotizacionPorIdCotizacionRowChangeEventHandler(object sender, RecuperarCotizacionPorIdCotizacionRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void RecuperarAcabadosCotizacionPorIdCotizacionRowChangeEventHandler(object sender, RecuperarAcabadosCotizacionPorIdCotizacionRowChangeEvent e);
         
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class RecuperarCotizacionPorIdCotizacionDataTable : global::System.Data.TypedTableBase<RecuperarCotizacionPorIdCotizacionRow> {
-            
-            private global::System.Data.DataColumn columnIdCotizacion;
-            
-            private global::System.Data.DataColumn columnIdCliente;
-            
-            private global::System.Data.DataColumn columnCliente;
-            
-            private global::System.Data.DataColumn columnIdProducto;
-            
-            private global::System.Data.DataColumn columnProducto;
-            
-            private global::System.Data.DataColumn columnIdPapel;
-            
-            private global::System.Data.DataColumn columnPapel;
-            
-            private global::System.Data.DataColumn columnIdCorte;
-            
-            private global::System.Data.DataColumn columnCorte;
-            
-            private global::System.Data.DataColumn columnCantidad;
-            
-            private global::System.Data.DataColumn columnCostoDiseno;
-            
-            private global::System.Data.DataColumn columnCavidad;
-            
-            private global::System.Data.DataColumn columnMontaje;
-            
-            private global::System.Data.DataColumn columnFrente;
-            
-            private global::System.Data.DataColumn columnRespaldo;
-            
-            private global::System.Data.DataColumn columnColoresFrente;
-            
-            private global::System.Data.DataColumn columnColoresRespaldo;
-            
-            private global::System.Data.DataColumn columnNombreLitografia;
-            
-            private global::System.Data.DataColumn columnDireccionLitografia;
-            
-            private global::System.Data.DataColumn columnTelefonoLitografia;
-            
-            private global::System.Data.DataColumn columnLogoLitografia;
-            
-            private global::System.Data.DataColumn columnTotalAcabados;
-            
-            private global::System.Data.DataColumn columnSubtotalFactura;
-            
-            private global::System.Data.DataColumn columnValorGanancia;
-            
-            private global::System.Data.DataColumn columnPorcentajeGanancia;
-            
-            private global::System.Data.DataColumn columnTotalFactura;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionDataTable() {
-                this.TableName = "RecuperarCotizacionPorIdCotizacion";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal RecuperarCotizacionPorIdCotizacionDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected RecuperarCotizacionPorIdCotizacionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdCotizacionColumn {
-                get {
-                    return this.columnIdCotizacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdClienteColumn {
-                get {
-                    return this.columnIdCliente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ClienteColumn {
-                get {
-                    return this.columnCliente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdProductoColumn {
-                get {
-                    return this.columnIdProducto;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ProductoColumn {
-                get {
-                    return this.columnProducto;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdPapelColumn {
-                get {
-                    return this.columnIdPapel;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PapelColumn {
-                get {
-                    return this.columnPapel;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdCorteColumn {
-                get {
-                    return this.columnIdCorte;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CorteColumn {
-                get {
-                    return this.columnCorte;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CantidadColumn {
-                get {
-                    return this.columnCantidad;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CostoDisenoColumn {
-                get {
-                    return this.columnCostoDiseno;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CavidadColumn {
-                get {
-                    return this.columnCavidad;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn MontajeColumn {
-                get {
-                    return this.columnMontaje;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn FrenteColumn {
-                get {
-                    return this.columnFrente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RespaldoColumn {
-                get {
-                    return this.columnRespaldo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ColoresFrenteColumn {
-                get {
-                    return this.columnColoresFrente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ColoresRespaldoColumn {
-                get {
-                    return this.columnColoresRespaldo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn NombreLitografiaColumn {
-                get {
-                    return this.columnNombreLitografia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DireccionLitografiaColumn {
-                get {
-                    return this.columnDireccionLitografia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TelefonoLitografiaColumn {
-                get {
-                    return this.columnTelefonoLitografia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LogoLitografiaColumn {
-                get {
-                    return this.columnLogoLitografia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TotalAcabadosColumn {
-                get {
-                    return this.columnTotalAcabados;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn SubtotalFacturaColumn {
-                get {
-                    return this.columnSubtotalFactura;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ValorGananciaColumn {
-                get {
-                    return this.columnValorGanancia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PorcentajeGananciaColumn {
-                get {
-                    return this.columnPorcentajeGanancia;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TotalFacturaColumn {
-                get {
-                    return this.columnTotalFactura;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionRow this[int index] {
-                get {
-                    return ((RecuperarCotizacionPorIdCotizacionRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddRecuperarCotizacionPorIdCotizacionRow(RecuperarCotizacionPorIdCotizacionRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionRow AddRecuperarCotizacionPorIdCotizacionRow(
-                        int IdCliente, 
-                        string Cliente, 
-                        int IdProducto, 
-                        string Producto, 
-                        int IdPapel, 
-                        string Papel, 
-                        int IdCorte, 
-                        string Corte, 
-                        int Cantidad, 
-                        decimal CostoDiseno, 
-                        int Cavidad, 
-                        string Montaje, 
-                        bool Frente, 
-                        bool Respaldo, 
-                        int ColoresFrente, 
-                        int ColoresRespaldo, 
-                        string NombreLitografia, 
-                        string DireccionLitografia, 
-                        string TelefonoLitografia, 
-                        byte[] LogoLitografia, 
-                        decimal TotalAcabados, 
-                        decimal SubtotalFactura, 
-                        decimal ValorGanancia, 
-                        decimal PorcentajeGanancia, 
-                        decimal TotalFactura) {
-                RecuperarCotizacionPorIdCotizacionRow rowRecuperarCotizacionPorIdCotizacionRow = ((RecuperarCotizacionPorIdCotizacionRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        IdCliente,
-                        Cliente,
-                        IdProducto,
-                        Producto,
-                        IdPapel,
-                        Papel,
-                        IdCorte,
-                        Corte,
-                        Cantidad,
-                        CostoDiseno,
-                        Cavidad,
-                        Montaje,
-                        Frente,
-                        Respaldo,
-                        ColoresFrente,
-                        ColoresRespaldo,
-                        NombreLitografia,
-                        DireccionLitografia,
-                        TelefonoLitografia,
-                        LogoLitografia,
-                        TotalAcabados,
-                        SubtotalFactura,
-                        ValorGanancia,
-                        PorcentajeGanancia,
-                        TotalFactura};
-                rowRecuperarCotizacionPorIdCotizacionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowRecuperarCotizacionPorIdCotizacionRow);
-                return rowRecuperarCotizacionPorIdCotizacionRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionRow FindByIdCotizacion(int IdCotizacion) {
-                return ((RecuperarCotizacionPorIdCotizacionRow)(this.Rows.Find(new object[] {
-                            IdCotizacion})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                RecuperarCotizacionPorIdCotizacionDataTable cln = ((RecuperarCotizacionPorIdCotizacionDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new RecuperarCotizacionPorIdCotizacionDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnIdCotizacion = base.Columns["IdCotizacion"];
-                this.columnIdCliente = base.Columns["IdCliente"];
-                this.columnCliente = base.Columns["Cliente"];
-                this.columnIdProducto = base.Columns["IdProducto"];
-                this.columnProducto = base.Columns["Producto"];
-                this.columnIdPapel = base.Columns["IdPapel"];
-                this.columnPapel = base.Columns["Papel"];
-                this.columnIdCorte = base.Columns["IdCorte"];
-                this.columnCorte = base.Columns["Corte"];
-                this.columnCantidad = base.Columns["Cantidad"];
-                this.columnCostoDiseno = base.Columns["CostoDiseno"];
-                this.columnCavidad = base.Columns["Cavidad"];
-                this.columnMontaje = base.Columns["Montaje"];
-                this.columnFrente = base.Columns["Frente"];
-                this.columnRespaldo = base.Columns["Respaldo"];
-                this.columnColoresFrente = base.Columns["ColoresFrente"];
-                this.columnColoresRespaldo = base.Columns["ColoresRespaldo"];
-                this.columnNombreLitografia = base.Columns["NombreLitografia"];
-                this.columnDireccionLitografia = base.Columns["DireccionLitografia"];
-                this.columnTelefonoLitografia = base.Columns["TelefonoLitografia"];
-                this.columnLogoLitografia = base.Columns["LogoLitografia"];
-                this.columnTotalAcabados = base.Columns["TotalAcabados"];
-                this.columnSubtotalFactura = base.Columns["SubtotalFactura"];
-                this.columnValorGanancia = base.Columns["ValorGanancia"];
-                this.columnPorcentajeGanancia = base.Columns["PorcentajeGanancia"];
-                this.columnTotalFactura = base.Columns["TotalFactura"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnIdCotizacion = new global::System.Data.DataColumn("IdCotizacion", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdCotizacion);
-                this.columnIdCliente = new global::System.Data.DataColumn("IdCliente", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdCliente);
-                this.columnCliente = new global::System.Data.DataColumn("Cliente", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCliente);
-                this.columnIdProducto = new global::System.Data.DataColumn("IdProducto", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdProducto);
-                this.columnProducto = new global::System.Data.DataColumn("Producto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProducto);
-                this.columnIdPapel = new global::System.Data.DataColumn("IdPapel", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdPapel);
-                this.columnPapel = new global::System.Data.DataColumn("Papel", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPapel);
-                this.columnIdCorte = new global::System.Data.DataColumn("IdCorte", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdCorte);
-                this.columnCorte = new global::System.Data.DataColumn("Corte", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCorte);
-                this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCantidad);
-                this.columnCostoDiseno = new global::System.Data.DataColumn("CostoDiseno", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCostoDiseno);
-                this.columnCavidad = new global::System.Data.DataColumn("Cavidad", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCavidad);
-                this.columnMontaje = new global::System.Data.DataColumn("Montaje", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMontaje);
-                this.columnFrente = new global::System.Data.DataColumn("Frente", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFrente);
-                this.columnRespaldo = new global::System.Data.DataColumn("Respaldo", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRespaldo);
-                this.columnColoresFrente = new global::System.Data.DataColumn("ColoresFrente", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnColoresFrente);
-                this.columnColoresRespaldo = new global::System.Data.DataColumn("ColoresRespaldo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnColoresRespaldo);
-                this.columnNombreLitografia = new global::System.Data.DataColumn("NombreLitografia", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNombreLitografia);
-                this.columnDireccionLitografia = new global::System.Data.DataColumn("DireccionLitografia", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDireccionLitografia);
-                this.columnTelefonoLitografia = new global::System.Data.DataColumn("TelefonoLitografia", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTelefonoLitografia);
-                this.columnLogoLitografia = new global::System.Data.DataColumn("LogoLitografia", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLogoLitografia);
-                this.columnTotalAcabados = new global::System.Data.DataColumn("TotalAcabados", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotalAcabados);
-                this.columnSubtotalFactura = new global::System.Data.DataColumn("SubtotalFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSubtotalFactura);
-                this.columnValorGanancia = new global::System.Data.DataColumn("ValorGanancia", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnValorGanancia);
-                this.columnPorcentajeGanancia = new global::System.Data.DataColumn("PorcentajeGanancia", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPorcentajeGanancia);
-                this.columnTotalFactura = new global::System.Data.DataColumn("TotalFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotalFactura);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdCotizacion}, true));
-                this.columnIdCotizacion.AutoIncrement = true;
-                this.columnIdCotizacion.AutoIncrementSeed = -1;
-                this.columnIdCotizacion.AutoIncrementStep = -1;
-                this.columnIdCotizacion.AllowDBNull = false;
-                this.columnIdCotizacion.ReadOnly = true;
-                this.columnIdCotizacion.Unique = true;
-                this.columnIdCliente.AllowDBNull = false;
-                this.columnCliente.AllowDBNull = false;
-                this.columnCliente.MaxLength = 200;
-                this.columnIdProducto.AllowDBNull = false;
-                this.columnProducto.AllowDBNull = false;
-                this.columnProducto.MaxLength = 50;
-                this.columnIdPapel.AllowDBNull = false;
-                this.columnPapel.AllowDBNull = false;
-                this.columnPapel.MaxLength = 100;
-                this.columnIdCorte.AllowDBNull = false;
-                this.columnCorte.AllowDBNull = false;
-                this.columnCorte.MaxLength = 10;
-                this.columnCantidad.AllowDBNull = false;
-                this.columnCavidad.AllowDBNull = false;
-                this.columnMontaje.AllowDBNull = false;
-                this.columnMontaje.MaxLength = 10;
-                this.columnFrente.AllowDBNull = false;
-                this.columnRespaldo.AllowDBNull = false;
-                this.columnColoresFrente.AllowDBNull = false;
-                this.columnColoresRespaldo.AllowDBNull = false;
-                this.columnNombreLitografia.ReadOnly = true;
-                this.columnNombreLitografia.MaxLength = 100;
-                this.columnDireccionLitografia.ReadOnly = true;
-                this.columnDireccionLitografia.MaxLength = 100;
-                this.columnTelefonoLitografia.ReadOnly = true;
-                this.columnTelefonoLitografia.MaxLength = 20;
-                this.columnLogoLitografia.ReadOnly = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionRow NewRecuperarCotizacionPorIdCotizacionRow() {
-                return ((RecuperarCotizacionPorIdCotizacionRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new RecuperarCotizacionPorIdCotizacionRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(RecuperarCotizacionPorIdCotizacionRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.RecuperarCotizacionPorIdCotizacionRowChanged != null)) {
-                    this.RecuperarCotizacionPorIdCotizacionRowChanged(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.RecuperarCotizacionPorIdCotizacionRowChanging != null)) {
-                    this.RecuperarCotizacionPorIdCotizacionRowChanging(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.RecuperarCotizacionPorIdCotizacionRowDeleted != null)) {
-                    this.RecuperarCotizacionPorIdCotizacionRowDeleted(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.RecuperarCotizacionPorIdCotizacionRowDeleting != null)) {
-                    this.RecuperarCotizacionPorIdCotizacionRowDeleting(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveRecuperarCotizacionPorIdCotizacionRow(RecuperarCotizacionPorIdCotizacionRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsPrincipal ds = new dsPrincipal();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "RecuperarCotizacionPorIdCotizacionDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void RecuperarCotizacionPorIdCotizacionRowChangeEventHandler(object sender, RecuperarCotizacionPorIdCotizacionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1341,6 +677,878 @@ namespace CapaPresentacion {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class RecuperarCotizacionPorIdCotizacionDataTable : global::System.Data.TypedTableBase<RecuperarCotizacionPorIdCotizacionRow> {
+            
+            private global::System.Data.DataColumn columnIdCotizacion;
+            
+            private global::System.Data.DataColumn columnIdCliente;
+            
+            private global::System.Data.DataColumn columnCliente;
+            
+            private global::System.Data.DataColumn columnDocumentoCliente;
+            
+            private global::System.Data.DataColumn columnDireccionCliente;
+            
+            private global::System.Data.DataColumn columnTelefonoCliente;
+            
+            private global::System.Data.DataColumn columnIdProducto;
+            
+            private global::System.Data.DataColumn columnProducto;
+            
+            private global::System.Data.DataColumn columnIdPapel;
+            
+            private global::System.Data.DataColumn columnPapel;
+            
+            private global::System.Data.DataColumn columnIdCorte;
+            
+            private global::System.Data.DataColumn columnCorte;
+            
+            private global::System.Data.DataColumn columnCantidad;
+            
+            private global::System.Data.DataColumn columnCostoDiseno;
+            
+            private global::System.Data.DataColumn columnCavidad;
+            
+            private global::System.Data.DataColumn columnMontaje;
+            
+            private global::System.Data.DataColumn columnFrente;
+            
+            private global::System.Data.DataColumn columnRespaldo;
+            
+            private global::System.Data.DataColumn columnColoresFrente;
+            
+            private global::System.Data.DataColumn columnColoresRespaldo;
+            
+            private global::System.Data.DataColumn columnTotalAcabados;
+            
+            private global::System.Data.DataColumn columnSubtotalFactura;
+            
+            private global::System.Data.DataColumn columnValorGanancia;
+            
+            private global::System.Data.DataColumn columnPorcentajeGanancia;
+            
+            private global::System.Data.DataColumn columnTotalFactura;
+            
+            private global::System.Data.DataColumn columnNombreLitografia;
+            
+            private global::System.Data.DataColumn columnDireccionLitografia;
+            
+            private global::System.Data.DataColumn columnTelefonoLitografia;
+            
+            private global::System.Data.DataColumn columnLogoLitografia;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionDataTable() {
+                this.TableName = "RecuperarCotizacionPorIdCotizacion";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal RecuperarCotizacionPorIdCotizacionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected RecuperarCotizacionPorIdCotizacionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdCotizacionColumn {
+                get {
+                    return this.columnIdCotizacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdClienteColumn {
+                get {
+                    return this.columnIdCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ClienteColumn {
+                get {
+                    return this.columnCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DocumentoClienteColumn {
+                get {
+                    return this.columnDocumentoCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DireccionClienteColumn {
+                get {
+                    return this.columnDireccionCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TelefonoClienteColumn {
+                get {
+                    return this.columnTelefonoCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdProductoColumn {
+                get {
+                    return this.columnIdProducto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ProductoColumn {
+                get {
+                    return this.columnProducto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdPapelColumn {
+                get {
+                    return this.columnIdPapel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PapelColumn {
+                get {
+                    return this.columnPapel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdCorteColumn {
+                get {
+                    return this.columnIdCorte;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CorteColumn {
+                get {
+                    return this.columnCorte;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CantidadColumn {
+                get {
+                    return this.columnCantidad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CostoDisenoColumn {
+                get {
+                    return this.columnCostoDiseno;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CavidadColumn {
+                get {
+                    return this.columnCavidad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MontajeColumn {
+                get {
+                    return this.columnMontaje;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FrenteColumn {
+                get {
+                    return this.columnFrente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RespaldoColumn {
+                get {
+                    return this.columnRespaldo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ColoresFrenteColumn {
+                get {
+                    return this.columnColoresFrente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ColoresRespaldoColumn {
+                get {
+                    return this.columnColoresRespaldo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalAcabadosColumn {
+                get {
+                    return this.columnTotalAcabados;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SubtotalFacturaColumn {
+                get {
+                    return this.columnSubtotalFactura;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ValorGananciaColumn {
+                get {
+                    return this.columnValorGanancia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PorcentajeGananciaColumn {
+                get {
+                    return this.columnPorcentajeGanancia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalFacturaColumn {
+                get {
+                    return this.columnTotalFactura;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NombreLitografiaColumn {
+                get {
+                    return this.columnNombreLitografia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DireccionLitografiaColumn {
+                get {
+                    return this.columnDireccionLitografia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TelefonoLitografiaColumn {
+                get {
+                    return this.columnTelefonoLitografia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LogoLitografiaColumn {
+                get {
+                    return this.columnLogoLitografia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionRow this[int index] {
+                get {
+                    return ((RecuperarCotizacionPorIdCotizacionRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RecuperarCotizacionPorIdCotizacionRowChangeEventHandler RecuperarCotizacionPorIdCotizacionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddRecuperarCotizacionPorIdCotizacionRow(RecuperarCotizacionPorIdCotizacionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionRow AddRecuperarCotizacionPorIdCotizacionRow(
+                        int IdCliente, 
+                        string Cliente, 
+                        string DocumentoCliente, 
+                        string DireccionCliente, 
+                        string TelefonoCliente, 
+                        int IdProducto, 
+                        string Producto, 
+                        int IdPapel, 
+                        string Papel, 
+                        int IdCorte, 
+                        string Corte, 
+                        int Cantidad, 
+                        decimal CostoDiseno, 
+                        int Cavidad, 
+                        string Montaje, 
+                        bool Frente, 
+                        bool Respaldo, 
+                        int ColoresFrente, 
+                        int ColoresRespaldo, 
+                        decimal TotalAcabados, 
+                        decimal SubtotalFactura, 
+                        decimal ValorGanancia, 
+                        decimal PorcentajeGanancia, 
+                        decimal TotalFactura, 
+                        string NombreLitografia, 
+                        string DireccionLitografia, 
+                        string TelefonoLitografia, 
+                        byte[] LogoLitografia) {
+                RecuperarCotizacionPorIdCotizacionRow rowRecuperarCotizacionPorIdCotizacionRow = ((RecuperarCotizacionPorIdCotizacionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        IdCliente,
+                        Cliente,
+                        DocumentoCliente,
+                        DireccionCliente,
+                        TelefonoCliente,
+                        IdProducto,
+                        Producto,
+                        IdPapel,
+                        Papel,
+                        IdCorte,
+                        Corte,
+                        Cantidad,
+                        CostoDiseno,
+                        Cavidad,
+                        Montaje,
+                        Frente,
+                        Respaldo,
+                        ColoresFrente,
+                        ColoresRespaldo,
+                        TotalAcabados,
+                        SubtotalFactura,
+                        ValorGanancia,
+                        PorcentajeGanancia,
+                        TotalFactura,
+                        NombreLitografia,
+                        DireccionLitografia,
+                        TelefonoLitografia,
+                        LogoLitografia};
+                rowRecuperarCotizacionPorIdCotizacionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRecuperarCotizacionPorIdCotizacionRow);
+                return rowRecuperarCotizacionPorIdCotizacionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionRow FindByIdCotizacion(int IdCotizacion) {
+                return ((RecuperarCotizacionPorIdCotizacionRow)(this.Rows.Find(new object[] {
+                            IdCotizacion})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                RecuperarCotizacionPorIdCotizacionDataTable cln = ((RecuperarCotizacionPorIdCotizacionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new RecuperarCotizacionPorIdCotizacionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnIdCotizacion = base.Columns["IdCotizacion"];
+                this.columnIdCliente = base.Columns["IdCliente"];
+                this.columnCliente = base.Columns["Cliente"];
+                this.columnDocumentoCliente = base.Columns["DocumentoCliente"];
+                this.columnDireccionCliente = base.Columns["DireccionCliente"];
+                this.columnTelefonoCliente = base.Columns["TelefonoCliente"];
+                this.columnIdProducto = base.Columns["IdProducto"];
+                this.columnProducto = base.Columns["Producto"];
+                this.columnIdPapel = base.Columns["IdPapel"];
+                this.columnPapel = base.Columns["Papel"];
+                this.columnIdCorte = base.Columns["IdCorte"];
+                this.columnCorte = base.Columns["Corte"];
+                this.columnCantidad = base.Columns["Cantidad"];
+                this.columnCostoDiseno = base.Columns["CostoDiseno"];
+                this.columnCavidad = base.Columns["Cavidad"];
+                this.columnMontaje = base.Columns["Montaje"];
+                this.columnFrente = base.Columns["Frente"];
+                this.columnRespaldo = base.Columns["Respaldo"];
+                this.columnColoresFrente = base.Columns["ColoresFrente"];
+                this.columnColoresRespaldo = base.Columns["ColoresRespaldo"];
+                this.columnTotalAcabados = base.Columns["TotalAcabados"];
+                this.columnSubtotalFactura = base.Columns["SubtotalFactura"];
+                this.columnValorGanancia = base.Columns["ValorGanancia"];
+                this.columnPorcentajeGanancia = base.Columns["PorcentajeGanancia"];
+                this.columnTotalFactura = base.Columns["TotalFactura"];
+                this.columnNombreLitografia = base.Columns["NombreLitografia"];
+                this.columnDireccionLitografia = base.Columns["DireccionLitografia"];
+                this.columnTelefonoLitografia = base.Columns["TelefonoLitografia"];
+                this.columnLogoLitografia = base.Columns["LogoLitografia"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnIdCotizacion = new global::System.Data.DataColumn("IdCotizacion", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdCotizacion);
+                this.columnIdCliente = new global::System.Data.DataColumn("IdCliente", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdCliente);
+                this.columnCliente = new global::System.Data.DataColumn("Cliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCliente);
+                this.columnDocumentoCliente = new global::System.Data.DataColumn("DocumentoCliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDocumentoCliente);
+                this.columnDireccionCliente = new global::System.Data.DataColumn("DireccionCliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDireccionCliente);
+                this.columnTelefonoCliente = new global::System.Data.DataColumn("TelefonoCliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefonoCliente);
+                this.columnIdProducto = new global::System.Data.DataColumn("IdProducto", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdProducto);
+                this.columnProducto = new global::System.Data.DataColumn("Producto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProducto);
+                this.columnIdPapel = new global::System.Data.DataColumn("IdPapel", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdPapel);
+                this.columnPapel = new global::System.Data.DataColumn("Papel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPapel);
+                this.columnIdCorte = new global::System.Data.DataColumn("IdCorte", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdCorte);
+                this.columnCorte = new global::System.Data.DataColumn("Corte", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCorte);
+                this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidad);
+                this.columnCostoDiseno = new global::System.Data.DataColumn("CostoDiseno", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCostoDiseno);
+                this.columnCavidad = new global::System.Data.DataColumn("Cavidad", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCavidad);
+                this.columnMontaje = new global::System.Data.DataColumn("Montaje", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMontaje);
+                this.columnFrente = new global::System.Data.DataColumn("Frente", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFrente);
+                this.columnRespaldo = new global::System.Data.DataColumn("Respaldo", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRespaldo);
+                this.columnColoresFrente = new global::System.Data.DataColumn("ColoresFrente", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColoresFrente);
+                this.columnColoresRespaldo = new global::System.Data.DataColumn("ColoresRespaldo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColoresRespaldo);
+                this.columnTotalAcabados = new global::System.Data.DataColumn("TotalAcabados", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAcabados);
+                this.columnSubtotalFactura = new global::System.Data.DataColumn("SubtotalFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubtotalFactura);
+                this.columnValorGanancia = new global::System.Data.DataColumn("ValorGanancia", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValorGanancia);
+                this.columnPorcentajeGanancia = new global::System.Data.DataColumn("PorcentajeGanancia", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPorcentajeGanancia);
+                this.columnTotalFactura = new global::System.Data.DataColumn("TotalFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalFactura);
+                this.columnNombreLitografia = new global::System.Data.DataColumn("NombreLitografia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreLitografia);
+                this.columnDireccionLitografia = new global::System.Data.DataColumn("DireccionLitografia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDireccionLitografia);
+                this.columnTelefonoLitografia = new global::System.Data.DataColumn("TelefonoLitografia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefonoLitografia);
+                this.columnLogoLitografia = new global::System.Data.DataColumn("LogoLitografia", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLogoLitografia);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdCotizacion}, true));
+                this.columnIdCotizacion.AutoIncrement = true;
+                this.columnIdCotizacion.AutoIncrementSeed = -1;
+                this.columnIdCotizacion.AutoIncrementStep = -1;
+                this.columnIdCotizacion.AllowDBNull = false;
+                this.columnIdCotizacion.ReadOnly = true;
+                this.columnIdCotizacion.Unique = true;
+                this.columnIdCliente.AllowDBNull = false;
+                this.columnCliente.AllowDBNull = false;
+                this.columnCliente.MaxLength = 200;
+                this.columnDocumentoCliente.ReadOnly = true;
+                this.columnDocumentoCliente.MaxLength = 25;
+                this.columnDireccionCliente.MaxLength = 100;
+                this.columnTelefonoCliente.ReadOnly = true;
+                this.columnTelefonoCliente.MaxLength = 55;
+                this.columnIdProducto.AllowDBNull = false;
+                this.columnProducto.AllowDBNull = false;
+                this.columnProducto.MaxLength = 50;
+                this.columnIdPapel.AllowDBNull = false;
+                this.columnPapel.AllowDBNull = false;
+                this.columnPapel.MaxLength = 100;
+                this.columnIdCorte.AllowDBNull = false;
+                this.columnCorte.AllowDBNull = false;
+                this.columnCorte.MaxLength = 10;
+                this.columnCantidad.AllowDBNull = false;
+                this.columnCostoDiseno.ReadOnly = true;
+                this.columnCavidad.AllowDBNull = false;
+                this.columnMontaje.AllowDBNull = false;
+                this.columnMontaje.MaxLength = 10;
+                this.columnFrente.AllowDBNull = false;
+                this.columnRespaldo.AllowDBNull = false;
+                this.columnColoresFrente.AllowDBNull = false;
+                this.columnColoresRespaldo.AllowDBNull = false;
+                this.columnNombreLitografia.ReadOnly = true;
+                this.columnNombreLitografia.MaxLength = 100;
+                this.columnDireccionLitografia.ReadOnly = true;
+                this.columnDireccionLitografia.MaxLength = 100;
+                this.columnTelefonoLitografia.ReadOnly = true;
+                this.columnTelefonoLitografia.MaxLength = 25;
+                this.columnLogoLitografia.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionRow NewRecuperarCotizacionPorIdCotizacionRow() {
+                return ((RecuperarCotizacionPorIdCotizacionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new RecuperarCotizacionPorIdCotizacionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(RecuperarCotizacionPorIdCotizacionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.RecuperarCotizacionPorIdCotizacionRowChanged != null)) {
+                    this.RecuperarCotizacionPorIdCotizacionRowChanged(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.RecuperarCotizacionPorIdCotizacionRowChanging != null)) {
+                    this.RecuperarCotizacionPorIdCotizacionRowChanging(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.RecuperarCotizacionPorIdCotizacionRowDeleted != null)) {
+                    this.RecuperarCotizacionPorIdCotizacionRowDeleted(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.RecuperarCotizacionPorIdCotizacionRowDeleting != null)) {
+                    this.RecuperarCotizacionPorIdCotizacionRowDeleting(this, new RecuperarCotizacionPorIdCotizacionRowChangeEvent(((RecuperarCotizacionPorIdCotizacionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveRecuperarCotizacionPorIdCotizacionRow(RecuperarCotizacionPorIdCotizacionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsPrincipal ds = new dsPrincipal();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "RecuperarCotizacionPorIdCotizacionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class RecuperarAcabadosCotizacionPorIdCotizacionRow : global::System.Data.DataRow {
+            
+            private RecuperarAcabadosCotizacionPorIdCotizacionDataTable tableRecuperarAcabadosCotizacionPorIdCotizacion;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal RecuperarAcabadosCotizacionPorIdCotizacionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableRecuperarAcabadosCotizacionPorIdCotizacion = ((RecuperarAcabadosCotizacionPorIdCotizacionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int IdAcabadoCotizacion {
+                get {
+                    return ((int)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoCotizacionColumn]));
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoCotizacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int IdAcabado {
+                get {
+                    return ((int)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoColumn]));
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int IdCotizacion {
+                get {
+                    return ((int)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdCotizacionColumn]));
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdCotizacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Nombre {
+                get {
+                    return ((string)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.NombreColumn]));
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Precio {
+                get {
+                    return ((decimal)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.PrecioColumn]));
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.PrecioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ValorTroqueado {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ValorTroqueado\' de la tabla \'RecuperarAcabadosCotizacionP" +
+                                "orIdCotizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FrenteAcabado {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FrenteAcabado\' de la tabla \'RecuperarAcabadosCotizacionPo" +
+                                "rIdCotizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RespaldoAcabado {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'RespaldoAcabado\' de la tabla \'RecuperarAcabadosCotizacion" +
+                                "PorIdCotizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsValorTroqueadoNull() {
+                return this.IsNull(this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetValorTroqueadoNull() {
+                this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFrenteAcabadoNull() {
+                return this.IsNull(this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFrenteAcabadoNull() {
+                this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRespaldoAcabadoNull() {
+                return this.IsNull(this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRespaldoAcabadoNull() {
+                this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class RecuperarCotizacionPorIdCotizacionRow : global::System.Data.DataRow {
@@ -1384,6 +1592,57 @@ namespace CapaPresentacion {
                 }
                 set {
                     this[this.tableRecuperarCotizacionPorIdCotizacion.ClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DocumentoCliente {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.DocumentoClienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DocumentoCliente\' de la tabla \'RecuperarCotizacionPorIdCo" +
+                                "tizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.DocumentoClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DireccionCliente {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionClienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DireccionCliente\' de la tabla \'RecuperarCotizacionPorIdCo" +
+                                "tizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TelefonoCliente {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoClienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TelefonoCliente\' de la tabla \'RecuperarCotizacionPorIdCot" +
+                                "izacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoClienteColumn] = value;
                 }
             }
             
@@ -1549,74 +1808,6 @@ namespace CapaPresentacion {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NombreLitografia {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreLitografia\' de la tabla \'RecuperarCotizacionPorIdCo" +
-                                "tizacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DireccionLitografia {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DireccionLitografia\' de la tabla \'RecuperarCotizacionPorI" +
-                                "dCotizacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string TelefonoLitografia {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TelefonoLitografia\' de la tabla \'RecuperarCotizacionPorId" +
-                                "Cotizacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public byte[] LogoLitografia {
-                get {
-                    try {
-                        return ((byte[])(this[this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'LogoLitografia\' de la tabla \'RecuperarCotizacionPorIdCoti" +
-                                "zacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal TotalAcabados {
                 get {
                     try {
@@ -1702,6 +1893,110 @@ namespace CapaPresentacion {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NombreLitografia {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreLitografia\' de la tabla \'RecuperarCotizacionPorIdCo" +
+                                "tizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DireccionLitografia {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DireccionLitografia\' de la tabla \'RecuperarCotizacionPorI" +
+                                "dCotizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TelefonoLitografia {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TelefonoLitografia\' de la tabla \'RecuperarCotizacionPorId" +
+                                "Cotizacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public byte[] LogoLitografia {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'LogoLitografia\' de la tabla \'RecuperarCotizacionPorIdCoti" +
+                                "zacion\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDocumentoClienteNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.DocumentoClienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDocumentoClienteNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.DocumentoClienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDireccionClienteNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.DireccionClienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDireccionClienteNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionClienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTelefonoClienteNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.TelefonoClienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTelefonoClienteNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoClienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCostoDisenoNull() {
                 return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.CostoDisenoColumn);
             }
@@ -1710,54 +2005,6 @@ namespace CapaPresentacion {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetCostoDisenoNull() {
                 this[this.tableRecuperarCotizacionPorIdCotizacion.CostoDisenoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsNombreLitografiaNull() {
-                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetNombreLitografiaNull() {
-                this[this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDireccionLitografiaNull() {
-                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDireccionLitografiaNull() {
-                this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTelefonoLitografiaNull() {
-                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTelefonoLitografiaNull() {
-                this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLogoLitografiaNull() {
-                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLogoLitografiaNull() {
-                this[this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1819,196 +2066,53 @@ namespace CapaPresentacion {
             public void SetTotalFacturaNull() {
                 this[this.tableRecuperarCotizacionPorIdCotizacion.TotalFacturaColumn] = global::System.Convert.DBNull;
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class RecuperarAcabadosCotizacionPorIdCotizacionRow : global::System.Data.DataRow {
-            
-            private RecuperarAcabadosCotizacionPorIdCotizacionDataTable tableRecuperarAcabadosCotizacionPorIdCotizacion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal RecuperarAcabadosCotizacionPorIdCotizacionRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableRecuperarAcabadosCotizacionPorIdCotizacion = ((RecuperarAcabadosCotizacionPorIdCotizacionDataTable)(this.Table));
+            public bool IsNombreLitografiaNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int IdAcabadoCotizacion {
-                get {
-                    return ((int)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoCotizacionColumn]));
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoCotizacionColumn] = value;
-                }
+            public void SetNombreLitografiaNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.NombreLitografiaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int IdAcabado {
-                get {
-                    return ((int)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoColumn]));
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdAcabadoColumn] = value;
-                }
+            public bool IsDireccionLitografiaNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int IdCotizacion {
-                get {
-                    return ((int)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdCotizacionColumn]));
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.IdCotizacionColumn] = value;
-                }
+            public void SetDireccionLitografiaNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.DireccionLitografiaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Nombre {
-                get {
-                    return ((string)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.NombreColumn]));
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.NombreColumn] = value;
-                }
+            public bool IsTelefonoLitografiaNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal Precio {
-                get {
-                    return ((decimal)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.PrecioColumn]));
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.PrecioColumn] = value;
-                }
+            public void SetTelefonoLitografiaNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.TelefonoLitografiaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal ValorTroqueado {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ValorTroqueado\' de la tabla \'RecuperarAcabadosCotizacionP" +
-                                "orIdCotizacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn] = value;
-                }
+            public bool IsLogoLitografiaNull() {
+                return this.IsNull(this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string FrenteAcabado {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FrenteAcabado\' de la tabla \'RecuperarAcabadosCotizacionPo" +
-                                "rIdCotizacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string RespaldoAcabado {
-                get {
-                    try {
-                        return ((string)(this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'RespaldoAcabado\' de la tabla \'RecuperarAcabadosCotizacion" +
-                                "PorIdCotizacion\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsValorTroqueadoNull() {
-                return this.IsNull(this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetValorTroqueadoNull() {
-                this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.ValorTroqueadoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsFrenteAcabadoNull() {
-                return this.IsNull(this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetFrenteAcabadoNull() {
-                this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.FrenteAcabadoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsRespaldoAcabadoNull() {
-                return this.IsNull(this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetRespaldoAcabadoNull() {
-                this[this.tableRecuperarAcabadosCotizacionPorIdCotizacion.RespaldoAcabadoColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class RecuperarCotizacionPorIdCotizacionRowChangeEvent : global::System.EventArgs {
-            
-            private RecuperarCotizacionPorIdCotizacionRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionRowChangeEvent(RecuperarCotizacionPorIdCotizacionRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RecuperarCotizacionPorIdCotizacionRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
+            public void SetLogoLitografiaNull() {
+                this[this.tableRecuperarCotizacionPorIdCotizacion.LogoLitografiaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2045,217 +2149,44 @@ namespace CapaPresentacion {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class RecuperarCotizacionPorIdCotizacionRowChangeEvent : global::System.EventArgs {
+            
+            private RecuperarCotizacionPorIdCotizacionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionRowChangeEvent(RecuperarCotizacionPorIdCotizacionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RecuperarCotizacionPorIdCotizacionRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace CapaPresentacion.dsPrincipalTableAdapters {
     
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class RecuperarCotizacionPorIdCotizacionTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public RecuperarCotizacionPorIdCotizacionTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "RecuperarCotizacionPorIdCotizacion";
-            tableMapping.ColumnMappings.Add("IdCotizacion", "IdCotizacion");
-            tableMapping.ColumnMappings.Add("IdCliente", "IdCliente");
-            tableMapping.ColumnMappings.Add("Cliente", "Cliente");
-            tableMapping.ColumnMappings.Add("IdProducto", "IdProducto");
-            tableMapping.ColumnMappings.Add("Producto", "Producto");
-            tableMapping.ColumnMappings.Add("IdPapel", "IdPapel");
-            tableMapping.ColumnMappings.Add("Papel", "Papel");
-            tableMapping.ColumnMappings.Add("IdCorte", "IdCorte");
-            tableMapping.ColumnMappings.Add("Corte", "Corte");
-            tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
-            tableMapping.ColumnMappings.Add("CostoDiseno", "CostoDiseno");
-            tableMapping.ColumnMappings.Add("Cavidad", "Cavidad");
-            tableMapping.ColumnMappings.Add("Montaje", "Montaje");
-            tableMapping.ColumnMappings.Add("Frente", "Frente");
-            tableMapping.ColumnMappings.Add("Respaldo", "Respaldo");
-            tableMapping.ColumnMappings.Add("ColoresFrente", "ColoresFrente");
-            tableMapping.ColumnMappings.Add("ColoresRespaldo", "ColoresRespaldo");
-            tableMapping.ColumnMappings.Add("NombreLitografia", "NombreLitografia");
-            tableMapping.ColumnMappings.Add("DireccionLitografia", "DireccionLitografia");
-            tableMapping.ColumnMappings.Add("TelefonoLitografia", "TelefonoLitografia");
-            tableMapping.ColumnMappings.Add("LogoLitografia", "LogoLitografia");
-            tableMapping.ColumnMappings.Add("TotalAcabados", "TotalAcabados");
-            tableMapping.ColumnMappings.Add("SubtotalFactura", "SubtotalFactura");
-            tableMapping.ColumnMappings.Add("ValorGanancia", "ValorGanancia");
-            tableMapping.ColumnMappings.Add("PorcentajeGanancia", "PorcentajeGanancia");
-            tableMapping.ColumnMappings.Add("TotalFactura", "TotalFactura");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=eherazo-pc\\sqlexpress;Initial Catalog=bdlitografia;Persist Security I" +
-                "nfo=False;User ID=sa;Password=g2s0t07;Application Name=sistemaweb";
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.RecuperarCotizacionPorIdCotizacion";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdCotizacion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable dataTable, global::System.Nullable<int> IdCotizacion) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((IdCotizacion.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IdCotizacion.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable GetData(global::System.Nullable<int> IdCotizacion) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((IdCotizacion.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IdCotizacion.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable dataTable = new dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -2393,8 +2324,7 @@ namespace CapaPresentacion.dsPrincipalTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=eherazo-pc\\sqlexpress;Initial Catalog=bdlitografia;Persist Security I" +
-                "nfo=False;User ID=sa;Password=g2s0t07;Application Name=sistemaweb";
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["bdlitografiaConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2441,6 +2371,215 @@ namespace CapaPresentacion.dsPrincipalTableAdapters {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             dsPrincipal.RecuperarAcabadosCotizacionPorIdCotizacionDataTable dataTable = new dsPrincipal.RecuperarAcabadosCotizacionPorIdCotizacionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class RecuperarCotizacionPorIdCotizacionTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public RecuperarCotizacionPorIdCotizacionTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "RecuperarCotizacionPorIdCotizacion";
+            tableMapping.ColumnMappings.Add("IdCotizacion", "IdCotizacion");
+            tableMapping.ColumnMappings.Add("IdCliente", "IdCliente");
+            tableMapping.ColumnMappings.Add("Cliente", "Cliente");
+            tableMapping.ColumnMappings.Add("DocumentoCliente", "DocumentoCliente");
+            tableMapping.ColumnMappings.Add("DireccionCliente", "DireccionCliente");
+            tableMapping.ColumnMappings.Add("TelefonoCliente", "TelefonoCliente");
+            tableMapping.ColumnMappings.Add("IdProducto", "IdProducto");
+            tableMapping.ColumnMappings.Add("Producto", "Producto");
+            tableMapping.ColumnMappings.Add("IdPapel", "IdPapel");
+            tableMapping.ColumnMappings.Add("Papel", "Papel");
+            tableMapping.ColumnMappings.Add("IdCorte", "IdCorte");
+            tableMapping.ColumnMappings.Add("Corte", "Corte");
+            tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
+            tableMapping.ColumnMappings.Add("CostoDiseno", "CostoDiseno");
+            tableMapping.ColumnMappings.Add("Cavidad", "Cavidad");
+            tableMapping.ColumnMappings.Add("Montaje", "Montaje");
+            tableMapping.ColumnMappings.Add("Frente", "Frente");
+            tableMapping.ColumnMappings.Add("Respaldo", "Respaldo");
+            tableMapping.ColumnMappings.Add("ColoresFrente", "ColoresFrente");
+            tableMapping.ColumnMappings.Add("ColoresRespaldo", "ColoresRespaldo");
+            tableMapping.ColumnMappings.Add("TotalAcabados", "TotalAcabados");
+            tableMapping.ColumnMappings.Add("SubtotalFactura", "SubtotalFactura");
+            tableMapping.ColumnMappings.Add("ValorGanancia", "ValorGanancia");
+            tableMapping.ColumnMappings.Add("PorcentajeGanancia", "PorcentajeGanancia");
+            tableMapping.ColumnMappings.Add("TotalFactura", "TotalFactura");
+            tableMapping.ColumnMappings.Add("NombreLitografia", "NombreLitografia");
+            tableMapping.ColumnMappings.Add("DireccionLitografia", "DireccionLitografia");
+            tableMapping.ColumnMappings.Add("TelefonoLitografia", "TelefonoLitografia");
+            tableMapping.ColumnMappings.Add("LogoLitografia", "LogoLitografia");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["bdlitografiaConnectionString"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.RecuperarCotizacionPorIdCotizacion";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdCotizacion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable dataTable, global::System.Nullable<int> IdCotizacion) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((IdCotizacion.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IdCotizacion.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable GetData(global::System.Nullable<int> IdCotizacion) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((IdCotizacion.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IdCotizacion.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable dataTable = new dsPrincipal.RecuperarCotizacionPorIdCotizacionDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

@@ -520,9 +520,9 @@ Public Class DataAccess
         Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
 
         DB.AddInParameter(DatabaseCommand, "IdLitografia", DbType.Int32, idLitografia)
-        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, nombre)
+        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, nombre.ToUpper())
         DB.AddInParameter(DatabaseCommand, "Telefono", DbType.String, telefono)
-        DB.AddInParameter(DatabaseCommand, "Direccion", DbType.String, direccion)
+        DB.AddInParameter(DatabaseCommand, "Direccion", DbType.String, direccion.ToUpper())
         DB.AddInParameter(DatabaseCommand, "Logo", DbType.Binary, imagen)
         DB.AddInParameter(DatabaseCommand, "Usuario", DbType.String, Nombreusuario)
         DB.AddInParameter(DatabaseCommand, "Clave", DbType.String, Clave)
@@ -630,9 +630,9 @@ Public Class DataAccess
         Dim SqlCommand As String = "InsertarLitografia"
         Dim DatabaseCommand As DbCommand = DB.GetStoredProcCommand(SqlCommand)
 
-        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, nombre)
+        DB.AddInParameter(DatabaseCommand, "Nombre", DbType.String, nombre.ToUpper())
         DB.AddInParameter(DatabaseCommand, "Telefono", DbType.String, telefono)
-        DB.AddInParameter(DatabaseCommand, "Direccion", DbType.String, direccion)
+        DB.AddInParameter(DatabaseCommand, "Direccion", DbType.String, direccion.ToUpper())
         DB.AddInParameter(DatabaseCommand, "Logo", DbType.Binary, imagen)
         DB.AddInParameter(DatabaseCommand, "Usuario", DbType.String, Nombreusuario)
         DB.AddInParameter(DatabaseCommand, "Clave", DbType.String, Clave)
